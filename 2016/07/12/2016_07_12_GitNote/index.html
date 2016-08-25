@@ -4,23 +4,48 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ReactiveCocoa 学习笔记 | Liu2er的技术博客</title>
+    <title>Git 学习笔记 | Liu2er的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Liu2er">
     
 
-    <meta name="keywords" content="iOS, RAC">
-    <meta name="description" content="ReactiveCocoaNote最简单的信号的创建与订阅范例123456789101112131415161718192021222324252627#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;	int main(int argc, const char * argv[]) &amp;#123">
+    <meta name="keywords" content="Git, branch">
+    <meta name="description" content="一张图读懂 Git工作区和暂存区的概念 – 廖雪峰
+
+Git 常用命令Git远程操作详解 – 阮一峰
+
+git clone &amp;lt;git地址&amp;gt;：本地没有repository时，将远程repository整个下载过来。
+git pull：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。
+git push &amp;lt;远程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ReactiveCocoa 学习笔记">
-<meta property="og:url" content="http://liu2er.com/2016/08/24/2016_08_25_ReactiveCocoaNote/index.html">
+<meta property="og:title" content="Git 学习笔记">
+<meta property="og:url" content="http://liu2er.com/2016/07/12/2016_07_12_GitNote/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="ReactiveCocoaNote最简单的信号的创建与订阅范例123456789101112131415161718192021222324252627#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;	int main(int argc, const char * argv[]) &amp;#123">
-<meta property="og:updated_time" content="2016-08-25T03:24:23.000Z">
+<meta property="og:description" content="一张图读懂 Git工作区和暂存区的概念 – 廖雪峰
+
+Git 常用命令Git远程操作详解 – 阮一峰
+
+git clone &amp;lt;git地址&amp;gt;：本地没有repository时，将远程repository整个下载过来。
+git pull：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。
+git push &amp;lt;远程">
+<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_00.png">
+<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_01.png">
+<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_02.png">
+<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_03.png">
+<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_04.png">
+<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_05.png">
+<meta property="og:updated_time" content="2016-08-25T06:15:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ReactiveCocoa 学习笔记">
-<meta name="twitter:description" content="ReactiveCocoaNote最简单的信号的创建与订阅范例123456789101112131415161718192021222324252627#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;	int main(int argc, const char * argv[]) &amp;#123">
+<meta name="twitter:title" content="Git 学习笔记">
+<meta name="twitter:description" content="一张图读懂 Git工作区和暂存区的概念 – 廖雪峰
+
+Git 常用命令Git远程操作详解 – 阮一峰
+
+git clone &amp;lt;git地址&amp;gt;：本地没有repository时，将远程repository整个下载过来。
+git pull：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。
+git push &amp;lt;远程">
+<meta name="twitter:image" content="http://liu2er.com/images/2016071201_git_learn_note_00.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -76,14 +101,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/24/2016_08_25_ReactiveCocoaNote/" title="ReactiveCocoa 学习笔记" itemprop="url">ReactiveCocoa 学习笔记</a>
+      <a href="/2016/07/12/2016_07_12_GitNote/" title="Git 学习笔记" itemprop="url">Git 学习笔记</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> Published 2016-08-24</time>
+    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> Published 2016-07-12</time>
     
   </p>
 </header>
@@ -92,11 +117,44 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ReactiveCocoaNote"><span class="toc-number">1.</span> <span class="toc-text">ReactiveCocoaNote</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">1.1.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图读懂-Git"><span class="toc-number">1.</span> <span class="toc-text">一张图读懂 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-常用命令"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的创建、合并、删除图示"><span class="toc-number">3.</span> <span class="toc-text">分支的创建、合并、删除图示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-number">4.</span> <span class="toc-text">Github</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="ReactiveCocoaNote"><a href="#ReactiveCocoaNote" class="headerlink" title="ReactiveCocoaNote"></a>ReactiveCocoaNote</h1><h2 id="最简单的信号的创建与订阅范例"><a href="#最简单的信号的创建与订阅范例" class="headerlink" title="最简单的信号的创建与订阅范例"></a>最简单的<em>信号的创建与订阅</em>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span>	</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
+		<h2 id="一张图读懂-Git"><a href="#一张图读懂-Git" class="headerlink" title="一张图读懂 Git"></a>一张图读懂 Git</h2><p><strong><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000" target="_blank" rel="external">工作区和暂存区的概念 – 廖雪峰</a></strong></p>
+<p><img src="/images/2016071201_git_learn_note_00.png" alt="2016071201_git_learn_note_00"></p>
+<h2 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h2><p><strong><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解 – 阮一峰</a></strong></p>
+<ul>
+<li><code>git clone &lt;git地址&gt;</code>：本地没有repository时，将远程repository整个下载过来。</li>
+<li><code>git pull</code>：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。</li>
+<li><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：用于将本地分支的更新，推送到远程主机。如果省略远程分支名，则表示将本地分支推送与之存在”追踪关系”的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。eg：<code>git push origin master</code></li>
+<li><code>git fetch</code>：将远程仓库的更新同步到本地</li>
+<li><p><code>git pull</code>：取回远程仓库某个分支的更新，再与本地的指定分支合并</p>
+</li>
+<li><p>查看分支：<code>git branch</code></p>
+</li>
+<li>创建分支：<code>git branch &lt;name&gt;</code></li>
+<li>切换分支：<code>git checkout &lt;name&gt;</code></li>
+<li>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></li>
+<li>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></li>
+<li>删除分支：<code>git branch -d &lt;name&gt;</code></li>
+</ul>
+<p><strong><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用 Git 命令清单 – 阮一峰</a></strong></p>
+<h2 id="分支的创建、合并、删除图示"><a href="#分支的创建、合并、删除图示" class="headerlink" title="分支的创建、合并、删除图示"></a>分支的创建、合并、删除图示</h2><p><strong><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000" target="_blank" rel="external">分支的创建、合并、删除图示 – 廖雪峰</a></strong></p>
+<p>假设原来只有 master 分支 ↓ ：<br><img src="/images/2016071201_git_learn_note_01.png" alt="2016071201_git_learn_note_01"></p>
+<p>创建一个叫 dev 的新分支，并切换到该分支上 ↓ ：<code>git checkout -b dev</code><br><img src="/images/2016071201_git_learn_note_02.png" alt="2016071201_git_learn_note_02"></p>
+<p>在 dev 分支上进行一次提交 ↓ ：<code>git commit -m &quot;在dev分支上提交更改&quot;</code><br><img src="/images/2016071201_git_learn_note_03.png" alt="2016071201_git_learn_note_03"></p>
+<p>把 dev 合并到 master 上 ↓ ：<code>git merge dev</code><br><img src="/images/2016071201_git_learn_note_04.png" alt="2016071201_git_learn_note_04"></p>
+<p>删除 dev 分支 ↓ ：<code>git branch -d dev</code><br><img src="/images/2016071201_git_learn_note_05.png" alt="2016071201_git_learn_note_05"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong><code>master：</code></strong>主分支；</li>
+<li><strong><code>HEAD：</code></strong>始终指向当前分支；</li>
+<li>Git 创建、合并、删除分支非常快，因为这些操作都是对指针的操作，改改 HEAD 的指向，工作区的文件都没有任何变化；</li>
+<li>Git 鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在 master 分支上工作效果是一样的，但过程更安全。</li>
+</ul>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><ul>
+<li><strong>fork 按钮：</strong>fork 用于将他人的仓库复制到我们账号中。如果我们想要参与开源项目，首先要 fork 下别人的项目，然后在我们复制过来的仓库中，对别人的代码做修改。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -104,13 +162,13 @@
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  <a class="article-category-link" href="/categories/Git/">Git</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/RAC/">RAC</a>
+  <span></span> <a href="/tags/Git/">Git</a>
   </div>
 
 </div>
@@ -119,7 +177,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://liu2er.com/2016/08/24/2016_08_25_ReactiveCocoaNote/" data-title="ReactiveCocoa 学习笔记 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://liu2er.com/2016/07/12/2016_07_12_GitNote/" data-title="Git 学习笔记 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -133,18 +191,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/08/25/2016_08_25_HexoNote/" title="Hexo + Jacman 笔记">
+ <a href="/2016/08/24/2016_08_25_ReactiveCocoaNote/" title="ReactiveCocoa 学习笔记">
   <strong>上一篇：</strong><br/>
   <span>
-  Hexo + Jacman 笔记</span>
+  ReactiveCocoa 学习笔记</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/07/12/2016_07_12_GitNote/"  title="Git 学习笔记">
+<a href="/2015/08/16/2015_08_16_Octopress/"  title="用 Octopress 搭建静态博客并发布文章">
  <strong>下一篇：</strong><br/> 
- <span>Git 学习笔记
+ <span>用 Octopress 搭建静态博客并发布文章
 </span>
 </a>
 </div>
@@ -153,7 +211,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/24/2016_08_25_ReactiveCocoaNote/" data-title="ReactiveCocoa 学习笔记" data-url="http://liu2er.com/2016/08/24/2016_08_25_ReactiveCocoaNote/"></div>
+	<div class="ds-thread" data-thread-key="2016/07/12/2016_07_12_GitNote/" data-title="Git 学习笔记" data-url="http://liu2er.com/2016/07/12/2016_07_12_GitNote/"></div>
 </section>
 
 
@@ -163,7 +221,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ReactiveCocoaNote"><span class="toc-number">1.</span> <span class="toc-text">ReactiveCocoaNote</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">1.1.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图读懂-Git"><span class="toc-number">1.</span> <span class="toc-text">一张图读懂 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-常用命令"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的创建、合并、删除图示"><span class="toc-number">3.</span> <span class="toc-text">分支的创建、合并、删除图示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-number">4.</span> <span class="toc-text">Github</span></a></li></ol>
  
   </div>
 

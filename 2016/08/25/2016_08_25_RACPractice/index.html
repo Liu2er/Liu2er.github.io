@@ -27,7 +27,7 @@
 在 Podfile 里写入内容：
 
 123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
-<meta property="og:updated_time" content="2016-08-25T05:07:44.000Z">
+<meta property="og:updated_time" content="2016-08-25T06:11:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RAC 工程简单实践">
 <meta name="twitter:description" content="创建一个简单的 RAC 工程
@@ -107,7 +107,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范例"><span class="toc-number">2.</span> <span class="toc-text">范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">2.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
 		
 		</div>
 		
@@ -121,7 +121,7 @@
 <li>在 RACTest 工程的根目录执行终端命令：<code>$ pod install —-no-repo-update</code></li>
 <li>在 RACTest 工程里导入头文件 <code>#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;</code></li>
 </ul>
-<h2 id="范例"><a href="#范例" class="headerlink" title="范例"></a>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="最简单的信号的创建与订阅范例"><a href="#最简单的信号的创建与订阅范例" class="headerlink" title="最简单的信号的创建与订阅范例"></a>最简单的<em>信号的创建与订阅</em>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>输出结果为：</p>
 <pre><code>2016-08-24 17:25:57.107 OCTest[15943:240697] 接收到数据：数据1
 2016-08-24 17:25:57.108 OCTest[15943:240697] 接收到数据：数据2
@@ -194,7 +194,7 @@ Program ended with exit code: 0
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范例"><span class="toc-number">2.</span> <span class="toc-text">范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">2.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
  
   </div>
 
@@ -212,6 +212,10 @@ Program ended with exit code: 0
 		
 		  
 			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
 		  
 		
 		  
@@ -237,6 +241,10 @@ Program ended with exit code: 0
 		
 			
 				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 		</ul>
