@@ -2155,7 +2155,7 @@ footer {
   zoom: 1;
   font-size: 0.85em;
   text-align: left;
-  color: #8e908c;
+  color: #00a86b;
   line-height: 1em;
   padding: 0.5em 0;
   margin-bottom: 0.5em;
@@ -2210,7 +2210,7 @@ footer {
 }
 .article-content .gist .gist-file .gist-meta {
   background: #eee;
-  color: #8e908c;
+  color: #00a86b;
   font: 0.85em "Georgia", serif;
   text-shadow: 0 0;
   padding: 0;
@@ -2225,7 +2225,7 @@ footer {
 }
 pre .comment,
 pre .title {
-  color: #8e908c;
+  color: #00a86b;
 }
 pre .variable,
 pre .attribute,

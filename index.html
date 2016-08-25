@@ -74,6 +74,91 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/08/25/HexoNote/" title="HexoNote" itemprop="url">HexoNote</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> Published 2016-08-25</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="文章发布流程"><a href="#文章发布流程" class="headerlink" title="文章发布流程"></a>文章发布流程</h2><blockquote>
+<ol>
+<li><code>hexo new &lt;文章名&gt;</code>  // 生成新的文章&lt;文章名&gt;，缩写<code>hexo n &lt;文章名&gt;</code></li>
+<li><code>hexo generate</code>  // 生成</li>
+<li><code>hexo deploy</code>  // 部署到远端</li>
+</ol>
+</blockquote>
+<ul>
+<li>其中<code>hexo generate</code>和<code>hexo deploy</code>可以合成一条命令，即<code>hexo generate -d</code>或<code>hexo deploy -g</code>，简写为<code>hexo g -d</code>或<code>hexo d -g</code>。</li>
+<li>在部署之前可以使用<code>hexo server</code>命令来启动服务器在本地预览。</li>
+<li>文章的默认生成路径为<code>~/Documents/Hexo文件/source/_posts/&lt;文章名&gt;.md</code>。</li>
+<li>hexo常用命令可以参考<a href="https://segmentfault.com/a/1190000002632530" target="_blank" rel="external">hexo常用命令笔记</a>。</li>
+</ul>
+<h2 id="代码段高亮"><a href="#代码段高亮" class="headerlink" title="代码段高亮"></a>代码段高亮</h2><p>首先，设置<code>~/Documents/Hexo文件/_config.yml</code></p>
+<p><img src="/images/2016-08-25-HexoNote-CodeHighlightSetting.png" alt="CodeHighlightSetting"></p>
+<p>其次，设置文件<code>~/Documents/Hexo文件/themes/Jacman/source/css/_base/highlight/theme.styl</code>，设置前图片如下所示：</p>
+<p><img src="/images/2016-08-25-HexoNote-CommentColor.png" alt="CommentColor"></p>
+<p>例如把代码块默认主题注释字段的颜色修改为<code>#00A86B</code></p>
+<p>写代码时格式为：</p>
+<blockquote>
+<p>```objc<br>代码<br>```</p>
+</blockquote>
+<p>其中hexo支持的语言样式颜色可以参考<a href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html" target="_blank" rel="external">CSS classes reference</a>，Markdown语法可参考文章<a href="https://coding.net/help/doc/project/markdown.html#section-8" target="_blank" rel="external">Markdown语法介绍</a>，另外可参考文章<a href="http://vin-zhou.github.io/2014/10/23/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">Hexo搭建个人博客</a>。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/08/25/HexoNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/25/HexoNote/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/08/24/ReactiveCocoaNote/" title="ReactiveCocoaNote" itemprop="url">ReactiveCocoaNote</a>
   </h1>
   <p class="article-author">By
@@ -87,7 +172,8 @@
 </header>
     <div class="article-content">
         
-        <h2 id="ReactiveCocoaNote"><a href="#ReactiveCocoaNote" class="headerlink" title="ReactiveCocoaNote"></a>ReactiveCocoaNote</h2>
+        <h1 id="ReactiveCocoaNote"><a href="#ReactiveCocoaNote" class="headerlink" title="ReactiveCocoaNote"></a>ReactiveCocoaNote</h1><h2 id="最简单的信号的创建与订阅范例"><a href="#最简单的信号的创建与订阅范例" class="headerlink" title="最简单的信号的创建与订阅范例"></a>最简单的<em>信号的创建与订阅</em>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span>	</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
+
         
         
         <p class="article-more-link">
@@ -208,6 +294,10 @@
 		<ul>
 		
 		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/iOS/" title="iOS">iOS<sup>1</sup></a></li>
 		  
 		
@@ -219,6 +309,10 @@
 <div class="tagslist">
 	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
 		
 			
 				<li><a href="/tags/RAC/" title="RAC">RAC<sup>1</sup></a></li>
