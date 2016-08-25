@@ -1,0 +1,583 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>用 Octopress 搭建静态博客并发布文章 | Liu2er的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Liu2er">
+    
+
+    <meta name="keywords" content="Octopress, Blog">
+    <meta name="description" content="搭建博客克隆Octopress从Github上将Octopress项目克隆到本地的Octopress目录下：
+git clone git://github.com/imathis/octopress.git Octopress
+进入Octopress项目根目录cd Octopress">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 Octopress 搭建静态博客并发布文章">
+<meta property="og:url" content="http://liu2er.com/2016/08/16/2015_08_16_Octopress/index.html">
+<meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="搭建博客克隆Octopress从Github上将Octopress项目克隆到本地的Octopress目录下：
+git clone git://github.com/imathis/octopress.git Octopress
+进入Octopress项目根目录cd Octopress">
+<meta property="og:updated_time" content="2016-08-25T03:24:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用 Octopress 搭建静态博客并发布文章">
+<meta name="twitter:description" content="搭建博客克隆Octopress从Github上将Octopress项目克隆到本地的Octopress目录下：
+git clone git://github.com/imathis/octopress.git Octopress
+进入Octopress项目根目录cd Octopress">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
+				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:liu2er.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-16T05:51:41.000Z" itemprop="datePublished"> Published 2016-08-16</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建博客"><span class="toc-number">1.</span> <span class="toc-text">搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆Octopress"><span class="toc-number">1.1.</span> <span class="toc-text">克隆Octopress</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入Octopress项目根目录"><span class="toc-number">1.2.</span> <span class="toc-text">进入Octopress项目根目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用第三方镜像"><span class="toc-number">1.3.</span> <span class="toc-text">使用第三方镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装bundler"><span class="toc-number">1.4.</span> <span class="toc-text">安装bundler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装bundle"><span class="toc-number">1.5.</span> <span class="toc-text">安装bundle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用rake工具安装默认主题"><span class="toc-number">1.6.</span> <span class="toc-text">使用rake工具安装默认主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看生成的默认网页"><span class="toc-number">1.7.</span> <span class="toc-text">查看生成的默认网页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改主题默认样式"><span class="toc-number">2.</span> <span class="toc-text">修改主题默认样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改标题"><span class="toc-number">2.1.</span> <span class="toc-text">修改标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改导航栏"><span class="toc-number">2.2.</span> <span class="toc-text">修改导航栏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章"><span class="toc-number">3.</span> <span class="toc-text">发布文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用命令生成MD文件"><span class="toc-number">3.1.</span> <span class="toc-text">用命令生成MD文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个页面"><span class="toc-number">3.2.</span> <span class="toc-text">新建一个页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署到Github"><span class="toc-number">4.</span> <span class="toc-text">部署到Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署说明"><span class="toc-number">4.1.</span> <span class="toc-text">部署说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署流程"><span class="toc-number">4.2.</span> <span class="toc-text">部署流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#博客本地预览"><span class="toc-number">4.2.1.</span> <span class="toc-text">博客本地预览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交源码用于备份"><span class="toc-number">4.2.2.</span> <span class="toc-text">提交源码用于备份</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建博文并发布到Github"><span class="toc-number">4.3.</span> <span class="toc-text">新建博文并发布到Github</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="克隆Octopress"><a href="#克隆Octopress" class="headerlink" title="克隆Octopress"></a>克隆Octopress</h3><p>从Github上将Octopress项目克隆到本地的Octopress目录下：</p>
+<pre><code>git clone git://github.com/imathis/octopress.git Octopress
+</code></pre><h3 id="进入Octopress项目根目录"><a href="#进入Octopress项目根目录" class="headerlink" title="进入Octopress项目根目录"></a>进入Octopress项目根目录</h3><pre><code>cd Octopress
+</code></pre><a id="more"></a>    
+<h3 id="使用第三方镜像"><a href="#使用第三方镜像" class="headerlink" title="使用第三方镜像"></a>使用第三方镜像</h3><p>1.去掉官方镜像：</p>
+<pre><code>gem sources --remove https://rubygems.org/
+</code></pre><p>2.换用淘宝镜像：</p>
+<pre><code>gem sources -a https://ruby.taobao.org/
+</code></pre><p>3.查看当前镜像：</p>
+<pre><code>gem sources -l
+
+输出内容为：
+*** CURRENT SOURCES ***
+https://ruby.taobao.org
+// 请确保只有 ruby.taobao.org
+</code></pre><h3 id="安装bundler"><a href="#安装bundler" class="headerlink" title="安装bundler"></a>安装bundler</h3><pre><code>sudo gem install bundler
+</code></pre><p>注意：此安装过程会比较长</p>
+<h3 id="安装bundle"><a href="#安装bundle" class="headerlink" title="安装bundle"></a>安装bundle</h3><p>1.安装bundle前需要先替换镜像：</p>
+<pre><code>bundle config mirror.https://rubygems.org https://ruby.taobao.org
+</code></pre><p>2.安装bundle    </p>
+<pre><code>bundle install
+</code></pre><h3 id="使用rake工具安装默认主题"><a href="#使用rake工具安装默认主题" class="headerlink" title="使用rake工具安装默认主题"></a>使用rake工具安装默认主题</h3><pre><code>rake install
+</code></pre><h3 id="查看生成的默认网页"><a href="#查看生成的默认网页" class="headerlink" title="查看生成的默认网页"></a>查看生成的默认网页</h3><p>1.打开默认的本地服务器监听：</p>
+<pre><code>rake preview
+</code></pre><p>2.在浏览器里输入一下网址查看生成的默认网页</p>
+<p><a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a></p>
+<h2 id="修改主题默认样式"><a href="#修改主题默认样式" class="headerlink" title="修改主题默认样式"></a>修改主题默认样式</h2><h3 id="修改标题"><a href="#修改标题" class="headerlink" title="修改标题"></a>修改标题</h3><p>在Octopress根目录下的<code>_config.yml</code>文件里修改（用Mac OS X自带的<code>文本编辑器</code>或<code>Xcode</code>打开）：</p>
+<pre><code>url: 此处填写本站将来上线的网址
+title: 大标题
+subtitle: 小标题
+author: 作者名字
+...
+</code></pre><p><strong>注意：</strong>修改<code>_config.yml</code>文件后需要重启服务器。</p>
+<h3 id="修改导航栏"><a href="#修改导航栏" class="headerlink" title="修改导航栏"></a>修改导航栏</h3><p>向主导航栏添加或删除链接，需要编辑<code>/source/_includes/custom/navigation.html</code>。这个文件的内容一般像这样：</p>
+<pre><code>&lt;ul class=&quot;main-navigation&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;{{ root_url }}/&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;{{ root_url }}/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>比如我想在导航栏添加一个我的Github主页的链接，则做如下修改：</p>
+<pre><code>&lt;ul class=&quot;main-navigation&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;{{ root_url }}/&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;{{ root_url }}/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;https://github.com/Liu2er&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h2 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h2><p>Octopress发布文章使用的是markdown语法，而不是常用的HTML语言，</p>
+<h3 id="用命令生成MD文件"><a href="#用命令生成MD文件" class="headerlink" title="用命令生成MD文件"></a>用命令生成MD文件</h3><pre><code>rake new_post[&quot;Hello&quot;]
+</code></pre><p>此命令会在项目/source/_posts/中生成一个MD文件<code>2015-08-16-Hello.markdown</code>。</p>
+<h3 id="新建一个页面"><a href="#新建一个页面" class="headerlink" title="新建一个页面"></a>新建一个页面</h3><pre><code>rake new_page[&quot;about&quot;]
+</code></pre><p>然后再在<code>/source/_includes/custom/navigation.html</code>里添加如下内容：</p>
+<pre><code>&lt;li&gt;&lt;a href=&quot;https://github.com/Liu2er&quot;&gt;Github&lt;/a&gt;&lt;/li&gt;
+</code></pre><h2 id="部署到Github"><a href="#部署到Github" class="headerlink" title="部署到Github"></a>部署到Github</h2><h3 id="部署说明"><a href="#部署说明" class="headerlink" title="部署说明"></a>部署说明</h3><p>官方推荐了三种部署方式：</p>
+<p>1.Github，部署允许自定义域名，免费，好处是多人开发更方面，坏处是文件随时可以被任何人拉下来。</p>
+<p>2.Heroku，部署允许自定义域名，免费，并且是私有的，看样子这个比较适合我，后面的过程就用这个方法。</p>
+<p>3.Rsync，建议用来部署有自己服务器的个人博客。</p>
+<p>本文主要介绍Github的部署过程，Heroku部署方式请异步<a href="http://www.cnblogs.com/sawyerzhu/p/3710374.html" target="_blank" rel="external">Mac环境下Octopress个人博客搭建</a>。</p>
+<h3 id="部署流程"><a href="#部署流程" class="headerlink" title="部署流程"></a>部署流程</h3><p>1.申请自己的Github帐号；</p>
+<p>2.新建一个仓库，名为<code>your_user_name.github.io</code>，比如我的是<code>Liu2er.github.io</code>。</p>
+<p>3.在octopress根目录执行<code>rake setup_github_pages</code>命令，按照要求输入仓库地址（终端中会有提示输入的要求），这个命令会在跟目录下新建_deploy目录，这个会push到仓库的master分支，也就是访问博客的文件。</p>
+<p>4.生成博客，<code>rake generate</code>这个会按照既定规则生成静态文件的博客。</p>
+<p>5.发布博客，<code>rake deploy</code>将前一步生成的bo9ke拷贝到_deploy目录并push到github。</p>
+<p><strong>注意：</strong>第一次执行执行<code>rake deploy</code>的时候会报错，如下所示：</p>
+<pre><code>! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to &apos;https://github.com/yeesterbunny/yeesterbunny.github.com.git&apos;
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Merge the remote changes (e.g. &apos;git pull&apos;)
+hint: before pushing again.
+hint: See the &apos;Note about fast-forwards&apos; in &apos;git push --help&apos; for details.
+</code></pre><p>解决方法是进入_deploy目录手动强制push一次：</p>
+<pre><code>cd Octopress/_deploy
+git pull origin +master
+cd ..
+rake deploy
+</code></pre><p>这样再次执行就不会报错了。</p>
+<h4 id="博客本地预览"><a href="#博客本地预览" class="headerlink" title="博客本地预览"></a>博客本地预览</h4><p>如果在部署到仓库之前，需要先预览一下博客，可以在终端输入<code>rake preview</code>命令，然后就能在浏览器中进行本地预览访问了：<a href="http://127.0.0.1:4000/" target="_blank" rel="external">http://127.0.0.1:4000/</a>或<a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>，效果跟仓库中的一样。</p>
+<h4 id="提交源码用于备份"><a href="#提交源码用于备份" class="headerlink" title="提交源码用于备份"></a>提交源码用于备份</h4><p>前面提到的deploy只是部署博客代码到github上面，整个octopress并没有提交，为了保证在任何地方随时发布博客，而无需再次详细配置以保证跟github上的最新代码一致，可以将当前octopress的源码存放到github的source分支下：</p>
+<pre><code>git add .
+git commit -m &apos;Initial source commit&apos;
+git push origin source
+</code></pre><h3 id="新建博文并发布到Github"><a href="#新建博文并发布到Github" class="headerlink" title="新建博文并发布到Github"></a>新建博文并发布到Github</h3><p>新建博文也非常简单，octopress已经预定义了脚本<code>rake new_post[“title”]</code>方便我们操作，因为Jekyll有一套固定的文档路径以及命名规范，需要按照它的规定来实现才能成功生成博文。博文必须存储在source/_posts目录下，并且需要按照Jekyll的命名规范对博文进行命名：<code>YYYY-MM-DD-title.markdown</code>。博文的名字会被当做url的一部分，而其中的日期用于对博文的区分和排序。</p>
+<p>new_post执行后会自动新建博文，并在相应的markdown文件中写入yaml元数据。</p>
+<pre><code>---
+layout: post
+title: &quot;Test&quot;
+date: 2015-08-16 18:51:21 +0800
+comments: true
+categories: 
+---
+</code></pre><p>这里的categories是自定义的分类名，支持的定义方式如下：</p>
+<pre><code># One category
+categories: Sass
+# Multiple categories example 1
+categories: [CSS3, Sass, Media Queries]
+# Multiple categories example 2
+categories:
+- CSS3
+- Sass
+- Media Queries
+</code></pre><p>除此之外，还支持 author: Your Name 来指明作者，支持 published: false 表明当前博文是草稿暂时不发布。</p>
+<p><strong>发布博文完整流程：</strong></p>
+<pre><code>rake new_post[&quot;New Post&quot;]
+#edit the file source/_posts/{DATETIME}-New-Post.markdown
+rake generate
+git add .
+git commit -am &quot;Some comment here.&quot; 
+git push origin source
+rake deploy
+</code></pre><p><strong>解析：</strong></p>
+<ul>
+<li>Octopress其实为你建立了2个分支，一个是master分支，用于存放生成的最终网页。另一个是source分支，用于存放最初的原始markdown文件。</li>
+<li>平时写作和提交都在source分支下，当需要发布时，rake deploy命令会将内容生成到 public 这个目录，然后将这个目录的内容当作master分支的内容同步到github上面。    </li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>1.<a href="http://www.cnblogs.com/sawyerzhu/p/3710374.html" target="_blank" rel="external">Mac环境下Octopress个人博客搭建</a></p>
+<p>2.<a href="https://ruby.taobao.org/" target="_blank" rel="external">RubyGems 镜像 - 淘宝网</a></p>
+<p>3.<a href="http://www.freehao123.com/octopress/" target="_blank" rel="external">用Octopress免费静态博客系统在Github免费空间上搭建个人网站</a></p>
+<p>4.<a href="http://my.oschina.net/fzyz999/blog/126507" target="_blank" rel="external">如何自定义octopress主题</a></p>
+<p>5.<a href="http://www.tuicool.com/articles/BjABvq" target="_blank" rel="external">Octopress主题样式修改</a></p>
+<p>6.<a href="http://ju.outofmemory.cn/entry/98762" target="_blank" rel="external">利用octopress部署博客到github</a></p>
+<p>7.<a href="http://m.blog.csdn.net/blog/lcliliil/13727927" target="_blank" rel="external">Octopress添加统计与SEO</a></p>
+<p>8.<a href="http://blog.devtang.com/blog/2012/02/10/setup-blog-based-on-github/" target="_blank" rel="external">像写程序一样写博客：搭建基于github的博客</a></p>
+<p>9.<a href="http://blog.devtang.com/blog/2012/02/03/talk-about-svn-and-git/" target="_blank" rel="external">Git的使用感受</a></p>
+<p>10.<a href="http://txgcwm.github.io/blog/2014/05/09/octopresstian-jia-er-wei-ma-zhan-shi-he-fan-hui-ding-bu-an-niu/" target="_blank" rel="external">Octopress添加二维码展示和返回顶部按钮</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Blog/">Blog</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Octopress/">Octopress</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2016/08/16/2015_08_16_Octopress/" data-title="用 Octopress 搭建静态博客并发布文章 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/24/2016_08_25_ReactiveCocoaNote/" title="ReactiveCocoa 学习笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  ReactiveCocoa 学习笔记</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/08/16/2015_08_16_Octopress/" data-title="用 Octopress 搭建静态博客并发布文章" data-url="http://liu2er.com/2016/08/16/2015_08_16_Octopress/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建博客"><span class="toc-number">1.</span> <span class="toc-text">搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#克隆Octopress"><span class="toc-number">1.1.</span> <span class="toc-text">克隆Octopress</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入Octopress项目根目录"><span class="toc-number">1.2.</span> <span class="toc-text">进入Octopress项目根目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用第三方镜像"><span class="toc-number">1.3.</span> <span class="toc-text">使用第三方镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装bundler"><span class="toc-number">1.4.</span> <span class="toc-text">安装bundler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装bundle"><span class="toc-number">1.5.</span> <span class="toc-text">安装bundle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用rake工具安装默认主题"><span class="toc-number">1.6.</span> <span class="toc-text">使用rake工具安装默认主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看生成的默认网页"><span class="toc-number">1.7.</span> <span class="toc-text">查看生成的默认网页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改主题默认样式"><span class="toc-number">2.</span> <span class="toc-text">修改主题默认样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#修改标题"><span class="toc-number">2.1.</span> <span class="toc-text">修改标题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改导航栏"><span class="toc-number">2.2.</span> <span class="toc-text">修改导航栏</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章"><span class="toc-number">3.</span> <span class="toc-text">发布文章</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用命令生成MD文件"><span class="toc-number">3.1.</span> <span class="toc-text">用命令生成MD文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建一个页面"><span class="toc-number">3.2.</span> <span class="toc-text">新建一个页面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署到Github"><span class="toc-number">4.</span> <span class="toc-text">部署到Github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署说明"><span class="toc-number">4.1.</span> <span class="toc-text">部署说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#部署流程"><span class="toc-number">4.2.</span> <span class="toc-text">部署流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#博客本地预览"><span class="toc-number">4.2.1.</span> <span class="toc-text">博客本地预览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#提交源码用于备份"><span class="toc-number">4.2.2.</span> <span class="toc-text">提交源码用于备份</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新建博文并发布到Github"><span class="toc-number">4.3.</span> <span class="toc-text">新建博文并发布到Github</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/RAC/" title="RAC">RAC<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://weibo.com/u/1609426010?source=blog" target="_blank" title="新浪微博">新浪微博</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Liu2er">Liu2er</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
