@@ -11,43 +11,40 @@
     
 
     <meta name="keywords" content="Hexo, Blog">
-    <meta name="description" content="文章发布流程
-
-hexo new &amp;lt;文章名&amp;gt;  // Create a new post &amp;lt;文章名&amp;gt;，缩写hexo n &amp;lt;文章名&amp;gt;
-hexo generate  // Generate static files
-hexo deploy  // Deploy to remote sites
-
-
-
-其中hexo generate和hexo deploy可以合成一条命">
+    <meta name="description" content="Hexo + Jacman安装流程
+去 node.js 官网安装node.js
+查看版本号$ node -v 和 $ npm -v
+去 homebrew 官网下载并安装homebrew
+检查是否已经安装过 hexo $ hexo -v
+如果没安装过 hexo，运行命令安装 $ sudo npm install -g hexo-cli，参考 hexo 官网
+新建博客存放目录&amp;lt;blog_dire">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + Jacman 笔记">
 <meta property="og:url" content="http://liu2er.com/2016/08/25/2016_08_25_HexoNote/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="文章发布流程
-
-hexo new &amp;lt;文章名&amp;gt;  // Create a new post &amp;lt;文章名&amp;gt;，缩写hexo n &amp;lt;文章名&amp;gt;
-hexo generate  // Generate static files
-hexo deploy  // Deploy to remote sites
-
-
-
-其中hexo generate和hexo deploy可以合成一条命">
+<meta property="og:description" content="Hexo + Jacman安装流程
+去 node.js 官网安装node.js
+查看版本号$ node -v 和 $ npm -v
+去 homebrew 官网下载并安装homebrew
+检查是否已经安装过 hexo $ hexo -v
+如果没安装过 hexo，运行命令安装 $ sudo npm install -g hexo-cli，参考 hexo 官网
+新建博客存放目录&amp;lt;blog_dire">
+<meta property="og:image" content="http://liu2er.com/images/2016-08-25-HexoNote-DeployGitSetting.png">
+<meta property="og:image" content="http://liu2er.com/images/2016-08-25-HexoNote-DeployHttpsSetting.png">
+<meta property="og:image" content="http://liu2er.com/images/2016-08-25-HexoNote-CodeHighlightSetting.png">
 <meta property="og:image" content="http://liu2er.com/images/2016-08-25-HexoNote-CodeHighlightSetting.png">
 <meta property="og:image" content="http://liu2er.com/images/2016-08-25-HexoNote-CommentColor.png">
-<meta property="og:updated_time" content="2016-08-25T05:18:27.000Z">
+<meta property="og:updated_time" content="2016-08-25T06:52:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + Jacman 笔记">
-<meta name="twitter:description" content="文章发布流程
-
-hexo new &amp;lt;文章名&amp;gt;  // Create a new post &amp;lt;文章名&amp;gt;，缩写hexo n &amp;lt;文章名&amp;gt;
-hexo generate  // Generate static files
-hexo deploy  // Deploy to remote sites
-
-
-
-其中hexo generate和hexo deploy可以合成一条命">
-<meta name="twitter:image" content="http://liu2er.com/images/2016-08-25-HexoNote-CodeHighlightSetting.png">
+<meta name="twitter:description" content="Hexo + Jacman安装流程
+去 node.js 官网安装node.js
+查看版本号$ node -v 和 $ npm -v
+去 homebrew 官网下载并安装homebrew
+检查是否已经安装过 hexo $ hexo -v
+如果没安装过 hexo，运行命令安装 $ sudo npm install -g hexo-cli，参考 hexo 官网
+新建博客存放目录&amp;lt;blog_dire">
+<meta name="twitter:image" content="http://liu2er.com/images/2016-08-25-HexoNote-DeployGitSetting.png">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -119,11 +116,35 @@ hexo deploy  // Deploy to remote sites
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文章发布流程"><span class="toc-number">1.</span> <span class="toc-text">文章发布流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码段高亮"><span class="toc-number">2.</span> <span class="toc-text">代码段高亮</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-Jacman安装流程"><span class="toc-number">1.</span> <span class="toc-text">Hexo + Jacman安装流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文章发布流程"><span class="toc-number">2.</span> <span class="toc-text">文章发布流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码段高亮"><span class="toc-number">3.</span> <span class="toc-text">代码段高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制图片大小"><span class="toc-number">4.</span> <span class="toc-text">控制图片大小</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="文章发布流程"><a href="#文章发布流程" class="headerlink" title="文章发布流程"></a>文章发布流程</h2><blockquote>
+		<h2 id="Hexo-Jacman安装流程"><a href="#Hexo-Jacman安装流程" class="headerlink" title="Hexo + Jacman安装流程"></a>Hexo + Jacman安装流程</h2><ul>
+<li>去 <a href="https://nodejs.org/en/" target="_blank" rel="external">node.js 官网</a>安装<code>node.js</code></li>
+<li>查看版本号<code>$ node -v</code> 和 <code>$ npm -v</code></li>
+<li>去 <a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="external">homebrew 官网</a>下载并安装<code>homebrew</code></li>
+<li>检查是否已经安装过 hexo <code>$ hexo -v</code></li>
+<li>如果没安装过 hexo，运行命令安装 <code>$ sudo npm install -g hexo-cli</code>，参考 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">hexo 官网</a></li>
+<li>新建博客存放目录<code>&lt;blog_directory&gt;</code></li>
+<li><code>$ hexo init &lt;blog_directory&gt;</code></li>
+<li>cd 到 <code>&lt;blog_directory&gt;</code> 目录执行<code>$ npm install</code></li>
+<li>先后执行<code>$ hexo generate</code>（简写 hexo g）和<code>$ hexo server</code>（简写 hexo s）启动站点，然后在浏览器中输入<code>http://0.0.0.0:4000</code>就可以看到站点了</li>
+<li>设置 <code>Github Pages</code>，可以参考<a href="http://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">小白独立搭建博客–Github Pages和Hexo简明教程</a>和<a href="https://xuanwo.org/2015/03/26/hexo-intor/" target="_blank" rel="external">史上最详细的Hexo博客搭建图文教程</a></li>
+<li>查看<code>~/.ssh</code>目录中是否已经存在 SSH key 了，如果存在了则直接用，如果没有存在则重新配置<blockquote>
+<p><code>$ git config --global user.name “yourname”</code><br><code>$ git config --global user.email “youremail”</code><br>注：本邮箱不一定与 github 的注册邮箱一致，但是应该与 SSH key 的邮箱一致</p>
+</blockquote>
+</li>
+<li>测试 SSH key 是否设置成功<code>$ ssh -T git@github.com</code></li>
+<li>如下图所示配置_config.yml文件：<br><img src="/images/2016-08-25-HexoNote-DeployGitSetting.png" width="50%"><!--![DeployGitSetting](/images/2016-08-25-HexoNote-DeployGitSetting.png)--></li>
+<li>如果使用 git 方式进行部署，执行<code>$ npm install hexo-deployer-git --save</code>来安装所需的插件</li>
+<li>也可以用 https 方式来部署，如下图所示：<br><img src="/images/2016-08-25-HexoNote-DeployHttpsSetting.png" width="50%"><!--![DeployHttpsSetting](/images/2016-08-25-HexoNote-DeployHttpsSetting.png)--></li>
+<li>用 https 方式部署时需要输入 github 的注册邮箱和登录密码</li>
+<li>最后执行<code>$ hexo g -d</code>来发布</li>
+<li>在博客根目录下执行如下命令来安装 jacman 主题<code>$ git clone https://github.com/wuchong/jacman.git themes/Jacman</code></li>
+<li>在<code>_config.yml</code>文件中设置 theme 为 Jacman</li>
+</ul>
+<h2 id="文章发布流程"><a href="#文章发布流程" class="headerlink" title="文章发布流程"></a>文章发布流程</h2><blockquote>
 <ol>
 <li><code>hexo new &lt;文章名&gt;</code>  // Create a new post &lt;文章名&gt;，缩写<code>hexo n &lt;文章名&gt;</code></li>
 <li><code>hexo generate</code>  // Generate static files</li>
@@ -138,7 +159,7 @@ hexo deploy  // Deploy to remote sites
 </ul>
 <h2 id="代码段高亮"><a href="#代码段高亮" class="headerlink" title="代码段高亮"></a>代码段高亮</h2><p>首先，设置<code>~/Documents/Hexo文件/_config.yml</code></p>
 <!--![CodeHighlightSetting](/images/2016-08-25-HexoNote-CodeHighlightSetting.png)-->
-<p><img src="/images/2016-08-25-HexoNote-CodeHighlightSetting.png" width="20%" height="20%"></p>
+<p><img src="/images/2016-08-25-HexoNote-CodeHighlightSetting.png" width="20%" height="20%"><br><img src="/images/2016-08-25-HexoNote-CodeHighlightSetting.png" width="20%"></p>
 <p>其次，设置文件<code>~/Documents/Hexo文件/themes/Jacman/source/css/_base/highlight/theme.styl</code>，设置前图片如下所示：</p>
 <!--![CommentColor](/images/2016-08-25-HexoNote-CommentColor.png)-->
 <p><img src="/images/2016-08-25-HexoNote-CommentColor.png" width="40%" height="40%"></p>
@@ -150,7 +171,11 @@ hexo deploy  // Deploy to remote sites
 <p>```</p>
 </blockquote>
 <p>其中hexo支持的语言样式颜色可以参考<a href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html" target="_blank" rel="external">CSS classes reference</a>，Markdown语法可参考文章<a href="https://coding.net/help/doc/project/markdown.html#section-8" target="_blank" rel="external">Markdown语法介绍</a>，另外可参考文章<a href="http://vin-zhou.github.io/2014/10/23/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">Hexo搭建个人博客</a>。</p>
-  
+<h2 id="控制图片大小"><a href="#控制图片大小" class="headerlink" title="控制图片大小"></a>控制图片大小</h2><p>Markdown目前不支持调整图片大小，如果有这样的需求，可以直接用html代码插入，例如：</p>
+<pre><code>&lt;img src=&quot;xxx.jpg&quot; width=&quot;50%&quot; height=&quot;50%&quot;&gt;
+或
+&lt;img src=&quot;xxx.jpg&quot; width=&quot;50%&quot; /&gt;
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -216,7 +241,7 @@ hexo deploy  // Deploy to remote sites
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文章发布流程"><span class="toc-number">1.</span> <span class="toc-text">文章发布流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码段高亮"><span class="toc-number">2.</span> <span class="toc-text">代码段高亮</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-Jacman安装流程"><span class="toc-number">1.</span> <span class="toc-text">Hexo + Jacman安装流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文章发布流程"><span class="toc-number">2.</span> <span class="toc-text">文章发布流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码段高亮"><span class="toc-number">3.</span> <span class="toc-text">代码段高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制图片大小"><span class="toc-number">4.</span> <span class="toc-text">控制图片大小</span></a></li></ol>
  
   </div>
 
@@ -262,11 +287,11 @@ hexo deploy  // Deploy to remote sites
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 		</ul>
