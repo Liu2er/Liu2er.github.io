@@ -4,19 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Liu2er的技术博客</title>
+    <title>RAC 工程简单实践 | Liu2er的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Liu2er">
     
 
-    
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Liu2er的技术博客">
-<meta property="og:url" content="http://liu2er.com/index.html">
+    <meta name="keywords" content="iOS, RAC">
+    <meta name="description" content="创建一个简单的 RAC 工程
+先创建一个 SigleView 或 Command Line Tool 工程 RACTest
+在 RACTest 工程的根目录执行终端命令：$ vim Podfile
+在 Podfile 里写入内容：
+
+123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RAC 工程简单实践">
+<meta property="og:url" content="http://liu2er.com/2016/08/25/2016_08_25_RACPractice/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="创建一个简单的 RAC 工程
+先创建一个 SigleView 或 Command Line Tool 工程 RACTest
+在 RACTest 工程的根目录执行终端命令：$ vim Podfile
+在 Podfile 里写入内容：
+
+123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
+<meta property="og:updated_time" content="2016-08-25T05:07:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liu2er的技术博客">
+<meta name="twitter:title" content="RAC 工程简单实践">
+<meta name="twitter:description" content="创建一个简单的 RAC 工程
+先创建一个 SigleView 或 Command Line Tool 工程 RACTest
+在 RACTest 工程的根目录执行终端命令：$ vim Podfile
+在 Podfile 里写入内容：
+
+123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -66,12 +85,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2016/08/25/2016_08_25_RACPractice/" title="RAC 工程简单实践" itemprop="url">RAC 工程简单实践</a>
@@ -85,9 +102,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h2 id="创建一个简单的-RAC-工程"><a href="#创建一个简单的-RAC-工程" class="headerlink" title="创建一个简单的 RAC 工程"></a>创建一个简单的 RAC 工程</h2><ul>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范例"><span class="toc-number">2.</span> <span class="toc-text">范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="创建一个简单的-RAC-工程"><a href="#创建一个简单的-RAC-工程" class="headerlink" title="创建一个简单的 RAC 工程"></a>创建一个简单的 RAC 工程</h2><ul>
 <li>先创建一个 SigleView 或 Command Line Tool 工程 <code>RACTest</code></li>
 <li>在 RACTest 工程的根目录执行终端命令：<code>$ vim Podfile</code></li>
 <li>在 Podfile 里写入内容：</li>
@@ -112,14 +136,9 @@ Program ended with exit code: 0
 <p>  4.2.1, 4.1.0, 4.0.4-alpha-4, 4.0.4-alpha-1, 4.0.3-alpha-3, 4.0.3-alpha-1, 4.0.2-alpha-3, 4.0.2-alpha-1, 4.0.1, 4.0.1-alpha-3, 4.0.1-alpha-1, 4.0.0, 4.0.0-alpha-3, 4.0.0-alpha-2, 4.0.0-alpha-1, 4.0.0-RC.2, 4.0.0-RC.1, 3.0.0, 3.0.0-swift2, 3.0-beta.9, 3.0-beta.6, 3.0-alpha.3, 3.0.0-alpha.1, 3.0-RC.1, 2.5, 2.4.7, 2.4.6, 2.4.5, 2.4.4, 2.4.2, 2.3.1, 2.3, 2.2.4, 2.2.3, 2.2.2, 2.2, 2.1.8, 2.1.7, 2.1.6, 1.4.0, 1.3.1, 1.0.0, 0.17.1, 0.16.1, 0.13.1, 0.12.0, 0.10.0, 0.9.0, 0.8.0, 0.6.0, 0.5.0, 0.0.1 [master-1 repo]</p>
 </li>
 </ul>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
@@ -137,242 +156,47 @@ Program ended with exit code: 0
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2016/08/25/2016_08_25_RACPractice/" data-title="RAC 工程简单实践 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/08/25/2016_08_25_RACPractice/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/25/2016_08_25_RACPractice/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/08/25/2016_08_25_HexoNote/" title="Hexo + Jacman 笔记" itemprop="url">Hexo + Jacman 笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> Published 2016-08-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="文章发布流程"><a href="#文章发布流程" class="headerlink" title="文章发布流程"></a>文章发布流程</h2><blockquote>
-<ol>
-<li><code>hexo new &lt;文章名&gt;</code>  // Create a new post &lt;文章名&gt;，缩写<code>hexo n &lt;文章名&gt;</code></li>
-<li><code>hexo generate</code>  // Generate static files</li>
-<li><code>hexo deploy</code>  // Deploy to remote sites</li>
-</ol>
-</blockquote>
-<ul>
-<li>其中<code>hexo generate</code>和<code>hexo deploy</code>可以合成一条命令，即<code>hexo generate -d</code>或<code>hexo deploy -g</code>，简写为<code>hexo g -d</code>或<code>hexo d -g</code>。</li>
-<li>在部署之前可以使用<code>hexo server</code>命令来启动服务器在本地预览。</li>
-<li>文章的默认生成路径为<code>~/Documents/Hexo文件/source/_posts/&lt;文章名&gt;.md</code>。</li>
-<li>hexo常用命令可以参考<a href="https://segmentfault.com/a/1190000002632530" target="_blank" rel="external">hexo常用命令笔记</a>。</li>
-</ul>
-<h2 id="代码段高亮"><a href="#代码段高亮" class="headerlink" title="代码段高亮"></a>代码段高亮</h2><p>首先，设置<code>~/Documents/Hexo文件/_config.yml</code></p>
-<p><img src="/images/2016-08-25-HexoNote-CodeHighlightSetting.png" alt="CodeHighlightSetting"></p>
-<p>其次，设置文件<code>~/Documents/Hexo文件/themes/Jacman/source/css/_base/highlight/theme.styl</code>，设置前图片如下所示：</p>
-<p><img src="/images/2016-08-25-HexoNote-CommentColor.png" alt="CommentColor"></p>
-<p>例如把代码块默认主题注释字段的颜色修改为<code>#00A86B</code></p>
-<p>写代码时格式为：</p>
-<blockquote>
-<p>```objc<br>代码<br>```</p>
-</blockquote>
-<p>其中hexo支持的语言样式颜色可以参考<a href="http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html" target="_blank" rel="external">CSS classes reference</a>，Markdown语法可参考文章<a href="https://coding.net/help/doc/project/markdown.html#section-8" target="_blank" rel="external">Markdown语法介绍</a>，另外可参考文章<a href="http://vin-zhou.github.io/2014/10/23/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">Hexo搭建个人博客</a>。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Blog/">Blog</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Hexo/">Hexo</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2016/08/25/2016_08_25_HexoNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/25/2016_08_25_HexoNote/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/08/25/2016_08_25_HexoNote/"  title="Hexo + Jacman 笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>Hexo + Jacman 笔记
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
-
-</footer>
-
-
-    </article>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/08/25/2016_08_25_RACPractice/" data-title="RAC 工程简单实践" data-url="http://liu2er.com/2016/08/25/2016_08_25_RACPractice/"></div>
+</section>
 
 
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/08/24/2016_08_25_ReactiveCocoaNote/" title="ReactiveCocoa 学习笔记" itemprop="url">ReactiveCocoa 学习笔记</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> Published 2016-08-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h1 id="ReactiveCocoaNote"><a href="#ReactiveCocoaNote" class="headerlink" title="ReactiveCocoaNote"></a>ReactiveCocoaNote</h1><h2 id="最简单的信号的创建与订阅范例"><a href="#最简单的信号的创建与订阅范例" class="headerlink" title="最简单的信号的创建与订阅范例"></a>最简单的<em>信号的创建与订阅</em>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span>	</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/RAC/">RAC</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/08/24/2016_08_25_ReactiveCocoaNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/24/2016_08_25_ReactiveCocoaNote/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2016/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2016-08-16T05:51:41.000Z" itemprop="datePublished"> Published 2016-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="克隆Octopress"><a href="#克隆Octopress" class="headerlink" title="克隆Octopress"></a>克隆Octopress</h3><p>从Github上将Octopress项目克隆到本地的Octopress目录下：</p>
-<pre><code>git clone git://github.com/imathis/octopress.git Octopress
-</code></pre><h3 id="进入Octopress项目根目录"><a href="#进入Octopress项目根目录" class="headerlink" title="进入Octopress项目根目录"></a>进入Octopress项目根目录</h3><pre><code>cd Octopress
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2016/08/16/2015_08_16_Octopress/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Blog/">Blog</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Octopress/">Octopress</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2016/08/16/2015_08_16_Octopress/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/16/2015_08_16_Octopress/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范例"><span class="toc-number">2.</span> <span class="toc-text">范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -495,14 +319,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -550,4 +463,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
