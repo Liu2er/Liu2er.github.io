@@ -11,16 +11,16 @@
     
 
     <meta name="keywords" content="iOS, RAC">
-    <meta name="description" content="ReactiveCocoaNote最简单的信号的创建与订阅范例123456789101112131415161718192021222324252627#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;	int main(int argc, const char * argv[]) &amp;#123">
+    <meta name="description" content="RACSignal创建方式单元信号1234RACSignal *signal1 = [RACSignal return:@&quot;Some Value&quot;];RACSignal *signal2 = [RACSignal error:errorObject];RACSignal *signal3 = [RACSignal empty];RACSignal *signal4 = [RACSignal nev">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ReactiveCocoa 学习笔记">
 <meta property="og:url" content="http://liu2er.com/2016/08/24/2016_08_25_ReactiveCocoaNote/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="ReactiveCocoaNote最简单的信号的创建与订阅范例123456789101112131415161718192021222324252627#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;	int main(int argc, const char * argv[]) &amp;#123">
-<meta property="og:updated_time" content="2016-08-25T03:24:23.000Z">
+<meta property="og:description" content="RACSignal创建方式单元信号1234RACSignal *signal1 = [RACSignal return:@&quot;Some Value&quot;];RACSignal *signal2 = [RACSignal error:errorObject];RACSignal *signal3 = [RACSignal empty];RACSignal *signal4 = [RACSignal nev">
+<meta property="og:updated_time" content="2016-08-25T07:42:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 学习笔记">
-<meta name="twitter:description" content="ReactiveCocoaNote最简单的信号的创建与订阅范例123456789101112131415161718192021222324252627#import &amp;lt;Foundation/Foundation.h&amp;gt;#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;	int main(int argc, const char * argv[]) &amp;#123">
+<meta name="twitter:description" content="RACSignal创建方式单元信号1234RACSignal *signal1 = [RACSignal return:@&quot;Some Value&quot;];RACSignal *signal2 = [RACSignal error:errorObject];RACSignal *signal3 = [RACSignal empty];RACSignal *signal4 = [RACSignal nev">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -92,12 +92,21 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ReactiveCocoaNote"><span class="toc-number">1.</span> <span class="toc-text">ReactiveCocoaNote</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">1.1.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RACSignal创建方式"><span class="toc-number">1.</span> <span class="toc-text">RACSignal创建方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单元信号"><span class="toc-number">1.1.</span> <span class="toc-text">单元信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态信号"><span class="toc-number">1.2.</span> <span class="toc-text">动态信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cocoa桥接"><span class="toc-number">1.3.</span> <span class="toc-text">Cocoa桥接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信号变换"><span class="toc-number">1.4.</span> <span class="toc-text">信号变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列转换"><span class="toc-number">1.5.</span> <span class="toc-text">序列转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号订阅过程举例"><span class="toc-number">2.</span> <span class="toc-text">信号订阅过程举例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RACSignal使用方法"><span class="toc-number">3.</span> <span class="toc-text">RACSignal使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RACTuple-——-元组"><span class="toc-number">3.1.</span> <span class="toc-text">RACTuple —— 元组</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h1 id="ReactiveCocoaNote"><a href="#ReactiveCocoaNote" class="headerlink" title="ReactiveCocoaNote"></a>ReactiveCocoaNote</h1><h2 id="最简单的信号的创建与订阅范例"><a href="#最简单的信号的创建与订阅范例" class="headerlink" title="最简单的信号的创建与订阅范例"></a>最简单的<em>信号的创建与订阅</em>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span>	</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div></pre></td></tr></table></figure>
-  
+		<h2 id="RACSignal创建方式"><a href="#RACSignal创建方式" class="headerlink" title="RACSignal创建方式"></a>RACSignal创建方式</h2><h3 id="单元信号"><a href="#单元信号" class="headerlink" title="单元信号"></a>单元信号</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RACSignal *signal1 = [RACSignal <span class="keyword">return</span>:<span class="string">@"Some Value"</span>];</div><div class="line">RACSignal *signal2 = [RACSignal error:errorObject];</div><div class="line">RACSignal *signal3 = [RACSignal empty];</div><div class="line">RACSignal *signal4 = [RACSignal never];</div></pre></td></tr></table></figure>
+<h3 id="动态信号"><a href="#动态信号" class="headerlink" title="动态信号"></a>动态信号</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">RACSignal *signal5 = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">    [subscriber sendNext:@<span class="number">1</span>];</div><div class="line">    [subscriber sendNext:@<span class="number">2</span>];</div><div class="line">    [subscriber sendError:errorObject];</div><div class="line">    [subscriber sendCompleted];</div><div class="line">    <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">    &#125;];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h3 id="Cocoa桥接"><a href="#Cocoa桥接" class="headerlink" title="Cocoa桥接"></a>Cocoa桥接</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RACSignal *signal6 = [view rac_signalForSelector:<span class="keyword">@selector</span>(setFrame:)];</div><div class="line">RACSignal *signal7 = [view rac_signalForControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">RACSignal *signal8 = [view rac_willDeallocSignal];</div><div class="line">RACSignal *signal9 = RACObserve(view, backgroundColor);</div></pre></td></tr></table></figure>
+<h3 id="信号变换"><a href="#信号变换" class="headerlink" title="信号变换"></a>信号变换</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">RACSignal *signal10 = [signal1 map:^<span class="keyword">id</span>(<span class="built_in">NSString</span> *value) &#123;</div><div class="line">    <span class="keyword">return</span> [value substringFromIndex:<span class="number">1</span>];</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h3 id="序列转换"><a href="#序列转换" class="headerlink" title="序列转换"></a>序列转换</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RACSignal *signal11 = sequence.signal;</div></pre></td></tr></table></figure>
+<h2 id="信号订阅过程举例"><a href="#信号订阅过程举例" class="headerlink" title="信号订阅过程举例"></a>信号订阅过程举例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">    [subscriber sendNext:@<span class="number">1</span>];</div><div class="line">    [subscriber sendNext:@<span class="number">2</span>];</div><div class="line">    [subscriber sendCompleted];</div><div class="line">    <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"dispose"</span>);</div><div class="line">    &#125;];</div><div class="line">&#125;];</div><div class="line"></div><div class="line">RACDisposable *disposable = [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"next value is %@"</span>, x);</div><div class="line">&#125; error:^(<span class="built_in">NSError</span> *error) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Ops! Get some error: %@"</span>, error);</div><div class="line">&#125; completed:^&#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"It finished success"</span>);</div><div class="line">&#125;];</div><div class="line"></div><div class="line">[disposable dispose];</div></pre></td></tr></table></figure>
+<h2 id="RACSignal使用方法"><a href="#RACSignal使用方法" class="headerlink" title="RACSignal使用方法"></a>RACSignal使用方法</h2><h3 id="RACTuple-——-元组"><a href="#RACTuple-——-元组" class="headerlink" title="RACTuple —— 元组"></a>RACTuple —— 元组</h3><ul>
+<li>RAC定义的一种数据类型</li>
+<li>NSArray的简化版</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">RACTuple *tuple = RACTuplePack(@<span class="number">1</span>, <span class="string">@"haha"</span>);</div><div class="line"><span class="keyword">id</span> first = tuple.first;</div><div class="line"><span class="keyword">id</span> second = tuple.second;</div><div class="line"><span class="keyword">id</span> last = tuple.last;</div><div class="line"><span class="keyword">id</span> index1 = tuple[<span class="number">1</span>];</div><div class="line">RACTupleUnpack(<span class="built_in">NSNumber</span> *num, <span class="built_in">NSString</span> *str) = tuple;</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -163,7 +172,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ReactiveCocoaNote"><span class="toc-number">1.</span> <span class="toc-text">ReactiveCocoaNote</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">1.1.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RACSignal创建方式"><span class="toc-number">1.</span> <span class="toc-text">RACSignal创建方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单元信号"><span class="toc-number">1.1.</span> <span class="toc-text">单元信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态信号"><span class="toc-number">1.2.</span> <span class="toc-text">动态信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cocoa桥接"><span class="toc-number">1.3.</span> <span class="toc-text">Cocoa桥接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信号变换"><span class="toc-number">1.4.</span> <span class="toc-text">信号变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列转换"><span class="toc-number">1.5.</span> <span class="toc-text">序列转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号订阅过程举例"><span class="toc-number">2.</span> <span class="toc-text">信号订阅过程举例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RACSignal使用方法"><span class="toc-number">3.</span> <span class="toc-text">RACSignal使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RACTuple-——-元组"><span class="toc-number">3.1.</span> <span class="toc-text">RACTuple —— 元组</span></a></li></ol></li></ol>
  
   </div>
 
@@ -188,7 +197,7 @@
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>2</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
 		  
 		
 		</ul>
@@ -205,7 +214,11 @@
 			
 		
 			
-				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
 			
 		
 			
@@ -213,7 +226,7 @@
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
 			
 		
 		</ul>
