@@ -521,6 +521,107 @@ Program ended with exit code: 0
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/16/2015_08_16_NSString/" title="NSString 转换" itemprop="url">NSString 转换</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><pre><code>NSStringFromRange( NSRange range );
+
+NSStringFromRect( NSRect aRect );
+
+NSStringFromSelector( SEL aSelector );
+
+NSStringFromClass( __unsafe_unretained Class aClass );
+
+NSStringFromProtocol( Protocol *proto );
+
+
+NSStringFromHashTable( NSHashTable *table );
+
+NSStringFromMapTable( NSMapTable *table );
+
+NSStringFromPoint( NSPoint aPoint );
+
+NSStringFromSize( NSSize aSize );
+</code></pre><p>举例：</p>
+<pre><code>NSString *string = NSStringFromClass([NSArray class]);
+
+NSLog(@&quot;NSArray 的类名是：%@&quot;,string);
+
+输出如下：
+
+2015-08-18 16:10:17.908 NewCommandTest[845:137450] NSArray 的类名是：NSArray
+</code></pre><h2 id="NSNumber-——-gt-NSString"><a href="#NSNumber-——-gt-NSString" class="headerlink" title="NSNumber ——&gt; NSString"></a>NSNumber ——&gt; NSString</h2><pre><code>NSNumber *number = [NSNumber numberWithInt:20];
+
+// 转换方法1
+NSString *string = [number description];
+
+// 转换方法2
+NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]];
+</code></pre><p>本例是将<code>@20</code>转换为<code>@&quot;20&quot;</code>。</p>
+<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><pre><code>NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@&quot;http://www.baidu.com&quot;]];
+
+NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+</code></pre>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/16/2015_08_16_NSString/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Objective-C/">Objective-C</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/NSString/">NSString</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/16/2015_08_16_NSString/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSString/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
   </h1>
   <p class="article-author">By
@@ -607,6 +708,10 @@ Program ended with exit code: 0
 		  
 		
 		  
+			<li><a href="/categories/Objective-C/" title="Objective-C">Objective-C<sup>1</sup></a></li>
+		  
+		
+		  
 			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
 		  
 		
@@ -624,19 +729,23 @@ Program ended with exit code: 0
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
 			
 		
 		</ul>
