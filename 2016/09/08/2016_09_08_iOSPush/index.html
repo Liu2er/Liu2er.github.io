@@ -4,38 +4,81 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>RAC 工程简单实践 | Liu2er的技术博客</title>
+    <title>iOS Push | Liu2er的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Liu2er">
     
 
-    <meta name="keywords" content="iOS, RAC">
-    <meta name="description" content="创建一个简单的 RAC 工程
-先创建一个 SigleView 或 Command Line Tool 工程 RACTest
-在 RACTest 工程的根目录执行终端命令：$ vim Podfile
-在 Podfile 里写入内容：
+    <meta name="keywords" content="iOS, Push">
+    <meta name="description" content="iOS Push 门道
 
-123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
+iOS 推送证书设置指南
+
+iOS推送的那些事
+
+一步一步教你做 iOS 推送
+
+一步一步实现 iOS 应用 Push 功能
+
+APNs Provider API
+
+Apple Developer 证书配置中心
+
+Mac 上的消息推送测试工具 PushMeBaby
+
+使用 PushMeBaby 测试 APP 的远程推送功能
+
+iOS 消息推送服务器的 Java 实现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RAC 工程简单实践">
-<meta property="og:url" content="http://liu2er.com/2016/08/25/2016_08_25_RACPractice/index.html">
+<meta property="og:title" content="iOS Push">
+<meta property="og:url" content="http://liu2er.com/2016/09/08/2016_09_08_iOSPush/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="创建一个简单的 RAC 工程
-先创建一个 SigleView 或 Command Line Tool 工程 RACTest
-在 RACTest 工程的根目录执行终端命令：$ vim Podfile
-在 Podfile 里写入内容：
+<meta property="og:description" content="iOS Push 门道
 
-123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
-<meta property="og:updated_time" content="2016-08-25T06:11:31.000Z">
+iOS 推送证书设置指南
+
+iOS推送的那些事
+
+一步一步教你做 iOS 推送
+
+一步一步实现 iOS 应用 Push 功能
+
+APNs Provider API
+
+Apple Developer 证书配置中心
+
+Mac 上的消息推送测试工具 PushMeBaby
+
+使用 PushMeBaby 测试 APP 的远程推送功能
+
+iOS 消息推送服务器的 Java 实现">
+<meta property="og:image" content="http://liu2er.com/images/2016_09_08_iOSPush-PushSequence1.jpg">
+<meta property="og:image" content="http://liu2er.com/images/2016_09_08_iOSPush-PushSequence2.png">
+<meta property="og:image" content="http://liu2er.com/images/2016_09_08_iOSPush-PushSequence3.png">
+<meta property="og:updated_time" content="2016-09-08T09:18:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RAC 工程简单实践">
-<meta name="twitter:description" content="创建一个简单的 RAC 工程
-先创建一个 SigleView 或 Command Line Tool 工程 RACTest
-在 RACTest 工程的根目录执行终端命令：$ vim Podfile
-在 Podfile 里写入内容：
+<meta name="twitter:title" content="iOS Push">
+<meta name="twitter:description" content="iOS Push 门道
 
-123platform :ios, &apos;9.0&apos;  #这条命令不是必须的pod &quot;ReactiveCocoa&quot;, &quot;2.5&quot;  #3.0版本不成功，2.5和~&amp;gt;4">
+iOS 推送证书设置指南
+
+iOS推送的那些事
+
+一步一步教你做 iOS 推送
+
+一步一步实现 iOS 应用 Push 功能
+
+APNs Provider API
+
+Apple Developer 证书配置中心
+
+Mac 上的消息推送测试工具 PushMeBaby
+
+使用 PushMeBaby 测试 APP 的远程推送功能
+
+iOS 消息推送服务器的 Java 实现">
+<meta name="twitter:image" content="http://liu2er.com/images/2016_09_08_iOSPush-PushSequence1.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -91,14 +134,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/25/2016_08_25_RACPractice/" title="RAC 工程简单实践" itemprop="url">RAC 工程简单实践</a>
+      <a href="/2016/09/08/2016_09_08_iOSPush/" title="iOS Push" itemprop="url">iOS Push</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> 發表於 2016-08-25</time>
+    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> 發表於 2016-09-08</time>
     
   </p>
 </header>
@@ -107,35 +150,109 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">2.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h2 id="创建一个简单的-RAC-工程"><a href="#创建一个简单的-RAC-工程" class="headerlink" title="创建一个简单的 RAC 工程"></a>创建一个简单的 RAC 工程</h2><ul>
-<li>先创建一个 SigleView 或 Command Line Tool 工程 <code>RACTest</code></li>
-<li>在 RACTest 工程的根目录执行终端命令：<code>$ vim Podfile</code></li>
-<li>在 Podfile 里写入内容：</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'9.0'</span>  <span class="comment">#这条命令不是必须的</span></div><div class="line">pod <span class="string">"ReactiveCocoa"</span>, <span class="string">"2.5"</span>  <span class="comment">#3.0版本不成功，2.5和~&gt;4.0.4-alpha-4都能成功</span></div><div class="line">use_frameworks!  <span class="comment">#这条命令不是必须的</span></div></pre></td></tr></table></figure>
-<ul>
-<li>在 RACTest 工程的根目录执行终端命令：<code>$ pod install —-no-repo-update</code></li>
-<li>在 RACTest 工程里导入头文件 <code>#import &quot;ReactiveCocoa/ReactiveCocoa.h&quot;</code></li>
-</ul>
-<h2 id="最简单的信号的创建与订阅范例"><a href="#最简单的信号的创建与订阅范例" class="headerlink" title="最简单的信号的创建与订阅范例"></a>最简单的<em>信号的创建与订阅</em>范例</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"ReactiveCocoa/ReactiveCocoa.h"</span></span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        </div><div class="line">        <span class="comment">// 创建信号</span></div><div class="line">        RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</div><div class="line">            </div><div class="line">            <span class="comment">// 发送信号</span></div><div class="line">            [subscriber sendNext:<span class="string">@"数据1"</span>];</div><div class="line">            [subscriber sendNext:<span class="string">@"数据2"</span>];</div><div class="line">            [subscriber sendError:[<span class="built_in">NSError</span> errorWithDomain:<span class="string">@"SignalError"</span> code:<span class="number">110</span> userInfo:@&#123;<span class="string">@"reason"</span>:<span class="string">@"unknown"</span>&#125;]];</div><div class="line">            [subscriber sendCompleted];</div><div class="line">            </div><div class="line">            <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"信号被销毁"</span>);</div><div class="line">            &#125;];</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">        <span class="comment">// 订阅信号</span></div><div class="line">        [signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"接收到数据：%@"</span>, x);</div><div class="line">        &#125;];</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出结果为：</p>
-<pre><code>2016-08-24 17:25:57.107 OCTest[15943:240697] 接收到数据：数据1
-2016-08-24 17:25:57.108 OCTest[15943:240697] 接收到数据：数据2
-2016-08-24 17:25:57.108 OCTest[15943:240697] 信号被销毁
-Program ended with exit code: 0
-</code></pre><h2 id="CocoaPods使用技巧"><a href="#CocoaPods使用技巧" class="headerlink" title="CocoaPods使用技巧"></a>CocoaPods使用技巧</h2><ul>
-<li>在工程根目录下执行<code>$ pod init</code>命令可以初始化一个 Podfile 文件</li>
-<li>CocoaPods 使用 Ruby 语言编写而成，OS X 已经集成了 Ruby 环境</li>
-<li>查看 Ruby 源<code>$ gem source -l</code></li>
-<li>通过添加 verbose 参数来参看 pod install 过程<code>$ pod install —-verbose —-no-repo-update</code></li>
-<li><p>可以搜索框架，例如<code>$ pod search ReactiveCocoa</code>，搜索到 ReactiveCocoa 的所有版本如下：</p>
-<p>  4.2.1, 4.1.0, 4.0.4-alpha-4, 4.0.4-alpha-1, 4.0.3-alpha-3, 4.0.3-alpha-1, 4.0.2-alpha-3, 4.0.2-alpha-1, 4.0.1, 4.0.1-alpha-3, 4.0.1-alpha-1, 4.0.0, 4.0.0-alpha-3, 4.0.0-alpha-2, 4.0.0-alpha-1, 4.0.0-RC.2, 4.0.0-RC.1, 3.0.0, 3.0.0-swift2, 3.0-beta.9, 3.0-beta.6, 3.0-alpha.3, 3.0.0-alpha.1, 3.0-RC.1, 2.5, 2.4.7, 2.4.6, 2.4.5, 2.4.4, 2.4.2, 2.3.1, 2.3, 2.2.4, 2.2.3, 2.2.2, 2.2, 2.1.8, 2.1.7, 2.1.6, 1.4.0, 1.3.1, 1.0.0, 0.17.1, 0.16.1, 0.13.1, 0.12.0, 0.10.0, 0.9.0, 0.8.0, 0.6.0, 0.5.0, 0.0.1 [master-1 repo]</p>
+		<ul>
+<li><p><a href="http://mrpeak.cn/ios/2016/01/06/push" target="_blank" rel="external">iOS Push 门道</a></p>
+</li>
+<li><p><a href="https://leancloud.cn/docs/ios_push_cert.html" target="_blank" rel="external">iOS 推送证书设置指南</a></p>
+</li>
+<li><p><a href="http://superdanny.link/2016/02/02/iOS-Apple-Push-Notification-Service/" target="_blank" rel="external">iOS推送的那些事</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/showhilllee/article/details/8631734" target="_blank" rel="external">一步一步教你做 iOS 推送</a></p>
+</li>
+<li><p><a href="http://tanqisen.github.io/blog/2013/02/27/ios-push-apns/" target="_blank" rel="external">一步一步实现 iOS 应用 Push 功能</a></p>
+</li>
+<li><p><a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html#//apple_ref/doc/uid/TP40008194-CH101-SW1" target="_blank" rel="external">APNs Provider API</a></p>
+</li>
+<li><p><a href="https://developer.apple.com/account/" target="_blank" rel="external">Apple Developer 证书配置中心</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/bbs/read.php?tid=195467" target="_blank" rel="external">Mac 上的消息推送测试工具 PushMeBaby</a></p>
+</li>
+<li><p><a href="http://io.diveinedu.com/2015/01/24/%E4%BD%BF%E7%94%A8PushMeBaby%E6%B5%8B%E8%AF%95APP%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81%E5%8A%9F%E8%83%BD.html" target="_blank" rel="external">使用 PushMeBaby 测试 APP 的远程推送功能</a></p>
+</li>
+<li><p><a href="http://www.programgo.com/article/68982800051/;jsessionid=4DE852D70D7623B679B78CBD16EA45CB" target="_blank" rel="external">iOS 消息推送服务器的 Java 实现</a></p>
+</li>
+<li><p><a href="http://blog.handy.wang/blog/2013/12/19/mac-osxia-da-jian-apnstui-song-fu-wu-qi/" target="_blank" rel="external">iOS 消息推送服务器的 PHP 实现</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/tonny_guan/article/details/8963262" target="_blank" rel="external">推送通知 iOS 客户端编写实现及推送服务器端编写</a></p>
+</li>
+<li><p><a href="http://docs.jiguang.cn/jpush/client/iOS/ios_guide_new/" target="_blank" rel="external">JPush iOS SDK 集成指南</a></p>
 </li>
 </ul>
+<hr>
+<p>iOS Push 流程涉及到四个角色：<code>Device</code>、<code>APP</code>、<code>Provider</code>、<code>APNs</code></p>
+<p><strong>Device：</strong>iOS设备，用来接收 APNs 下发下来的消息</p>
+<p><strong>Client App：</strong>iOS 设备上的应用程序，用来接收 APNs 下发的消息到指定的一个客户端 app (消息的最终响应者)</p>
+<p><strong>Provider：</strong>我们自己搭建的 APP Push服务器</p>
+<p><strong>APNs：</strong>苹果的服务器（Apple Push Notification Service）</p>
+<p>deviceToken 唯一的标识一个用户。在使用推送功能的时候，需要在开发者中心创建支持Push Notification的证书，并且将证书和私钥用于应用后台服务器与APNs之间通信。</p>
+<p><img src="/images/2016_09_08_iOSPush-PushSequence1.jpg"></p>
+<blockquote>
+<p>上图可以分为三个阶段：</p>
+<ul>
+<li><p>第一阶段：应用程序把要发送的消息、目的iPhone的标识打包，发给APNS。 </p>
+</li>
+<li><p>第二阶段：APNS在自身的已注册Push服务的iPhone列表中，查找有相应标识的iPhone，并把消息发送到iPhone。 </p>
+</li>
+<li><p>第三阶段：iPhone把发来的消息传递给相应的应用程序，并且按照设定弹出Push通知。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<p><img src="/images/2016_09_08_iOSPush-PushSequence2.png" width="80%"></p>
+<blockquote>
+<p>Push 的关键流程：</p>
+<ol>
+<li><p>创建Push SSL Certification(推送证书)</p>
+</li>
+<li><p>iOS客户端注册Push功能并获得DeviceToken</p>
+</li>
+<li><p>使用Provider向APNS发送Push消息</p>
+</li>
+<li><p>iOS客户端接收处理由APNS发来的消息</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<p><img src="/images/2016_09_08_iOSPush-PushSequence3.png" width="60%"></p>
+<blockquote>
+<p>Push 的工作流程：</p>
+<ol>
+<li><p>APP向系统注册推送服务。</p>
+</li>
+<li><p>设备从APNs请求deviceToken。</p>
+</li>
+<li><p>通过代理方法将deviceToken返回给APP。</p>
+</li>
+<li><p>APP将deviceToken发送给应用后台服务器（Provider）。</p>
+</li>
+<li><p>应用后台服务器保存deviceToken，然后在需要推送通知的时候，给APNs发送信息，使用deviceToken标识所要送达的客户端。</p>
+</li>
+<li><p>APNs将后台服务器发过来的数据推送到设备。</p>
+</li>
+<li><p>设备将消息分发给应用程序。</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>整体流程分为五步：</p>
+<ol>
+<li><p>Device –&gt; 连接 –&gt; APNs：获取 DeviceToke</p>
+</li>
+<li><p>Device –&gt; 连接 –&gt; Provider：提供 DeviceToke</p>
+</li>
+<li><p>Provider 检测需要 push 的消息生成 Notification 信息</p>
+</li>
+<li><p>Provider 把要 push 的消息推送到 APNs</p>
+</li>
+<li><p>APNs 把该消息推送到手机</p>
+</li>
+</ol>
+</blockquote>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -149,7 +266,7 @@ Program ended with exit code: 0
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/RAC/">RAC</a>
+  <span></span> <a href="/tags/Push/">Push</a>
   </div>
 
 </div>
@@ -158,7 +275,7 @@ Program ended with exit code: 0
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://liu2er.com/2016/08/25/2016_08_25_RACPractice/" data-title="RAC 工程简单实践 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://liu2er.com/2016/09/08/2016_09_08_iOSPush/" data-title="iOS Push | Liu2er的技术博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -171,19 +288,11 @@ Program ended with exit code: 0
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/29/2016_08_29_UINavigationControllerNote/" title="UINavigationController + UINavigationBar + UIWebView 范例">
-  <strong>上一篇：</strong><br/>
-  <span>
-  UINavigationController + UINavigationBar + UIWebView 范例</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/25/2016_08_25_HexoNote/"  title="Hexo + Jacman 笔记">
+<a href="/2016/08/29/2016_08_29_UINavigationControllerNote/"  title="UINavigationController + UINavigationBar + UIWebView 范例">
  <strong>下一篇：</strong><br/> 
- <span>Hexo + Jacman 笔记
+ <span>UINavigationController + UINavigationBar + UIWebView 范例
 </span>
 </a>
 </div>
@@ -192,7 +301,7 @@ Program ended with exit code: 0
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/08/25/2016_08_25_RACPractice/" data-title="RAC 工程简单实践" data-url="http://liu2er.com/2016/08/25/2016_08_25_RACPractice/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/08/2016_09_08_iOSPush/" data-title="iOS Push" data-url="http://liu2er.com/2016/09/08/2016_09_08_iOSPush/"></div>
 </section>
 
 
@@ -202,7 +311,7 @@ Program ended with exit code: 0
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个简单的-RAC-工程"><span class="toc-number">1.</span> <span class="toc-text">创建一个简单的 RAC 工程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最简单的信号的创建与订阅范例"><span class="toc-number">2.</span> <span class="toc-text">最简单的信号的创建与订阅范例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CocoaPods使用技巧"><span class="toc-number">3.</span> <span class="toc-text">CocoaPods使用技巧</span></a></li></ol>
+ 
  
   </div>
 

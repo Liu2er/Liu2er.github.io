@@ -11,40 +11,16 @@
     
 
     <meta name="keywords" content="iOS, NSString">
-    <meta name="description" content="其它 ——&amp;gt; NSStringNSStringFromRange( NSRange range );
-
-NSStringFromRect( NSRect aRect );
-
-NSStringFromSelector( SEL aSelector );
-
-NSStringFromClass( __unsafe_unretained Class aClass );
-
-NSStringFromPr">
+    <meta name="description" content="其它 ——&amp;gt; NSString123456789101112131415161718NSStringFromRange( NSRange range );NSStringFromRect( NSRect aRect );NSStringFromSelector( SEL aSelector );NSStringFromClass( __unsafe_unretained Class aCla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSString 转换">
 <meta property="og:url" content="http://liu2er.com/2015/08/16/2015_08_16_NSString/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="其它 ——&amp;gt; NSStringNSStringFromRange( NSRange range );
-
-NSStringFromRect( NSRect aRect );
-
-NSStringFromSelector( SEL aSelector );
-
-NSStringFromClass( __unsafe_unretained Class aClass );
-
-NSStringFromPr">
-<meta property="og:updated_time" content="2016-08-31T01:47:37.000Z">
+<meta property="og:description" content="其它 ——&amp;gt; NSString123456789101112131415161718NSStringFromRange( NSRange range );NSStringFromRect( NSRect aRect );NSStringFromSelector( SEL aSelector );NSStringFromClass( __unsafe_unretained Class aCla">
+<meta property="og:updated_time" content="2016-09-02T04:41:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSString 转换">
-<meta name="twitter:description" content="其它 ——&amp;gt; NSStringNSStringFromRange( NSRange range );
-
-NSStringFromRect( NSRect aRect );
-
-NSStringFromSelector( SEL aSelector );
-
-NSStringFromClass( __unsafe_unretained Class aClass );
-
-NSStringFromPr">
+<meta name="twitter:description" content="其它 ——&amp;gt; NSString123456789101112131415161718NSStringFromRange( NSRange range );NSStringFromRect( NSRect aRect );NSStringFromSelector( SEL aSelector );NSStringFromClass( __unsafe_unretained Class aCla">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -68,7 +44,7 @@ NSStringFromPr">
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -84,7 +60,7 @@ NSStringFromPr">
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -107,38 +83,21 @@ NSStringFromPr">
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> 發表於 2015-08-16</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#其它-——-gt-NSString"><span class="toc-number">1.</span> <span class="toc-text">其它 ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSNumber-——-gt-NSString"><span class="toc-number">2.</span> <span class="toc-text">NSNumber ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSData-——-gt-NSString"><span class="toc-number">3.</span> <span class="toc-text">NSData ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const-char-——-gt-NSString"><span class="toc-number">4.</span> <span class="toc-text">const char * ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-const-char"><span class="toc-number">5.</span> <span class="toc-text">NSString ——> const char *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-其它"><span class="toc-number">6.</span> <span class="toc-text">NSString ——> 其它</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URLString-——-gt-NSString"><span class="toc-number">7.</span> <span class="toc-text">URLString ——> NSString</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#其它-——-gt-NSString"><span class="toc-number">1.</span> <span class="toc-text">其它 ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSNumber-——-gt-NSString"><span class="toc-number">2.</span> <span class="toc-text">NSNumber ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSData-——-gt-NSString"><span class="toc-number">3.</span> <span class="toc-text">NSData ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const-char-——-gt-NSString"><span class="toc-number">4.</span> <span class="toc-text">const char * ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-const-char"><span class="toc-number">5.</span> <span class="toc-text">NSString ——> const char *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-其它"><span class="toc-number">6.</span> <span class="toc-text">NSString ——> 其它</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URLString-——-gt-NSString"><span class="toc-number">7.</span> <span class="toc-text">URLString ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-——-gt-NSArray-或-NSDictionary"><span class="toc-number">8.</span> <span class="toc-text">JSON ——> NSArray 或 NSDictionary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSData-——-gt-NSString-、-NSArray-或-NSDictionary"><span class="toc-number">9.</span> <span class="toc-text">NSData ——> NSString 、 NSArray 或 NSDictionary</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><pre><code>NSStringFromRange( NSRange range );
-
-NSStringFromRect( NSRect aRect );
-
-NSStringFromSelector( SEL aSelector );
-
-NSStringFromClass( __unsafe_unretained Class aClass );
-
-NSStringFromProtocol( Protocol *proto );
-
-
-NSStringFromHashTable( NSHashTable *table );
-
-NSStringFromMapTable( NSMapTable *table );
-
-NSStringFromPoint( NSPoint aPoint );
-
-NSStringFromSize( NSSize aSize );
-</code></pre><p>举例：</p>
+		<h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSStringFromRange</span>( <span class="built_in">NSRange</span> range );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromRect</span>( <span class="built_in">NSRect</span> aRect );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSelector</span>( SEL aSelector );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromClass</span>( __<span class="keyword">unsafe_unretained</span> Class aClass );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromProtocol</span>( Protocol *proto );</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSStringFromHashTable</span>( <span class="built_in">NSHashTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromMapTable</span>( <span class="built_in">NSMapTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromPoint</span>( <span class="built_in">NSPoint</span> aPoint );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSize</span>( <span class="built_in">NSSize</span> aSize );</div></pre></td></tr></table></figure>
+<p>举例：</p>
 <pre><code>NSString *string = NSStringFromClass([NSArray class]);
 
 NSLog(@&quot;NSArray 的类名是：%@&quot;,string);
@@ -154,10 +113,8 @@ NSString *string = [number description];
 // 转换方法2
 NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]];
 </code></pre><p>本例是将<code>@20</code>转换为<code>@&quot;20&quot;</code>。</p>
-<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><pre><code>NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@&quot;http://www.baidu.com&quot;]];
-
-NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-</code></pre><a id="more"></a>
+<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.baidu.com"</span>]];</div><div class="line">       </div><div class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="const-char-——-gt-NSString"><a href="#const-char-——-gt-NSString" class="headerlink" title="const char * ——&gt; NSString"></a>const char * ——&gt; NSString</h2><pre><code>NSString * strNSString;
 
 const char *pConstChar;
@@ -173,7 +130,11 @@ strNSString = [[NSString alloc] initWithUTF8String:pConstChar];
 Class NSClassFromString(NSString *aClassName);
 
 Protocol *NSProtocolFromString(NSString *namestr);
-</code></pre><h2 id="URLString-——-gt-NSString"><a href="#URLString-——-gt-NSString" class="headerlink" title="URLString ——&gt; NSString"></a>URLString ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// URL包含中文字符和空格时，需要进行URL编码(指定编码类型为UTF-8)</span></div><div class="line"><span class="built_in">NSString</span> *newUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line"><span class="comment">// 将URL解码</span></div><div class="line"><span class="built_in">NSString</span> *urlString = [newUrlString stringByRemovingPercentEncoding];</div></pre></td></tr></table></figure>  
+</code></pre><h2 id="URLString-——-gt-NSString"><a href="#URLString-——-gt-NSString" class="headerlink" title="URLString ——&gt; NSString"></a>URLString ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// URL包含中文字符和空格时，需要进行URL编码(指定编码类型为UTF-8)</span></div><div class="line"><span class="built_in">NSString</span> *newUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</div><div class="line"><span class="comment">// 将URL解码</span></div><div class="line"><span class="built_in">NSString</span> *urlString = [newUrlString stringByRemovingPercentEncoding];</div></pre></td></tr></table></figure>
+<h2 id="JSON-——-gt-NSArray-或-NSDictionary"><a href="#JSON-——-gt-NSArray-或-NSDictionary" class="headerlink" title="JSON ——&gt; NSArray 或 NSDictionary"></a>JSON ——&gt; NSArray 或 NSDictionary</h2><pre><code>NSArray *dataArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+</code></pre><h2 id="NSData-——-gt-NSString-、-NSArray-或-NSDictionary"><a href="#NSData-——-gt-NSString-、-NSArray-或-NSDictionary" class="headerlink" title="NSData ——&gt; NSString 、 NSArray 或 NSDictionary"></a>NSData ——&gt; NSString 、 NSArray 或 NSDictionary</h2><pre><code class="objc"><span class="built_in">NSArray</span> *array = [<span class="built_in">NSKeyedUnarchiver</span> unarchiveObjectWithData:data];
+</code></pre>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -234,17 +195,17 @@ Protocol *NSProtocolFromString(NSString *namestr);
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#其它-——-gt-NSString"><span class="toc-number">1.</span> <span class="toc-text">其它 ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSNumber-——-gt-NSString"><span class="toc-number">2.</span> <span class="toc-text">NSNumber ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSData-——-gt-NSString"><span class="toc-number">3.</span> <span class="toc-text">NSData ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const-char-——-gt-NSString"><span class="toc-number">4.</span> <span class="toc-text">const char * ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-const-char"><span class="toc-number">5.</span> <span class="toc-text">NSString ——> const char *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-其它"><span class="toc-number">6.</span> <span class="toc-text">NSString ——> 其它</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URLString-——-gt-NSString"><span class="toc-number">7.</span> <span class="toc-text">URLString ——> NSString</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#其它-——-gt-NSString"><span class="toc-number">1.</span> <span class="toc-text">其它 ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSNumber-——-gt-NSString"><span class="toc-number">2.</span> <span class="toc-text">NSNumber ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSData-——-gt-NSString"><span class="toc-number">3.</span> <span class="toc-text">NSData ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#const-char-——-gt-NSString"><span class="toc-number">4.</span> <span class="toc-text">const char * ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-const-char"><span class="toc-number">5.</span> <span class="toc-text">NSString ——> const char *</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSString-——-gt-其它"><span class="toc-number">6.</span> <span class="toc-text">NSString ——> 其它</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URLString-——-gt-NSString"><span class="toc-number">7.</span> <span class="toc-text">URLString ——> NSString</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON-——-gt-NSArray-或-NSDictionary"><span class="toc-number">8.</span> <span class="toc-text">JSON ——> NSArray 或 NSDictionary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSData-——-gt-NSString-、-NSArray-或-NSDictionary"><span class="toc-number">9.</span> <span class="toc-text">NSData ——> NSString 、 NSArray 或 NSDictionary</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -252,7 +213,7 @@ Protocol *NSProtocolFromString(NSString *namestr);
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -268,7 +229,7 @@ Protocol *NSProtocolFromString(NSString *namestr);
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -277,7 +238,7 @@ Protocol *NSProtocolFromString(NSString *namestr);
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -302,6 +263,10 @@ Protocol *NSProtocolFromString(NSString *namestr);
 		
 			
 				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -511,7 +476,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

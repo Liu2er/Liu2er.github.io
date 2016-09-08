@@ -40,7 +40,7 @@
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -56,7 +56,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -74,6 +74,167 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/09/08/2016_09_08_iOSPush/" title="iOS Push" itemprop="url">iOS Push</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> 發表於 2016-09-08</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <ul>
+<li><p><a href="http://mrpeak.cn/ios/2016/01/06/push" target="_blank" rel="external">iOS Push 门道</a></p>
+</li>
+<li><p><a href="https://leancloud.cn/docs/ios_push_cert.html" target="_blank" rel="external">iOS 推送证书设置指南</a></p>
+</li>
+<li><p><a href="http://superdanny.link/2016/02/02/iOS-Apple-Push-Notification-Service/" target="_blank" rel="external">iOS推送的那些事</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/showhilllee/article/details/8631734" target="_blank" rel="external">一步一步教你做 iOS 推送</a></p>
+</li>
+<li><p><a href="http://tanqisen.github.io/blog/2013/02/27/ios-push-apns/" target="_blank" rel="external">一步一步实现 iOS 应用 Push 功能</a></p>
+</li>
+<li><p><a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/APNsProviderAPI.html#//apple_ref/doc/uid/TP40008194-CH101-SW1" target="_blank" rel="external">APNs Provider API</a></p>
+</li>
+<li><p><a href="https://developer.apple.com/account/" target="_blank" rel="external">Apple Developer 证书配置中心</a></p>
+</li>
+<li><p><a href="http://www.cocoachina.com/bbs/read.php?tid=195467" target="_blank" rel="external">Mac 上的消息推送测试工具 PushMeBaby</a></p>
+</li>
+<li><p><a href="http://io.diveinedu.com/2015/01/24/%E4%BD%BF%E7%94%A8PushMeBaby%E6%B5%8B%E8%AF%95APP%E7%9A%84%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81%E5%8A%9F%E8%83%BD.html" target="_blank" rel="external">使用 PushMeBaby 测试 APP 的远程推送功能</a></p>
+</li>
+<li><p><a href="http://www.programgo.com/article/68982800051/;jsessionid=4DE852D70D7623B679B78CBD16EA45CB" target="_blank" rel="external">iOS 消息推送服务器的 Java 实现</a></p>
+</li>
+<li><p><a href="http://blog.handy.wang/blog/2013/12/19/mac-osxia-da-jian-apnstui-song-fu-wu-qi/" target="_blank" rel="external">iOS 消息推送服务器的 PHP 实现</a></p>
+</li>
+<li><p><a href="http://blog.csdn.net/tonny_guan/article/details/8963262" target="_blank" rel="external">推送通知 iOS 客户端编写实现及推送服务器端编写</a></p>
+</li>
+<li><p><a href="http://docs.jiguang.cn/jpush/client/iOS/ios_guide_new/" target="_blank" rel="external">JPush iOS SDK 集成指南</a></p>
+</li>
+</ul>
+<hr>
+<p>iOS Push 流程涉及到四个角色：<code>Device</code>、<code>APP</code>、<code>Provider</code>、<code>APNs</code></p>
+<p><strong>Device：</strong>iOS设备，用来接收 APNs 下发下来的消息</p>
+<p><strong>Client App：</strong>iOS 设备上的应用程序，用来接收 APNs 下发的消息到指定的一个客户端 app (消息的最终响应者)</p>
+<p><strong>Provider：</strong>我们自己搭建的 APP Push服务器</p>
+<p><strong>APNs：</strong>苹果的服务器（Apple Push Notification Service）</p>
+<p>deviceToken 唯一的标识一个用户。在使用推送功能的时候，需要在开发者中心创建支持Push Notification的证书，并且将证书和私钥用于应用后台服务器与APNs之间通信。</p>
+<p><img src="/images/2016_09_08_iOSPush-PushSequence1.jpg"></p>
+<blockquote>
+<p>上图可以分为三个阶段：</p>
+<ul>
+<li><p>第一阶段：应用程序把要发送的消息、目的iPhone的标识打包，发给APNS。 </p>
+</li>
+<li><p>第二阶段：APNS在自身的已注册Push服务的iPhone列表中，查找有相应标识的iPhone，并把消息发送到iPhone。 </p>
+</li>
+<li><p>第三阶段：iPhone把发来的消息传递给相应的应用程序，并且按照设定弹出Push通知。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<p><img src="/images/2016_09_08_iOSPush-PushSequence2.png" width="80%"></p>
+<blockquote>
+<p>Push 的关键流程：</p>
+<ol>
+<li><p>创建Push SSL Certification(推送证书)</p>
+</li>
+<li><p>iOS客户端注册Push功能并获得DeviceToken</p>
+</li>
+<li><p>使用Provider向APNS发送Push消息</p>
+</li>
+<li><p>iOS客户端接收处理由APNS发来的消息</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<p><img src="/images/2016_09_08_iOSPush-PushSequence3.png" width="60%"></p>
+<blockquote>
+<p>Push 的工作流程：</p>
+<ol>
+<li><p>APP向系统注册推送服务。</p>
+</li>
+<li><p>设备从APNs请求deviceToken。</p>
+</li>
+<li><p>通过代理方法将deviceToken返回给APP。</p>
+</li>
+<li><p>APP将deviceToken发送给应用后台服务器（Provider）。</p>
+</li>
+<li><p>应用后台服务器保存deviceToken，然后在需要推送通知的时候，给APNs发送信息，使用deviceToken标识所要送达的客户端。</p>
+</li>
+<li><p>APNs将后台服务器发过来的数据推送到设备。</p>
+</li>
+<li><p>设备将消息分发给应用程序。</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>整体流程分为五步：</p>
+<ol>
+<li><p>Device –&gt; 连接 –&gt; APNs：获取 DeviceToke</p>
+</li>
+<li><p>Device –&gt; 连接 –&gt; Provider：提供 DeviceToke</p>
+</li>
+<li><p>Provider 检测需要 push 的消息生成 Notification 信息</p>
+</li>
+<li><p>Provider 把要 push 的消息推送到 APNs</p>
+</li>
+<li><p>APNs 把该消息推送到手机</p>
+</li>
+</ol>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Push/">Push</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/08/2016_09_08_iOSPush/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/08/2016_09_08_iOSPush/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/08/29/2016_08_29_UINavigationControllerNote/" title="UINavigationController + UINavigationBar + UIWebView 范例" itemprop="url">UINavigationController + UINavigationBar + UIWebView 范例</a>
   </h1>
   <p class="article-author">By
@@ -81,7 +242,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-29T02:24:53.000Z" itemprop="datePublished"> Published 2016-08-29</time>
+    <time datetime="2016-08-29T02:24:53.000Z" itemprop="datePublished"> 發表於 2016-08-29</time>
     
   </p>
 </header>
@@ -156,7 +317,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> Published 2016-08-25</time>
+    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> 發表於 2016-08-25</time>
     
   </p>
 </header>
@@ -243,7 +404,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> Published 2016-08-25</time>
+    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> 發表於 2016-08-25</time>
     
   </p>
 </header>
@@ -360,7 +521,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> Published 2016-08-24</time>
+    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> 發表於 2016-08-24</time>
     
   </p>
 </header>
@@ -432,7 +593,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> Published 2016-07-12</time>
+    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> 發表於 2016-07-12</time>
     
   </p>
 </header>
@@ -528,31 +689,14 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> 發表於 2015-08-16</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><pre><code>NSStringFromRange( NSRange range );
-
-NSStringFromRect( NSRect aRect );
-
-NSStringFromSelector( SEL aSelector );
-
-NSStringFromClass( __unsafe_unretained Class aClass );
-
-NSStringFromProtocol( Protocol *proto );
-
-
-NSStringFromHashTable( NSHashTable *table );
-
-NSStringFromMapTable( NSMapTable *table );
-
-NSStringFromPoint( NSPoint aPoint );
-
-NSStringFromSize( NSSize aSize );
-</code></pre><p>举例：</p>
+        <h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSStringFromRange</span>( <span class="built_in">NSRange</span> range );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromRect</span>( <span class="built_in">NSRect</span> aRect );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSelector</span>( SEL aSelector );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromClass</span>( __<span class="keyword">unsafe_unretained</span> Class aClass );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromProtocol</span>( Protocol *proto );</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSStringFromHashTable</span>( <span class="built_in">NSHashTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromMapTable</span>( <span class="built_in">NSMapTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromPoint</span>( <span class="built_in">NSPoint</span> aPoint );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSize</span>( <span class="built_in">NSSize</span> aSize );</div></pre></td></tr></table></figure>
+<p>举例：</p>
 <pre><code>NSString *string = NSStringFromClass([NSArray class]);
 
 NSLog(@&quot;NSArray 的类名是：%@&quot;,string);
@@ -568,10 +712,7 @@ NSString *string = [number description];
 // 转换方法2
 NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]];
 </code></pre><p>本例是将<code>@20</code>转换为<code>@&quot;20&quot;</code>。</p>
-<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><pre><code>NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@&quot;http://www.baidu.com&quot;]];
-
-NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-</code></pre>
+<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.baidu.com"</span>]];</div><div class="line">       </div><div class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -629,7 +770,7 @@ NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEnco
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> 發表於 2015-08-16</time>
     
   </p>
 </header>
@@ -685,10 +826,10 @@ NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEnco
 
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -696,7 +837,7 @@ NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEnco
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -712,7 +853,7 @@ NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEnco
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>3</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>4</sup></a></li>
 		  
 		
 		</ul>
@@ -721,7 +862,7 @@ NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEnco
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -746,6 +887,10 @@ NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEnco
 		
 			
 				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -866,7 +1011,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
