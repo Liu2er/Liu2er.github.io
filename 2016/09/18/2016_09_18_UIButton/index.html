@@ -4,48 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Git 学习笔记 | Liu2er的技术博客</title>
+    <title>UIButton 笔记 | Liu2er的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Liu2er">
     
 
-    <meta name="keywords" content="Git, branch">
-    <meta name="description" content="一张图读懂 Git工作区和暂存区的概念 – 廖雪峰
-
-Git 常用命令Git远程操作详解 – 阮一峰
-
-git clone &amp;lt;git地址&amp;gt;：本地没有repository时，将远程repository整个下载过来。
-git pull：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。
-git push &amp;lt;远程">
+    <meta name="keywords" content="iOS, UIButton">
+    <meta name="description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 学习笔记">
-<meta property="og:url" content="http://liu2er.com/2016/07/12/2016_07_12_GitNote/index.html">
+<meta property="og:title" content="UIButton 笔记">
+<meta property="og:url" content="http://liu2er.com/2016/09/18/2016_09_18_UIButton/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="一张图读懂 Git工作区和暂存区的概念 – 廖雪峰
-
-Git 常用命令Git远程操作详解 – 阮一峰
-
-git clone &amp;lt;git地址&amp;gt;：本地没有repository时，将远程repository整个下载过来。
-git pull：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。
-git push &amp;lt;远程">
-<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_00.png">
-<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_01.png">
-<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_02.png">
-<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_03.png">
-<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_04.png">
-<meta property="og:image" content="http://liu2er.com/images/2016071201_git_learn_note_05.png">
-<meta property="og:updated_time" content="2016-09-12T07:26:52.000Z">
+<meta property="og:description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
+<meta property="og:updated_time" content="2016-09-18T02:57:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 学习笔记">
-<meta name="twitter:description" content="一张图读懂 Git工作区和暂存区的概念 – 廖雪峰
-
-Git 常用命令Git远程操作详解 – 阮一峰
-
-git clone &amp;lt;git地址&amp;gt;：本地没有repository时，将远程repository整个下载过来。
-git pull：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。
-git push &amp;lt;远程">
-<meta name="twitter:image" content="http://liu2er.com/images/2016071201_git_learn_note_00.png">
+<meta name="twitter:title" content="UIButton 笔记">
+<meta name="twitter:description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -101,14 +76,14 @@ git push &amp;lt;远程">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/07/12/2016_07_12_GitNote/" title="Git 学习笔记" itemprop="url">Git 学习笔记</a>
+      <a href="/2016/09/18/2016_09_18_UIButton/" title="UIButton 笔记" itemprop="url">UIButton 笔记</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-07-12</time>
+    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
     
   </p>
 </header>
@@ -117,62 +92,34 @@ git push &amp;lt;远程">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图读懂-Git"><span class="toc-number">1.</span> <span class="toc-text">一张图读懂 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-常用命令"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的创建、合并、删除图示"><span class="toc-number">3.</span> <span class="toc-text">分支的创建、合并、删除图示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-number">4.</span> <span class="toc-text">Github</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="一张图读懂-Git"><a href="#一张图读懂-Git" class="headerlink" title="一张图读懂 Git"></a>一张图读懂 Git</h2><p><strong><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000" target="_blank" rel="external">工作区和暂存区的概念 – 廖雪峰</a></strong></p>
-<p><img src="/images/2016071201_git_learn_note_00.png" alt="2016071201_git_learn_note_00"></p>
-<h2 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h2><p><strong><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解 – 阮一峰</a></strong></p>
-<ul>
-<li><code>git clone &lt;git地址&gt;</code>：本地没有repository时，将远程repository整个下载过来。</li>
-<li><code>git pull</code>：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。</li>
-<li><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：用于将本地分支的更新，推送到远程主机。如果省略远程分支名，则表示将本地分支推送与之存在”追踪关系”的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。eg：<code>git push origin master</code></li>
-<li><code>git fetch</code>：将远程仓库的更新同步到本地</li>
-<li><p><code>git pull</code>：取回远程仓库某个分支的更新，再与本地的指定分支合并</p>
-</li>
-<li><p>查看分支：<code>git branch</code></p>
-</li>
-<li>创建分支：<code>git branch &lt;name&gt;</code></li>
-<li>切换分支：<code>git checkout &lt;name&gt;</code></li>
-<li>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></li>
-<li>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></li>
-<li><p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
-</li>
-<li><p>创建一个与本地分支同名的远程分支：</p>
-<p>  $ git push origin &lt;本地分支名&gt; </p>
-</li>
-</ul>
-<p><strong><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用 Git 命令清单 – 阮一峰</a></strong></p>
-<h2 id="分支的创建、合并、删除图示"><a href="#分支的创建、合并、删除图示" class="headerlink" title="分支的创建、合并、删除图示"></a>分支的创建、合并、删除图示</h2><p><strong><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000" target="_blank" rel="external">分支的创建、合并、删除图示 – 廖雪峰</a></strong></p>
-<p>假设原来只有 master 分支 ↓ ：<br><img src="/images/2016071201_git_learn_note_01.png" alt="2016071201_git_learn_note_01"></p>
-<p>创建一个叫 dev 的新分支，并切换到该分支上 ↓ ：<code>git checkout -b dev</code><br><img src="/images/2016071201_git_learn_note_02.png" alt="2016071201_git_learn_note_02"></p>
-<p>在 dev 分支上进行一次提交 ↓ ：<code>git commit -m &quot;在dev分支上提交更改&quot;</code><br><img src="/images/2016071201_git_learn_note_03.png" alt="2016071201_git_learn_note_03"></p>
-<p>把 dev 合并到 master 上 ↓ ：<code>git merge dev</code><br><img src="/images/2016071201_git_learn_note_04.png" alt="2016071201_git_learn_note_04"></p>
-<p>删除 dev 分支 ↓ ：<code>git branch -d dev</code><br><img src="/images/2016071201_git_learn_note_05.png" alt="2016071201_git_learn_note_05"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><strong><code>master：</code></strong>主分支；</li>
-<li><strong><code>HEAD：</code></strong>始终指向当前分支；</li>
-<li>Git 创建、合并、删除分支非常快，因为这些操作都是对指针的操作，改改 HEAD 的指向，工作区的文件都没有任何变化；</li>
-<li>Git 鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在 master 分支上工作效果是一样的，但过程更安全。</li>
-</ul>
-<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><ul>
-<li><strong>fork 按钮：</strong>fork 用于将他人的仓库复制到我们账号中。如果我们想要参与开源项目，首先要 fork 下别人的项目，然后在我们复制过来的仓库中，对别人的代码做修改。</li>
-</ul>
-  
+		<h2 id="UIEdgeInsets属性"><a href="#UIEdgeInsets属性" class="headerlink" title="UIEdgeInsets属性"></a>UIEdgeInsets属性</h2><h3 id="UIEdgeInsets"><a href="#UIEdgeInsets" class="headerlink" title="UIEdgeInsets"></a>UIEdgeInsets</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">UIEdgeInsets</span> &#123;</div><div class="line">    <span class="built_in">CGFloat</span> top, left, bottom, right;  <span class="comment">// specify amount to inset (positive) for each of the edges. values can be negative to 'outset'</span></div><div class="line">&#125; <span class="built_in">UIEdgeInsets</span>;</div></pre></td></tr></table></figure>
+<p>UIButton的UIEdgeInsets相关属性有三个：</p>
+<ol>
+<li>contentEdgeInsets</li>
+<li>imageEdgeInsets</li>
+<li>titleEdgeInsets</li>
+</ol>
+<p>image 的 UIEdgeInsets 属性的top、left、bottom 都是相对于 button 的，right 是相对于 title；<br>title 的 UIEdgeInsets 属性的top、bottom、right 都是相对于 button 的，left 是相对于 image；</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//拿到title和image的大小：</span></div><div class="line"><span class="built_in">CGSize</span> titleSize = <span class="keyword">self</span>.pureButton.titleLabel.bounds.size;</div><div class="line"><span class="built_in">CGSize</span> imageSize = <span class="keyword">self</span>.pureButton.imageView.bounds.size;</div><div class="line"><span class="comment">//分别设置偏移量:记住偏移量是位移</span></div><div class="line"><span class="keyword">self</span>.pureButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, -imageSize.width, <span class="number">0</span>, imageSize.width);</div><div class="line"><span class="keyword">self</span>.pureButton.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, titleSize.width, <span class="number">0</span>, -titleSize.width);</div></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#define layoutCoefficient ([UIScreen mainScreen].bounds.size.width == 414 ? 1 : ([UIScreen mainScreen].bounds.size.width == 375 ? 0.91 : 0.77))</span></div><div class="line"></div><div class="line"><span class="built_in">CGFloat</span> offset = <span class="number">5.</span>;</div><div class="line">[<span class="keyword">self</span>.subscribeButton setImage:[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"subscribe_gray"</span>]scaledToSize:<span class="built_in">CGSizeMake</span>(<span class="number">15</span> * layoutCoefficient, <span class="number">15</span> * layoutCoefficient)] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitle:<span class="string">@"订阅"</span> forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton.titleLabel setFont:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">18</span> * layoutCoefficient]];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitleColor:[<span class="built_in">UIColor</span> whiteColor] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line"><span class="keyword">self</span>.subscribeButton.contentEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span> + offset);</div><div class="line"><span class="keyword">self</span>.subscribeButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, offset, <span class="number">0</span>, -offset);</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/Git/">Git</a>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
 </div>
 
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Git/">Git</a>
+  <span></span> <a href="/tags/UIButton/">UIButton</a>
   </div>
 
 </div>
@@ -181,7 +128,7 @@ git push &amp;lt;远程">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://liu2er.com/2016/07/12/2016_07_12_GitNote/" data-title="Git 学习笔记 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://liu2er.com/2016/09/18/2016_09_18_UIButton/" data-title="UIButton 笔记 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -194,19 +141,11 @@ git push &amp;lt;远程">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/20/2015_08_20_DelegateForDatapass/" title="用委托在视图间传递消息的经典范例">
-  <strong>上一篇：</strong><br/>
-  <span>
-  用委托在视图间传递消息的经典范例</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/08/16/2015_08_16_NSString/"  title="NSString 转换">
+<a href="/2016/09/08/2016_09_08_iOSPush/"  title="iOS Push">
  <strong>下一篇：</strong><br/> 
- <span>NSString 转换
+ <span>iOS Push
 </span>
 </a>
 </div>
@@ -215,7 +154,7 @@ git push &amp;lt;远程">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/07/12/2016_07_12_GitNote/" data-title="Git 学习笔记" data-url="http://liu2er.com/2016/07/12/2016_07_12_GitNote/"></div>
+	<div class="ds-thread" data-thread-key="2016/09/18/2016_09_18_UIButton/" data-title="UIButton 笔记" data-url="http://liu2er.com/2016/09/18/2016_09_18_UIButton/"></div>
 </section>
 
 
@@ -225,7 +164,7 @@ git push &amp;lt;远程">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一张图读懂-Git"><span class="toc-number">1.</span> <span class="toc-text">一张图读懂 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-常用命令"><span class="toc-number">2.</span> <span class="toc-text">Git 常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分支的创建、合并、删除图示"><span class="toc-number">3.</span> <span class="toc-text">分支的创建、合并、删除图示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github"><span class="toc-number">4.</span> <span class="toc-text">Github</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li></ol>
  
   </div>
 

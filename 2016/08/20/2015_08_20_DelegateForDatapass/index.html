@@ -1,0 +1,572 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>用委托在视图间传递消息的经典范例 | Liu2er的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Liu2er">
+    
+
+    <meta name="keywords" content="iOS, Delegate">
+    <meta name="description" content="iOS中视图间数据传递的方式常有的有如下几种：
+
+采用代理模式
+采用iOS消息机制
+使用文件，NSUserdefault或者数据库来传递
+通过AppDelegate定义全局变量（或者使用UIApplication、定义一个单例类等）
+通过控制器属性传递
+
+今天我们主要采用第一种方式进行数据传递，这在iOS开发中也是最常见的一种多视图传参方式。使用代理方式传递参数的步骤如下：
+
+定义协议，协议中定义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用委托在视图间传递消息的经典范例">
+<meta property="og:url" content="http://liu2er.com/2016/08/20/2015_08_20_DelegateForDatapass/index.html">
+<meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="iOS中视图间数据传递的方式常有的有如下几种：
+
+采用代理模式
+采用iOS消息机制
+使用文件，NSUserdefault或者数据库来传递
+通过AppDelegate定义全局变量（或者使用UIApplication、定义一个单例类等）
+通过控制器属性传递
+
+今天我们主要采用第一种方式进行数据传递，这在iOS开发中也是最常见的一种多视图传参方式。使用代理方式传递参数的步骤如下：
+
+定义协议，协议中定义">
+<meta property="og:image" content="http://liu2er.com/images/2015_08_20_DelegateForDatapass1.png">
+<meta property="og:image" content="http://liu2er.com/images/2015_08_20_DelegateForDatapass2.png">
+<meta property="og:image" content="http://liu2er.com/images/2015_08_20_DelegateForDatapass3.png">
+<meta property="og:image" content="http://liu2er.com/images/2015_08_20_DelegateForDatapass4.png">
+<meta property="og:updated_time" content="2016-09-19T07:07:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用委托在视图间传递消息的经典范例">
+<meta name="twitter:description" content="iOS中视图间数据传递的方式常有的有如下几种：
+
+采用代理模式
+采用iOS消息机制
+使用文件，NSUserdefault或者数据库来传递
+通过AppDelegate定义全局变量（或者使用UIApplication、定义一个单例类等）
+通过控制器属性传递
+
+今天我们主要采用第一种方式进行数据传递，这在iOS开发中也是最常见的一种多视图传参方式。使用代理方式传递参数的步骤如下：
+
+定义协议，协议中定义">
+<meta name="twitter:image" content="http://liu2er.com/images/2015_08_20_DelegateForDatapass1.png">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
+				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:liu2er.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/08/20/2015_08_20_DelegateForDatapass/" title="用委托在视图间传递消息的经典范例" itemprop="url">用委托在视图间传递消息的经典范例</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-20T06:50:28.000Z" itemprop="datePublished"> 发表于 2016-08-20</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义协议，协议中定义好传参时所需要的方法"><span class="toc-number">1.</span> <span class="toc-text">定义协议，协议中定义好传参时所需要的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"><span class="toc-number">2.</span> <span class="toc-text">源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标视图控制器定义一个代理对象"><span class="toc-number">3.</span> <span class="toc-text">目标视图控制器定义一个代理对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进一步抽取"><span class="toc-number">3.1.</span> <span class="toc-text">进一步抽取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考网址"><span class="toc-number">4.</span> <span class="toc-text">参考网址</span></a></li></ol>
+		
+		</div>
+		
+		<p>iOS中视图间数据传递的方式常有的有如下几种：</p>
+<ol>
+<li>采用代理模式</li>
+<li>采用iOS消息机制</li>
+<li>使用文件，NSUserdefault或者数据库来传递</li>
+<li>通过AppDelegate定义全局变量（或者使用UIApplication、定义一个单例类等）</li>
+<li>通过控制器属性传递</li>
+</ol>
+<p>今天我们主要采用第一种方式进行数据传递，这在iOS开发中也是最常见的一种多视图传参方式。使用代理方式传递参数的步骤如下：</p>
+<ol>
+<li>定义协议，协议中定义好传参时所需要的方法</li>
+<li>目标视图控制器定义一个代理对象</li>
+<li>源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</li>
+<li>需要传参的时候在目标窗口调用代理的协议方法</li>
+</ol>
+<p>本例的操作如下所示：<br>一个界面为主视图，点击绿色的Button会Modal出第二个视图，在第二个视图的文本框里输入数据，并点击绿色的Button，会返回到主视图，并且把在第二个视图中输入的数据显示到主视图的文本框里，从而实现了参数跨视图传递；</p>
+<p><img src="/images/2015_08_20_DelegateForDatapass1.png" width="32%">  <img src="/images/2015_08_20_DelegateForDatapass2.png" width="32%">  <img src="/images/2015_08_20_DelegateForDatapass3.png" width="32%"><br><!--![图片1](/images/2015_08_20_DelegateForDatapass1.png)
+![图片2](/images/2015_08_20_DelegateForDatapass2.png =240x426)
+![图片3](/images/2015_08_20_DelegateForDatapass3.png =240x426)--></p>
+<p>整个程序的文件组织形式如下图所示：<br><img src="/images/2015_08_20_DelegateForDatapass4.png" width="33%"><br><!--![图片4](/images/2015_08_20_DelegateForDatapass4.png =260x374)--></p>
+<h2 id="定义协议，协议中定义好传参时所需要的方法"><a href="#定义协议，协议中定义好传参时所需要的方法" class="headerlink" title="定义协议，协议中定义好传参时所需要的方法"></a>定义协议，协议中定义好传参时所需要的方法</h2><p>其中定义协议的文件为：<code>UIViewPassValueDelegate.h</code>。</p>
+<p><strong>UIViewPassValueDelegate.h</strong>的源代码为：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span></span></div><div class="line"></div><div class="line"><span class="comment">// 本方法为传参时所需要的方法</span></div><div class="line">- (<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<h2 id="源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"><a href="#源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身" class="headerlink" title="源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"></a>源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</h2><p>源视图控制器就是这里的“主视图控制器”，在主视图控制器的实现文件中实现了该协议方法。其中主视图的相关文件为：<code>JJMainViewController.h</code>、<code>JJMainViewController.m</code>和<code>Main.storyboard</code>。</p>
+<p>源代码分别为：</p>
+<p><strong>JJMainViewController.h</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">// 导入协议文件的头文件</span></div><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// 遵守协议</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJMainViewController</span> : <span class="title">UIViewController</span> &lt;<span class="title">UIViewPassValueDelegate</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// 本属性为主界面上用来接收另一个视图传递过来的数据</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *valueField;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>JJMainViewController.m</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JJMainViewController.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"JJAnotherViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">JJMainViewController</span> </span></div><div class="line"></div><div class="line"><span class="comment">// 主视图遵守了委托协议，并实现了委托方法，本方法把另一个视图里的数据传递过来</span></div><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value &#123;</div><div class="line">    <span class="keyword">self</span>.valueField.text = value;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)clickButton:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    </div><div class="line">    JJAnotherViewController *antherVC = [[JJAnotherViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">// 把主视图设为另一个视图的委托对象</span></div><div class="line">    antherVC.delegate = <span class="keyword">self</span>;</div><div class="line">    </div><div class="line">    <span class="comment">// 点击了主视图的Button后Modal到另一个视图</span></div><div class="line">    [<span class="keyword">self</span> presentViewController:antherVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<h2 id="目标视图控制器定义一个代理对象"><a href="#目标视图控制器定义一个代理对象" class="headerlink" title="目标视图控制器定义一个代理对象"></a>目标视图控制器定义一个代理对象</h2><p>这里的目标视图就是本例子中的“另一个视图”。另一个视图的文件为：<code>JJAnotherViewController.h</code>、<code>JJAnotherViewController.m</code>和<code>JJAnotherViewController.xib</code>。</p>
+<p>源代码分别为：</p>
+<p><strong>JJAnotherViewController.h</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJAnotherViewController</span> : <span class="title">UIViewController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *value;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;<span class="built_in">UIViewPassValueDelegate</span>&gt; delegate;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>JJAnotherViewController.m</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JJAnotherViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">JJAnotherViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)backButton:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 需要传参的时候在目标窗口调用代理的协议方法</span></div><div class="line">    [<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.value.text];</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p>综上，我们来重新将上述过程总结成大白话。为了能把目标视图里的数据通过委托协议传递给主视图，其过程如下：</p>
+<ol>
+<li>定义协议，协议中声明了一个方法，该方法用于把目标视图里的数据传递给源视图；</li>
+<li>分别创建源视图和目标视图的控制器，并搭建好各自的界面；</li>
+<li>在目标视图控制器的头文件里导入协议头文件，并定义一个用来存储待传递的数据的属性，和一个代理属性；</li>
+<li>在目标视图控制器的实现文件里调用其代理属性的协议方法，并把待传的数据作为参数传入该方法；</li>
+<li>让源视图控制器成为目标视图控制器的代理对象，从而源视图就可以接收来自目标视图的数据了，方法是：<ol>
+<li>在源视图控制器的头文件里导入协议文件的头文件；</li>
+<li>在源视图控制器的头文件里遵守协议，即用尖括号声明；</li>
+<li>实现协议方法，在协议方法里接收来自目标视图的数据。参数由该协议方法的参数传递过来；</li>
+</ol>
+</li>
+</ol>
+<p>注：</p>
+<ul>
+<li><p>协议：本例中的<em>UIViewPassValueDelegate.h</em></p>
+</li>
+<li><p>协议方法：本例中的<em>- (void)passValue:(NSString \</em>)value*</p>
+</li>
+<li><p>源视图：本例中的<em>JJMainViewController</em></p>
+</li>
+<li><p>目标视图：本例中的<em>JJAnotherViewController</em></p>
+</li>
+<li><p>待传递的数据：本例中的目标视图里的文本框里输入的数据</p>
+</li>
+<li><p>为了防止循环引用代理属性的标识符应为assign，为了让各种对象都能成为本对象的代理对象其类型应为id</p>
+</li>
+</ul>
+<h3 id="进一步抽取"><a href="#进一步抽取" class="headerlink" title="进一步抽取"></a>进一步抽取</h3><p><strong>关键步骤一：</strong>定义协议，协议中定义好可以用来传参的方法，本协议也可以直接定义到主视图控制器的.h文件里<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span></span></div><div class="line"></div><div class="line"><span class="comment">// 本方法为传参时所需要的方法</span></div><div class="line">- (<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤二：</strong>在主视图控制器的.m文件中把本控制器的对象设为代理对象<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">JJAnotherViewController *antherVC = [[JJAnotherViewController alloc] init];</div><div class="line"></div><div class="line">antherVC.delegate = <span class="keyword">self</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤三：</strong>同时，在主视图控制器的.m文件中实现协议方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value &#123;</div><div class="line">    <span class="keyword">self</span>.valueField.text = value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤四：</strong>在另一个视图控制器的.h文件中引入协议，并定义代理属性<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;<span class="built_in">UIViewPassValueDelegate</span>&gt; delegate;</div><div class="line"></div><div class="line">若代理协议是在“主视图控制器”的.h文件中定义的，则本步骤的代码如下方式：</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span>;</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="keyword">id</span>&lt;KCMainDelegate&gt; delegate;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤五：</strong>最后，在另一个视图控制器的.m文件中调用代理属性的协议方法传递参数</p>
+<pre><code class="objc">[<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.value.text];
+</code></pre>
+<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a>参考网址</h2><ol>
+<li><p><a href="http://www.cnblogs.com/kenshincui/p/3940746.html#autoid-4-0-0" target="_blank" rel="external">iOS开发系列–视图切换</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/heri/archive/2013/03/18/2965815.html" target="_blank" rel="external">ios页面间传递参数四种方式</a>    </p>
+</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Delegate/">Delegate</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2016/08/20/2015_08_20_DelegateForDatapass/" data-title="用委托在视图间传递消息的经典范例 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/24/2016_08_25_ReactiveCocoaNote/" title="ReactiveCocoa 学习笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  ReactiveCocoa 学习笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/07/12/2016_07_12_GitNote/"  title="Git 学习笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>Git 学习笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/08/20/2015_08_20_DelegateForDatapass/" data-title="用委托在视图间传递消息的经典范例" data-url="http://liu2er.com/2016/08/20/2015_08_20_DelegateForDatapass/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义协议，协议中定义好传参时所需要的方法"><span class="toc-number">1.</span> <span class="toc-text">定义协议，协议中定义好传参时所需要的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"><span class="toc-number">2.</span> <span class="toc-text">源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标视图控制器定义一个代理对象"><span class="toc-number">3.</span> <span class="toc-text">目标视图控制器定义一个代理对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进一步抽取"><span class="toc-number">3.1.</span> <span class="toc-text">进一步抽取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考网址"><span class="toc-number">4.</span> <span class="toc-text">参考网址</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Objective-C/" title="Objective-C">Objective-C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/RAC/" title="RAC">RAC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Liu2er">Liu2er</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

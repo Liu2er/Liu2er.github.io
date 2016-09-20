@@ -40,7 +40,7 @@
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -56,7 +56,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -74,6 +74,78 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/09/18/2016_09_18_UIButton/" title="UIButton 笔记" itemprop="url">UIButton 笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="UIEdgeInsets属性"><a href="#UIEdgeInsets属性" class="headerlink" title="UIEdgeInsets属性"></a>UIEdgeInsets属性</h2><h3 id="UIEdgeInsets"><a href="#UIEdgeInsets" class="headerlink" title="UIEdgeInsets"></a>UIEdgeInsets</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">UIEdgeInsets</span> &#123;</div><div class="line">    <span class="built_in">CGFloat</span> top, left, bottom, right;  <span class="comment">// specify amount to inset (positive) for each of the edges. values can be negative to 'outset'</span></div><div class="line">&#125; <span class="built_in">UIEdgeInsets</span>;</div></pre></td></tr></table></figure>
+<p>UIButton的UIEdgeInsets相关属性有三个：</p>
+<ol>
+<li>contentEdgeInsets</li>
+<li>imageEdgeInsets</li>
+<li>titleEdgeInsets</li>
+</ol>
+<p>image 的 UIEdgeInsets 属性的top、left、bottom 都是相对于 button 的，right 是相对于 title；<br>title 的 UIEdgeInsets 属性的top、bottom、right 都是相对于 button 的，left 是相对于 image；</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//拿到title和image的大小：</span></div><div class="line"><span class="built_in">CGSize</span> titleSize = <span class="keyword">self</span>.pureButton.titleLabel.bounds.size;</div><div class="line"><span class="built_in">CGSize</span> imageSize = <span class="keyword">self</span>.pureButton.imageView.bounds.size;</div><div class="line"><span class="comment">//分别设置偏移量:记住偏移量是位移</span></div><div class="line"><span class="keyword">self</span>.pureButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, -imageSize.width, <span class="number">0</span>, imageSize.width);</div><div class="line"><span class="keyword">self</span>.pureButton.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, titleSize.width, <span class="number">0</span>, -titleSize.width);</div></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#define layoutCoefficient ([UIScreen mainScreen].bounds.size.width == 414 ? 1 : ([UIScreen mainScreen].bounds.size.width == 375 ? 0.91 : 0.77))</span></div><div class="line"></div><div class="line"><span class="built_in">CGFloat</span> offset = <span class="number">5.</span>;</div><div class="line">[<span class="keyword">self</span>.subscribeButton setImage:[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"subscribe_gray"</span>]scaledToSize:<span class="built_in">CGSizeMake</span>(<span class="number">15</span> * layoutCoefficient, <span class="number">15</span> * layoutCoefficient)] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitle:<span class="string">@"订阅"</span> forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton.titleLabel setFont:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">18</span> * layoutCoefficient]];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitleColor:[<span class="built_in">UIColor</span> whiteColor] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line"><span class="keyword">self</span>.subscribeButton.contentEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span> + offset);</div><div class="line"><span class="keyword">self</span>.subscribeButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, offset, <span class="number">0</span>, -offset);</div></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/UIButton/">UIButton</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/18/2016_09_18_UIButton/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/18/2016_09_18_UIButton/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/09/08/2016_09_08_iOSPush/" title="iOS Push" itemprop="url">iOS Push</a>
   </h1>
   <p class="article-author">By
@@ -81,7 +153,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> Published 2016-09-08</time>
+    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> 发表于 2016-09-08</time>
     
   </p>
 </header>
@@ -132,6 +204,7 @@
 <li>用户抹除 iPhone 的数据时，意味着要与这台手机撇清关系，比如出售或者送人。此时为了保护隐私，deviceToken 会改变。</li>
 <li>老老实实的收集最新的 deviceToken，这是最保险的做法。</li>
 <li>Development 和 Production 两个版本下的 deviceToken 是不同的，前者是由 <a href="https://developer.apple.com/account/ios/profile/" target="_blank" rel="external">Certificates, Identifiers &amp; Profiles</a> -&gt; Provisioning Profiles -&gt; Development 下的 *.mobileprovision 获取的。后者是由 <a href="https://developer.apple.com/account/ios/profile/" target="_blank" rel="external">Certificates, Identifiers &amp; Profiles</a> -&gt; Provisioning Profiles -&gt; Production 的 *.mobileprovision 获取的。</li>
+<li>app 端发送 deviceToken 给“自建 push 服务器”的时机：获取 deviceToken 之后立刻发送。</li>
 </ul>
 <p>参考<a href="http://www.mednoter.com/device-token.html" target="_blank" rel="external">不同App获得的device token是否相同？</a></p>
 <h3 id="deviceToken-的获取方法"><a href="#deviceToken-的获取方法" class="headerlink" title="deviceToken 的获取方法"></a>deviceToken 的获取方法</h3><ul>
@@ -262,7 +335,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-29T02:24:53.000Z" itemprop="datePublished"> Published 2016-08-29</time>
+    <time datetime="2016-08-29T02:24:53.000Z" itemprop="datePublished"> 发表于 2016-08-29</time>
     
   </p>
 </header>
@@ -337,7 +410,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> Published 2016-08-25</time>
+    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> 发表于 2016-08-25</time>
     
   </p>
 </header>
@@ -424,7 +497,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> Published 2016-08-25</time>
+    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> 发表于 2016-08-25</time>
     
   </p>
 </header>
@@ -541,7 +614,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> Published 2016-08-24</time>
+    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> 发表于 2016-08-24</time>
     
   </p>
 </header>
@@ -606,6 +679,139 @@ Program ended with exit code: 0
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/08/20/2015_08_20_DelegateForDatapass/" title="用委托在视图间传递消息的经典范例" itemprop="url">用委托在视图间传递消息的经典范例</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-20T06:50:28.000Z" itemprop="datePublished"> 发表于 2016-08-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>iOS中视图间数据传递的方式常有的有如下几种：</p>
+<ol>
+<li>采用代理模式</li>
+<li>采用iOS消息机制</li>
+<li>使用文件，NSUserdefault或者数据库来传递</li>
+<li>通过AppDelegate定义全局变量（或者使用UIApplication、定义一个单例类等）</li>
+<li>通过控制器属性传递</li>
+</ol>
+<p>今天我们主要采用第一种方式进行数据传递，这在iOS开发中也是最常见的一种多视图传参方式。使用代理方式传递参数的步骤如下：</p>
+<ol>
+<li>定义协议，协议中定义好传参时所需要的方法</li>
+<li>目标视图控制器定义一个代理对象</li>
+<li>源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</li>
+<li>需要传参的时候在目标窗口调用代理的协议方法</li>
+</ol>
+<p>本例的操作如下所示：<br>一个界面为主视图，点击绿色的Button会Modal出第二个视图，在第二个视图的文本框里输入数据，并点击绿色的Button，会返回到主视图，并且把在第二个视图中输入的数据显示到主视图的文本框里，从而实现了参数跨视图传递；</p>
+<p><img src="/images/2015_08_20_DelegateForDatapass1.png" width="32%">  <img src="/images/2015_08_20_DelegateForDatapass2.png" width="32%">  <img src="/images/2015_08_20_DelegateForDatapass3.png" width="32%"><br><!--![图片1](/images/2015_08_20_DelegateForDatapass1.png)
+![图片2](/images/2015_08_20_DelegateForDatapass2.png =240x426)
+![图片3](/images/2015_08_20_DelegateForDatapass3.png =240x426)--></p>
+<p>整个程序的文件组织形式如下图所示：<br><img src="/images/2015_08_20_DelegateForDatapass4.png" width="33%"><br><!--![图片4](/images/2015_08_20_DelegateForDatapass4.png =260x374)--></p>
+<h2 id="定义协议，协议中定义好传参时所需要的方法"><a href="#定义协议，协议中定义好传参时所需要的方法" class="headerlink" title="定义协议，协议中定义好传参时所需要的方法"></a>定义协议，协议中定义好传参时所需要的方法</h2><p>其中定义协议的文件为：<code>UIViewPassValueDelegate.h</code>。</p>
+<p><strong>UIViewPassValueDelegate.h</strong>的源代码为：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span></span></div><div class="line"></div><div class="line"><span class="comment">// 本方法为传参时所需要的方法</span></div><div class="line">- (<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<h2 id="源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"><a href="#源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身" class="headerlink" title="源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"></a>源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</h2><p>源视图控制器就是这里的“主视图控制器”，在主视图控制器的实现文件中实现了该协议方法。其中主视图的相关文件为：<code>JJMainViewController.h</code>、<code>JJMainViewController.m</code>和<code>Main.storyboard</code>。</p>
+<p>源代码分别为：</p>
+<p><strong>JJMainViewController.h</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">// 导入协议文件的头文件</span></div><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// 遵守协议</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJMainViewController</span> : <span class="title">UIViewController</span> &lt;<span class="title">UIViewPassValueDelegate</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// 本属性为主界面上用来接收另一个视图传递过来的数据</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *valueField;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>JJMainViewController.m</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JJMainViewController.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"JJAnotherViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">JJMainViewController</span> </span></div><div class="line"></div><div class="line"><span class="comment">// 主视图遵守了委托协议，并实现了委托方法，本方法把另一个视图里的数据传递过来</span></div><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value &#123;</div><div class="line">    <span class="keyword">self</span>.valueField.text = value;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)clickButton:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    </div><div class="line">    JJAnotherViewController *antherVC = [[JJAnotherViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">// 把主视图设为另一个视图的委托对象</span></div><div class="line">    antherVC.delegate = <span class="keyword">self</span>;</div><div class="line">    </div><div class="line">    <span class="comment">// 点击了主视图的Button后Modal到另一个视图</span></div><div class="line">    [<span class="keyword">self</span> presentViewController:antherVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<h2 id="目标视图控制器定义一个代理对象"><a href="#目标视图控制器定义一个代理对象" class="headerlink" title="目标视图控制器定义一个代理对象"></a>目标视图控制器定义一个代理对象</h2><p>这里的目标视图就是本例子中的“另一个视图”。另一个视图的文件为：<code>JJAnotherViewController.h</code>、<code>JJAnotherViewController.m</code>和<code>JJAnotherViewController.xib</code>。</p>
+<p>源代码分别为：</p>
+<p><strong>JJAnotherViewController.h</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJAnotherViewController</span> : <span class="title">UIViewController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *value;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;<span class="built_in">UIViewPassValueDelegate</span>&gt; delegate;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>JJAnotherViewController.m</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JJAnotherViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">JJAnotherViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)backButton:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 需要传参的时候在目标窗口调用代理的协议方法</span></div><div class="line">    [<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.value.text];</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p>综上，我们来重新将上述过程总结成大白话。为了能把目标视图里的数据通过委托协议传递给主视图，其过程如下：</p>
+<ol>
+<li>定义协议，协议中声明了一个方法，该方法用于把目标视图里的数据传递给源视图；</li>
+<li>分别创建源视图和目标视图的控制器，并搭建好各自的界面；</li>
+<li>在目标视图控制器的头文件里导入协议头文件，并定义一个用来存储待传递的数据的属性，和一个代理属性；</li>
+<li>在目标视图控制器的实现文件里调用其代理属性的协议方法，并把待传的数据作为参数传入该方法；</li>
+<li>让源视图控制器成为目标视图控制器的代理对象，从而源视图就可以接收来自目标视图的数据了，方法是：<ol>
+<li>在源视图控制器的头文件里导入协议文件的头文件；</li>
+<li>在源视图控制器的头文件里遵守协议，即用尖括号声明；</li>
+<li>实现协议方法，在协议方法里接收来自目标视图的数据。参数由该协议方法的参数传递过来；</li>
+</ol>
+</li>
+</ol>
+<p>注：</p>
+<ul>
+<li><p>协议：本例中的<em>UIViewPassValueDelegate.h</em></p>
+</li>
+<li><p>协议方法：本例中的<em>- (void)passValue:(NSString \</em>)value*</p>
+</li>
+<li><p>源视图：本例中的<em>JJMainViewController</em></p>
+</li>
+<li><p>目标视图：本例中的<em>JJAnotherViewController</em></p>
+</li>
+<li><p>待传递的数据：本例中的目标视图里的文本框里输入的数据</p>
+</li>
+<li><p>为了防止循环引用代理属性的标识符应为assign，为了让各种对象都能成为本对象的代理对象其类型应为id</p>
+</li>
+</ul>
+<h3 id="进一步抽取"><a href="#进一步抽取" class="headerlink" title="进一步抽取"></a>进一步抽取</h3><p><strong>关键步骤一：</strong>定义协议，协议中定义好可以用来传参的方法，本协议也可以直接定义到主视图控制器的.h文件里<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span></span></div><div class="line"></div><div class="line"><span class="comment">// 本方法为传参时所需要的方法</span></div><div class="line">- (<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤二：</strong>在主视图控制器的.m文件中把本控制器的对象设为代理对象<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">JJAnotherViewController *antherVC = [[JJAnotherViewController alloc] init];</div><div class="line"></div><div class="line">antherVC.delegate = <span class="keyword">self</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤三：</strong>同时，在主视图控制器的.m文件中实现协议方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value &#123;</div><div class="line">    <span class="keyword">self</span>.valueField.text = value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤四：</strong>在另一个视图控制器的.h文件中引入协议，并定义代理属性<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;<span class="built_in">UIViewPassValueDelegate</span>&gt; delegate;</div><div class="line"></div><div class="line">若代理协议是在“主视图控制器”的.h文件中定义的，则本步骤的代码如下方式：</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span>;</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="keyword">id</span>&lt;KCMainDelegate&gt; delegate;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤五：</strong>最后，在另一个视图控制器的.m文件中调用代理属性的协议方法传递参数</p>
+<pre><code class="objc">[<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.value.text];
+</code></pre>
+<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a>参考网址</h2><ol>
+<li><p><a href="http://www.cnblogs.com/kenshincui/p/3940746.html#autoid-4-0-0" target="_blank" rel="external">iOS开发系列–视图切换</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/heri/archive/2013/03/18/2965815.html" target="_blank" rel="external">ios页面间传递参数四种方式</a>    </p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Delegate/">Delegate</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/08/20/2015_08_20_DelegateForDatapass/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/20/2015_08_20_DelegateForDatapass/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/07/12/2016_07_12_GitNote/" title="Git 学习笔记" itemprop="url">Git 学习笔记</a>
   </h1>
   <p class="article-author">By
@@ -613,7 +819,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> Published 2016-07-12</time>
+    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-07-12</time>
     
   </p>
 </header>
@@ -713,7 +919,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
     
   </p>
 </header>
@@ -794,7 +1000,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
     
   </p>
 </header>
@@ -850,10 +1056,10 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -861,7 +1067,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 		  
@@ -877,7 +1083,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>4</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>6</sup></a></li>
 		  
 		
 		</ul>
@@ -886,7 +1092,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -894,15 +1100,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
 			
 		
 			
@@ -910,7 +1108,23 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -1035,7 +1249,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
