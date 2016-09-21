@@ -40,7 +40,7 @@
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -56,7 +56,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -81,7 +81,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
+    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> Published 2016-09-18</time>
     
   </p>
 </header>
@@ -153,7 +153,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> 发表于 2016-09-08</time>
+    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> Published 2016-09-08</time>
     
   </p>
 </header>
@@ -335,7 +335,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-29T02:24:53.000Z" itemprop="datePublished"> 发表于 2016-08-29</time>
+    <time datetime="2016-08-29T02:24:53.000Z" itemprop="datePublished"> Published 2016-08-29</time>
     
   </p>
 </header>
@@ -410,7 +410,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> 发表于 2016-08-25</time>
+    <time datetime="2016-08-25T03:33:48.000Z" itemprop="datePublished"> Published 2016-08-25</time>
     
   </p>
 </header>
@@ -497,7 +497,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> 发表于 2016-08-25</time>
+    <time datetime="2016-08-25T02:19:35.000Z" itemprop="datePublished"> Published 2016-08-25</time>
     
   </p>
 </header>
@@ -614,7 +614,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> 发表于 2016-08-24</time>
+    <time datetime="2016-08-24T10:45:18.000Z" itemprop="datePublished"> Published 2016-08-24</time>
     
   </p>
 </header>
@@ -686,7 +686,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-08-20T06:50:28.000Z" itemprop="datePublished"> 发表于 2016-08-20</time>
+    <time datetime="2016-08-20T06:50:28.000Z" itemprop="datePublished"> Published 2016-08-20</time>
     
   </p>
 </header>
@@ -819,7 +819,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> 发表于 2016-07-12</time>
+    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> Published 2016-07-12</time>
     
   </p>
 </header>
@@ -912,6 +912,78 @@ Program ended with exit code: 0
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/16/2015_08_16_NSStringIsEqual/" title="isEqual 和 == 的比较" itemprop="url">isEqual 和 == 的比较</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-16T11:45:53.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>== 和 isEqual 都是用来判断连个变量是否相等；</p>
+<h2 id=""><a href="#" class="headerlink" title="=="></a>==</h2><p>1.<code>数值型</code>的基本类型变量比较：不一定要求数据类型严格相同，只要值相等，则返回真；</p>
+<p>例如：<code>int型50 == float型50.0f；</code></p>
+<p>2.<code>指针类型</code>变量比较：必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
+<p>3.没有继承关系的两个指针变量比较：编译时提示警告；</p>
+<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>1.<code>指针类型</code>变量比较：同 ==，都是必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
+<p>2.NSString 的 isEqual 方法：只要两个字符串包含相同的字符串序列，则返回真；</p>
+<p>因为 isEqual 方法就指针类型变量的比较，本身与 == 没有区别，同时没有太大的意义，所以 NSString 重写了该方法，实现了值比较而不是地址比较。我们在编程时同样可以重写该方法来满足我们所要求的比较方式；</p>
+<h2 id="字符型常量"><a href="#字符型常量" class="headerlink" title="字符型常量"></a>字符型常量</h2><p>像类似于<code>@&quot;hello&quot;</code>这种字符型常量是由常量池来存储管理的，常量池可以保证相同的字符串直接量只有一个；</p>
+<p>而<code>[NSString stringWithFormat:@&quot;hello&quot;]</code>类型的字符串对象是运行时创建出来的，它被保存在运行时内存区（即堆内存），不会放入常量池中；</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/isEqual/">isEqual</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/16/2015_08_16_NSStringIsEqual/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSStringIsEqual/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/16/2015_08_16_NSString/" title="NSString 转换" itemprop="url">NSString 转换</a>
   </h1>
   <p class="article-author">By
@@ -919,7 +991,7 @@ Program ended with exit code: 0
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
     
   </p>
 </header>
@@ -987,79 +1059,16 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="克隆Octopress"><a href="#克隆Octopress" class="headerlink" title="克隆Octopress"></a>克隆Octopress</h3><p>从Github上将Octopress项目克隆到本地的Octopress目录下：</p>
-<pre><code>git clone git://github.com/imathis/octopress.git Octopress
-</code></pre><h3 id="进入Octopress项目根目录"><a href="#进入Octopress项目根目录" class="headerlink" title="进入Octopress项目根目录"></a>进入Octopress项目根目录</h3><pre><code>cd Octopress
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/16/2015_08_16_Octopress/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Blog/">Blog</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Octopress/">Octopress</a>
-  </div>
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
 
 </div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_Octopress/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_Octopress/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-</div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -1067,7 +1076,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -1083,7 +1092,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>6</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>7</sup></a></li>
 		  
 		
 		</ul>
@@ -1092,7 +1101,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -1100,11 +1109,11 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
-				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
 			
 		
 			
@@ -1116,11 +1125,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
-				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
 			
 		
 			
@@ -1128,7 +1133,15 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -1249,7 +1262,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
