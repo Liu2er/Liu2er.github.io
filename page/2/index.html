@@ -74,6 +74,159 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/16/2015_08_16_NSStringIsEqual/" title="isEqual 和 == 的比较" itemprop="url">isEqual 和 == 的比较</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-16T11:45:53.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>== 和 isEqual 都是用来判断连个变量是否相等；</p>
+<h2 id=""><a href="#" class="headerlink" title="=="></a>==</h2><p>1.<code>数值型</code>的基本类型变量比较：不一定要求数据类型严格相同，只要值相等，则返回真；</p>
+<p>例如：<code>int型50 == float型50.0f；</code></p>
+<p>2.<code>指针类型</code>变量比较：必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
+<p>3.没有继承关系的两个指针变量比较：编译时提示警告；</p>
+<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>1.<code>指针类型</code>变量比较：同 ==，都是必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
+<p>2.NSString 的 isEqual 方法：只要两个字符串包含相同的字符串序列，则返回真；</p>
+<p>因为 isEqual 方法就指针类型变量的比较，本身与 == 没有区别，同时没有太大的意义，所以 NSString 重写了该方法，实现了值比较而不是地址比较。我们在编程时同样可以重写该方法来满足我们所要求的比较方式；</p>
+<h2 id="字符型常量"><a href="#字符型常量" class="headerlink" title="字符型常量"></a>字符型常量</h2><p>像类似于<code>@&quot;hello&quot;</code>这种字符型常量是由常量池来存储管理的，常量池可以保证相同的字符串直接量只有一个；</p>
+<p>而<code>[NSString stringWithFormat:@&quot;hello&quot;]</code>类型的字符串对象是运行时创建出来的，它被保存在运行时内存区（即堆内存），不会放入常量池中；</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/isEqual/">isEqual</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/16/2015_08_16_NSStringIsEqual/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSStringIsEqual/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/16/2015_08_16_NSString/" title="NSString 转换" itemprop="url">NSString 转换</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSStringFromRange</span>( <span class="built_in">NSRange</span> range );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromRect</span>( <span class="built_in">NSRect</span> aRect );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSelector</span>( SEL aSelector );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromClass</span>( __<span class="keyword">unsafe_unretained</span> Class aClass );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromProtocol</span>( Protocol *proto );</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSStringFromHashTable</span>( <span class="built_in">NSHashTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromMapTable</span>( <span class="built_in">NSMapTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromPoint</span>( <span class="built_in">NSPoint</span> aPoint );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSize</span>( <span class="built_in">NSSize</span> aSize );</div></pre></td></tr></table></figure>
+<p>举例：</p>
+<pre><code>NSString *string = NSStringFromClass([NSArray class]);
+
+NSLog(@&quot;NSArray 的类名是：%@&quot;,string);
+
+输出如下：
+
+2015-08-18 16:10:17.908 NewCommandTest[845:137450] NSArray 的类名是：NSArray
+</code></pre><h2 id="NSNumber-——-gt-NSString"><a href="#NSNumber-——-gt-NSString" class="headerlink" title="NSNumber ——&gt; NSString"></a>NSNumber ——&gt; NSString</h2><pre><code>NSNumber *number = [NSNumber numberWithInt:20];
+
+// 转换方法1
+NSString *string = [number description];
+
+// 转换方法2
+NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]];
+</code></pre><p>本例是将<code>@20</code>转换为<code>@&quot;20&quot;</code>。</p>
+<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.baidu.com"</span>]];</div><div class="line">       </div><div class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/08/16/2015_08_16_NSString/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Objective-C/">Objective-C</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/NSString/">NSString</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/16/2015_08_16_NSString/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSString/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
   </h1>
   <p class="article-author">By
@@ -168,7 +321,7 @@
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -185,7 +338,7 @@
 			
 		
 			
-				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -193,7 +346,7 @@
 			
 		
 			
-				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
 			
 		
 			
@@ -201,11 +354,19 @@
 			
 		
 			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/NSUserDefaults/" title="NSUserDefaults">NSUserDefaults<sup>1</sup></a></li>
 			
 		
 			
@@ -213,11 +374,11 @@
 			
 		
 			
-				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 		</ul>

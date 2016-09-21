@@ -74,6 +74,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/09/21/2016_09_21_DataPersistence/" title="数据化持久技术" itemprop="url">数据化持久技术</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-21T07:28:16.000Z" itemprop="datePublished"> Published 2016-09-21</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="NSUserDefaults"><a href="#NSUserDefaults" class="headerlink" title="NSUserDefaults"></a>NSUserDefaults</h2><p>NSUserDefaults 的生命周期是全局的，使用要慎重。</p>
+<h3 id="将-NSUserDefaults-的某一项置空"><a href="#将-NSUserDefaults-的某一项置空" class="headerlink" title="将 NSUserDefaults 的某一项置空"></a>将 NSUserDefaults 的某一项置空</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSUserDefaults</span> *defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</div><div class="line">[defaults removeObjectForKey:key];</div></pre></td></tr></table></figure>
+<h3 id="一次清空-NSUserDefaults-所有内容"><a href="#一次清空-NSUserDefaults-所有内容" class="headerlink" title="一次清空 NSUserDefaults 所有内容"></a>一次清空 NSUserDefaults 所有内容</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *appDomain = [[<span class="built_in">NSBundle</span> mainBundle]bundleIdentifier];</div><div class="line">[[<span class="built_in">NSUserDefaults</span> standardUserDefaults]removePersistentDomainForName:appDomain];</div></pre></td></tr></table></figure>
+<p>或用遍历的方式一项一项的清空：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSUserDefaults</span>* defaults = [<span class="built_in">NSUserDefaults</span> standardUserDefaults];</div><div class="line"><span class="built_in">NSDictionary</span>* dict = [defaults dictionaryRepresentation]; </div><div class="line"><span class="keyword">for</span>(<span class="keyword">id</span> key <span class="keyword">in</span> dict) &#123;</div><div class="line">    [defaults removeObjectForKey:key];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="判断-NSUserDefaults-的某一项是否存在"><a href="#判断-NSUserDefaults-的某一项是否存在" class="headerlink" title="判断 NSUserDefaults 的某一项是否存在"></a>判断 NSUserDefaults 的某一项是否存在</h3><p>判断某个key是否存在，可以取出这个key的value，然后判断这个value是否有值，如果是数组，判断数组的count，如果是字符串判断length；</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/NSUserDefaults/">NSUserDefaults</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/21/2016_09_21_DataPersistence/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/21/2016_09_21_DataPersistence/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/09/18/2016_09_18_UIButton/" title="UIButton 笔记" itemprop="url">UIButton 笔记</a>
   </h1>
   <p class="article-author">By
@@ -912,29 +979,49 @@ Program ended with exit code: 0
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/08/16/2015_08_16_NSStringIsEqual/" title="isEqual 和 == 的比较" itemprop="url">isEqual 和 == 的比较</a>
+      <a href="/2015/08/22/2015_08_22_OCFragmentary/" title="OC：零碎知识总结" itemprop="url">OC：零碎知识总结</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:45:53.000Z" itemprop="datePublished"> Published 2015-08-16</time>
+    <time datetime="2015-08-22T13:55:07.000Z" itemprop="datePublished"> Published 2015-08-22</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <p>== 和 isEqual 都是用来判断连个变量是否相等；</p>
-<h2 id=""><a href="#" class="headerlink" title="=="></a>==</h2><p>1.<code>数值型</code>的基本类型变量比较：不一定要求数据类型严格相同，只要值相等，则返回真；</p>
-<p>例如：<code>int型50 == float型50.0f；</code></p>
-<p>2.<code>指针类型</code>变量比较：必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
-<p>3.没有继承关系的两个指针变量比较：编译时提示警告；</p>
-<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>1.<code>指针类型</code>变量比较：同 ==，都是必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
-<p>2.NSString 的 isEqual 方法：只要两个字符串包含相同的字符串序列，则返回真；</p>
-<p>因为 isEqual 方法就指针类型变量的比较，本身与 == 没有区别，同时没有太大的意义，所以 NSString 重写了该方法，实现了值比较而不是地址比较。我们在编程时同样可以重写该方法来满足我们所要求的比较方式；</p>
-<h2 id="字符型常量"><a href="#字符型常量" class="headerlink" title="字符型常量"></a>字符型常量</h2><p>像类似于<code>@&quot;hello&quot;</code>这种字符型常量是由常量池来存储管理的，常量池可以保证相同的字符串直接量只有一个；</p>
-<p>而<code>[NSString stringWithFormat:@&quot;hello&quot;]</code>类型的字符串对象是运行时创建出来的，它被保存在运行时内存区（即堆内存），不会放入常量池中；</p>
+        <h2 id="判断编译环境：ARC还是MRC？"><a href="#判断编译环境：ARC还是MRC？" class="headerlink" title="判断编译环境：ARC还是MRC？"></a>判断编译环境：ARC还是MRC？</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#if __has_feature(objc_arc)</span></div><div class="line"><span class="comment">// 当前编译环境是ARC</span></div><div class="line"></div><div class="line"><span class="meta">#else</span></div><div class="line"><span class="comment">// 当前编译环境是MRC</span></div><div class="line"></div><div class="line"><span class="meta">#endif</span></div></pre></td></tr></table></figure>
+<h2 id="UIView、UIWindow、CALayer"><a href="#UIView、UIWindow、CALayer" class="headerlink" title="UIView、UIWindow、CALayer"></a>UIView、UIWindow、CALayer</h2><ol>
+<li>UIView：<ul>
+<li>属于<code>UIKit.framework</code>框架；</li>
+<li>负责显示内容；</li>
+<li>可以响应触摸事件；</li>
+</ul>
+</li>
+<li>UIWindow：<ul>
+<li>属于<code>UIKit.framework</code>框架；</li>
+<li>UIWindow是一种特殊的UIView，通常一个程序中只有一个UIWindow，但是可以手动创建多个UIWindow，并同时加到程序里面；</li>
+<li>UIWindow主要有三个作用：<ul>
+<li>作为容器，包含APP中所要显示的所有视图；</li>
+<li>传递触摸消息到程序中的View和其他对象；</li>
+<li>与UIViewController协同工作，方便完成设备方向旋转的支持；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CALayer：<ul>
+<li>属于<code>QuartzCore.framework</code>框架；</li>
+<li>负责绘制内容；</li>
+<li>不能响应触摸事件；</li>
+</ul>
+</li>
+</ol>
+<h2 id="设置状态栏隐藏"><a href="#设置状态栏隐藏" class="headerlink" title="设置状态栏隐藏"></a>设置状态栏隐藏</h2><p>在程序的启动过程中隐藏状态栏，在info.plist文件中添加如下内容即可：</p>
+<p><img src="/images/2015_08_22_OCFragmentary1.png" alt="图片"></p>
+<p>在APP指定的控制器的视图上隐藏状态栏，在控制器添加如下方法即可：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)prefersStatusBarHidden &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="App-Icons苹果官方指南"><a href="#App-Icons苹果官方指南" class="headerlink" title="App Icons苹果官方指南"></a>App Icons苹果官方指南</h2><p><a href="https://developer.apple.com/library/ios/qa/qa1686/_index.html" target="_blank" rel="external">App Icons 苹果官方指南</a></p>
 
         
         
@@ -953,7 +1040,7 @@ Program ended with exit code: 0
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/isEqual/">isEqual</a>
+  <span></span> <a href="/tags/Fragmentary/">Fragmentary</a>
   </div>
 
 </div>
@@ -964,88 +1051,7 @@ Program ended with exit code: 0
 <div class="comments-count">
 	
 	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_NSStringIsEqual/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSStringIsEqual/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/2015_08_16_NSString/" title="NSString 转换" itemprop="url">NSString 转换</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSStringFromRange</span>( <span class="built_in">NSRange</span> range );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromRect</span>( <span class="built_in">NSRect</span> aRect );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSelector</span>( SEL aSelector );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromClass</span>( __<span class="keyword">unsafe_unretained</span> Class aClass );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromProtocol</span>( Protocol *proto );</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSStringFromHashTable</span>( <span class="built_in">NSHashTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromMapTable</span>( <span class="built_in">NSMapTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromPoint</span>( <span class="built_in">NSPoint</span> aPoint );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSize</span>( <span class="built_in">NSSize</span> aSize );</div></pre></td></tr></table></figure>
-<p>举例：</p>
-<pre><code>NSString *string = NSStringFromClass([NSArray class]);
-
-NSLog(@&quot;NSArray 的类名是：%@&quot;,string);
-
-输出如下：
-
-2015-08-18 16:10:17.908 NewCommandTest[845:137450] NSArray 的类名是：NSArray
-</code></pre><h2 id="NSNumber-——-gt-NSString"><a href="#NSNumber-——-gt-NSString" class="headerlink" title="NSNumber ——&gt; NSString"></a>NSNumber ——&gt; NSString</h2><pre><code>NSNumber *number = [NSNumber numberWithInt:20];
-
-// 转换方法1
-NSString *string = [number description];
-
-// 转换方法2
-NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]];
-</code></pre><p>本例是将<code>@20</code>转换为<code>@&quot;20&quot;</code>。</p>
-<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.baidu.com"</span>]];</div><div class="line">       </div><div class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/16/2015_08_16_NSString/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Objective-C/">Objective-C</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/NSString/">NSString</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_NSString/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSString/" data-count-type="comments">&nbsp;</a>
+		<a href="/2015/08/22/2015_08_22_OCFragmentary/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/22/2015_08_22_OCFragmentary/" data-count-type="comments">&nbsp;</a>
 	
 </div>
 
@@ -1092,7 +1098,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>7</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>9</sup></a></li>
 		  
 		
 		</ul>
@@ -1109,7 +1115,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
-				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -1117,7 +1123,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
-				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
 			
 		
 			
@@ -1125,11 +1131,19 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/NSUserDefaults/" title="NSUserDefaults">NSUserDefaults<sup>1</sup></a></li>
 			
 		
 			
@@ -1137,11 +1151,11 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 			
 		
 			
-				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 		</ul>
