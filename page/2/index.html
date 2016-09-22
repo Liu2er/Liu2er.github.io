@@ -74,6 +74,169 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/17/2015_08_17_GCD/" title="多线程编程之 GCD" itemprop="url">多线程编程之 GCD</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-17T12:27:35.000Z" itemprop="datePublished"> 发表于 2015-08-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="GCD-中两个核心概念"><a href="#GCD-中两个核心概念" class="headerlink" title="GCD 中两个核心概念"></a>GCD 中两个核心概念</h2><ul>
+<li><p><strong>队列：</strong>队列负责管理开发者提交的任务，队列始终以 FIFO（先进先出）的方式来处理任务，但由于任务的执行时间并不相同，因此处理的任务并不一定先结束。队列底层会维护一个线程池来处理用户提交的任务，线程池的作用就是<strong>执行</strong>队列管理的任务。</p>
+</li>
+<li><p><strong>任务：</strong>任务就是开发者提交给队列的<strong>工作单元</strong>，这些任务将会提交给队列底层维护的线程池执行。</p>
+</li>
+</ul>
+<h2 id="GCD-中其它概念"><a href="#GCD-中其它概念" class="headerlink" title="GCD 中其它概念"></a>GCD 中其它概念</h2><p><strong>Dispatch Queue：</strong>执行处理的等待队列，按照追加的顺序（FIFO）执行处理。Dispatch Queue 分为 Serial Dispatch Queue 和 Concurrent Dispatch Queue；在不能改变执行的处理顺序或不想并发执行多个处理时使用 Serial Dispatch Queue。</p>
+<p><strong>并行性（parallel）：</strong>同一时刻，有多条指令在多个处理器上同时执行；</p>
+<p><strong>并发性（concurrency）：</strong>同一时刻，只能有一条指令执行，但多个进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果；</p>
+<p><strong>主线程：</strong>应用程序启动时，最先执行的线程，用来描绘用户界面、处理触摸屏幕的事件等。追加到主线程的处理在主线程的 RunLoop 中执行；</p>
+<p>如果过多使用多线程，就会消耗大量内存，引起大量上下文切换，大幅度降低系统的响应性能；</p>
+<h2 id="GCD-多线程编程的步骤"><a href="#GCD-多线程编程的步骤" class="headerlink" title="GCD 多线程编程的步骤"></a>GCD 多线程编程的步骤</h2><ul>
+<li><p>创建队列；</p>
+</li>
+<li><p>创建任务，并将任务提交给队列；</p>
+</li>
+</ul>
+<h2 id="Serial-Dispatch-Queue-和-Concurrent-Dispatch-Queue"><a href="#Serial-Dispatch-Queue-和-Concurrent-Dispatch-Queue" class="headerlink" title="Serial Dispatch Queue 和 Concurrent Dispatch Queue"></a>Serial Dispatch Queue 和 Concurrent Dispatch Queue</h2><p>当生成多个 Serial Dispatch Queue 时，各个 Serial Dispatch Queue 将并行执行。虽然在一个 Serial Dispatch Queue 中同时只能执行一个追加处理，但如果将10个处理分别追加到10个 Serial Dispatch Queue 中后，各个 Serial Dispatch Queue 执行一个追加处理，则能并发执行10个处理。</p>
+<p>多个 Serial Dispatch Queue 同时执行会引发数据竞争问题。</p>
+<p>当想并发执行又不发生数据竞争等问题的处理时，使用 Concurrent Dispatch Queue。</p>
+<h2 id="dispatch-queue-create"><a href="#dispatch-queue-create" class="headerlink" title="dispatch_queue_create"></a>dispatch_queue_create</h2><pre><code>dispatch_queue_t dispatch_queue_create(const char *label, dispatch_queue_attr_t attr);
+</code></pre><p><strong>第一个参数const char *label：</strong>指定队列的名称，该名称推荐使用逆序全程域名（FQDN，fully qualified domain name）例如<code>com.example.gcd.MyConcurrentDispatchQueue</code>。该名称在 Xcode 和 Instruments 的调试器中作为 Dispatch Queue 名称表示。另外该名称也出现在应用程序崩溃时所生成的CrashLog中。</p>
+<p><strong>第二个参数dispatch_queue_attr_t attr：</strong>指定队列的类型，即 Serial Dispatch Queue 或 Concurrent Dispatch Queue。当参数为NULL时为串行队列，当参数为DISPATCH_QUEUE_CONCURRENT时为并发队列。</p>
+<pre><code>// 创建一个 Serial Dispatch Queue
+dispatch_queue_t mySDQ = dispatch_queue_create(&quot;com.example.gcd.MySerialDispatchQueue&quot;, NULL);
+
+// 创建一个 Concurrent Dispatch Queue
+dispatch_queue_t myCDQ = dispatch_queue_create(&quot;com.example.gcd.MyConcurrentDispatchQueue&quot;, DISPATCH_QUEUE_CONCURRENT);
+</code></pre><p>ARC机制下不需要调用<code>void dispatch_release(dispatch_object_t object);</code>方法进行手动释放；    </p>
+<h2 id="Main-Dispatch-Queue-和-Global-Dispatch-Queue"><a href="#Main-Dispatch-Queue-和-Global-Dispatch-Queue" class="headerlink" title="Main Dispatch Queue 和 Global Dispatch Queue"></a>Main Dispatch Queue 和 Global Dispatch Queue</h2><p>Main Dispatch Queue 和 Global Dispatch Queue 是系统标准提供的 Dispatch Queue。</p>
+<h3 id="Main-Dispatch-Queue"><a href="#Main-Dispatch-Queue" class="headerlink" title="Main Dispatch Queue"></a>Main Dispatch Queue</h3><p><strong>Main Dispatch Queue：</strong>在主线程中执行的 Dispatch Queue，本质上是 Serial Dispatch Queue，追加到 Main Dispatch Queue 的处理在主线程的 RunLoop 中执行；</p>
+<h5 id="dispatch-get-main-queue-方法"><a href="#dispatch-get-main-queue-方法" class="headerlink" title="dispatch_get_main_queue 方法"></a>dispatch_get_main_queue 方法</h5><pre><code>dispatch_queue_t dispatch_get_main_queue(void)
+{
+    return DISPATCH_GLOBAL_OBJECT(dispatch_queue_t, _dispatch_main_q);
+}
+
+其中
+
+#define DISPATCH_GLOBAL_OBJECT(type, object) ((OS_OBJECT_BRIDGE type)&amp;(object))
+
+#define OS_OBJECT_BRIDGE __bridge
+
+struct dispatch_queue_s _dispatch_main_q;
+
+也就是
+
+dispatch_queue_t dispatch_get_main_queue(void)
+{
+    return (__bridge dispatch_queue_t) &amp; _dispatch_main_q;
+}
+</code></pre><p>举例：</p>
+<pre><code>dispatch_queue_t mainDQ = dispatch_get_main_queue();
+</code></pre><h3 id="Global-Dispatch-Queue"><a href="#Global-Dispatch-Queue" class="headerlink" title="Global Dispatch Queue"></a>Global Dispatch Queue</h3><p><strong>Global Dispatch Queue：</strong>是所有应用程序都能够使用的 Concurrent Dispatch Queue。没有必要通过 dispatch_queue_create 逐个生成 Concurrent Dispatch Queue，只要获取 Global Dispatch Queue 使用即可；</p>
+<h5 id="dispatch-get-global-queue-方法"><a href="#dispatch-get-global-queue-方法" class="headerlink" title="dispatch_get_global_queue 方法"></a>dispatch_get_global_queue 方法</h5><pre><code>dispatch_queue_t dispatch_get_global_queue(long identifier, unsigned long flags);
+</code></pre><p>第二个参数 unsigned long flags：额外的旗标参数，暂未使用，只是为将来准备的，一般传入0即可；</p>
+<h5 id="Global-Dispatch-Queue-有4个执行优先级"><a href="#Global-Dispatch-Queue-有4个执行优先级" class="headerlink" title="Global Dispatch Queue 有4个执行优先级"></a>Global Dispatch Queue 有4个执行优先级</h5><pre><code>DISPATCH_QUEUE_PRIORITY_HIGH 2
+DISPATCH_QUEUE_PRIORITY_DEFAULT 0
+DISPATCH_QUEUE_PRIORITY_LOW (-2)
+DISPATCH_QUEUE_PRIORITY_BACKGROUND INT16_MIN
+</code></pre><p>举例：</p>
+<pre><code>dispatch_queue_t globalDQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+</code></pre><h2 id="dispatch-asyc-和-dispatch-syc"><a href="#dispatch-asyc-和-dispatch-syc" class="headerlink" title="dispatch_asyc 和 dispatch_syc"></a>dispatch_asyc 和 dispatch_syc</h2><h2 id="dispatch-after"><a href="#dispatch-after" class="headerlink" title="dispatch_after"></a>dispatch_after</h2><p>将处理在指定时间追加到 Dispatch Queue。经常和dispatch_time一起使用：</p>
+<h4 id="dispatch-time"><a href="#dispatch-time" class="headerlink" title="dispatch_time"></a>dispatch_time</h4><pre><code>dispatch_time_t dispatch_time(dispatch_time_t when, int64_t delta);
+</code></pre><p>第一个参数 dispatch_time_t when：用来指定开始时间，经常用的参数是<code>DISPATCH_TIME_NOW</code>和<code>DISPATCH_TIME_FOREVER</code>；</p>
+<pre><code>typedef uint64_t dispatch_time_t;
+
+#define DISPATCH_TIME_NOW (0ull)
+#define DISPATCH_TIME_FOREVER (~0ull)
+</code></pre><p>第二个参数 int64_t delta：用来指定偏移时长，单位为纳秒，比如<code>3ull * NSEC_PER_SEC</code>表示<code>3 * 1000000000纳秒 = 3秒</code>；</p>
+<pre><code>typedef    long long  int64_t;
+
+#define NSEC_PER_SEC  1000000000ull  // 10的9次方，纳秒是10的-9次方
+#define NSEC_PER_MSEC 1000000ull
+#define USEC_PER_SEC  1000000ull
+#define NSEC_PER_USEC 1000ull
+</code></pre><p>其中数字后面的后缀ull表示unsigned long long；</p>
+<h4 id="dispatch-after-1"><a href="#dispatch-after-1" class="headerlink" title="dispatch_after"></a>dispatch_after</h4><pre><code>void dispatch_after(dispatch_time_t when, dispatch_queue_t queue, dispatch_block_t block);
+</code></pre><p>举例，在 3 秒后把某个指定的 Block 追加到 Main Dispatch Queue 中：</p>
+<pre><code>dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 3ull * NSEC_PER_SEC);
+
+dispatch_after(time, dispatch_get_main_queue(), ^{
+    NSLog(@&quot;3秒后把本操作追加到 Main Dispatch Queue 中执行&quot;);
+});
+</code></pre><p>也可以将 dispatch_time 和 dispatch_after 两个方法合并起来用，这也是比较常用的方式：</p>
+<pre><code>dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3ull * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    NSLog(@&quot;3秒后把本操作追加到 Main Dispatch Queue 中执行&quot;);
+});  
+</code></pre><h2 id="dispatch-set-target-queue"><a href="#dispatch-set-target-queue" class="headerlink" title="dispatch_set_target_queue"></a>dispatch_set_target_queue</h2><p>用来变更 Dispatch Queue 的执行优先级（或执行层次）。</p>
+<pre><code>void dispatch_set_target_queue(dispatch_object_t object, dispatch_queue_t queue);
+</code></pre><p>第一个参数 dispatch_object_t object：被改变对象；</p>
+<p>第二个参数 dispatch_queue_t queue：（目标）参考优先级。</p>
+<p>将 dispatch_object_t object 的优先级改为与 dispatch_queue_t queue 的优先级相同；</p>
+<p>举例：</p>
+<pre><code>dispatch_queue_t mySDQ = dispatch_queue_create(&quot;com.example.gcd.MySerialDispatchQueue&quot;, NULL);
+
+dispatch_queue_t myGDQ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+
+dispatch_set_target_queue(mySDQ, myGDQ);
+</code></pre><p><strong>使用场景举例：</strong></p>
+<p>有几个不可并发执行的处理，但是因为某种原因必须追加到多个 Serial Dispatch Queue 中时，会产生不可预期的后果，但是如果用dispatch_set_target_queue函数将目标指定为某一个 Serial Dispatch Queue，即可防止处理并发执行。但目前为止尚未遇到过这种情况。</p>
+<h2 id="Dispatch-Group"><a href="#Dispatch-Group" class="headerlink" title="Dispatch Group"></a>Dispatch Group</h2><h2 id="dispatch-barrier-asyc"><a href="#dispatch-barrier-asyc" class="headerlink" title="dispatch_barrier_asyc"></a>dispatch_barrier_asyc</h2><h2 id="dispatch-apply"><a href="#dispatch-apply" class="headerlink" title="dispatch_apply"></a>dispatch_apply</h2><h2 id="dispatch-suspend-和-dispatch-resume"><a href="#dispatch-suspend-和-dispatch-resume" class="headerlink" title="dispatch_suspend 和 dispatch_resume"></a>dispatch_suspend 和 dispatch_resume</h2><h2 id="dispatch-once"><a href="#dispatch-once" class="headerlink" title="dispatch_once"></a>dispatch_once</h2><p>dispatch_once 函数的作用是在整个应用程序的生命周期中只执行一次代码块，而且是线程同步的，即不需要再使用@synchronized 之类的语句。</p>
+<h2 id="Dispatch-Semaphore"><a href="#Dispatch-Semaphore" class="headerlink" title="Dispatch Semaphore"></a>Dispatch Semaphore</h2><h2 id="Dispatch-I-O"><a href="#Dispatch-I-O" class="headerlink" title="Dispatch I/O"></a>Dispatch I/O</h2>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/GCD/">GCD</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/17/2015_08_17_GCD/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/17/2015_08_17_GCD/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/17/2015_08_17_CFragmentary/" title="C 语言：零碎知识总结" itemprop="url">C 语言：零碎知识总结</a>
   </h1>
   <p class="article-author">By
@@ -752,7 +915,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>10</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>11</sup></a></li>
 		  
 		
 		</ul>
@@ -769,11 +932,11 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+				<li><a href="/tags/GCD/" title="GCD">GCD<sup>1</sup></a></li>
 			
 		
 			
@@ -781,7 +944,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
 			
 		
 			
@@ -789,7 +952,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
 			
 		
 			
@@ -797,15 +960,19 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 			
