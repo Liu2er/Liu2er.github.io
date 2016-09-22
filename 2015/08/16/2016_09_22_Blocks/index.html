@@ -4,19 +4,38 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Liu2er的技术博客</title>
+    <title>Blosks 浅析 | Liu2er的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Liu2er">
     
 
-    
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Liu2er的技术博客">
-<meta property="og:url" content="http://liu2er.com/page/2/index.html">
+    <meta name="keywords" content="iOS, Blosks">
+    <meta name="description" content="1 Blocks概要带有自动变量（局部变量）的匿名函数（在标准的C和Objective-C语言中是不允许有匿名函数的）。
+C语言中的变量类型：
+1.自动变量Automatic variables（局部变量local variables）
+2.静态变量Static variables（静态局部变量static local variables）
+3.全局变量Global variables
+4.静态全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blosks 浅析">
+<meta property="og:url" content="http://liu2er.com/2015/08/16/2016_09_22_Blocks/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="1 Blocks概要带有自动变量（局部变量）的匿名函数（在标准的C和Objective-C语言中是不允许有匿名函数的）。
+C语言中的变量类型：
+1.自动变量Automatic variables（局部变量local variables）
+2.静态变量Static variables（静态局部变量static local variables）
+3.全局变量Global variables
+4.静态全">
+<meta property="og:updated_time" content="2016-09-22T11:51:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liu2er的技术博客">
+<meta name="twitter:title" content="Blosks 浅析">
+<meta name="twitter:description" content="1 Blocks概要带有自动变量（局部变量）的匿名函数（在标准的C和Objective-C语言中是不允许有匿名函数的）。
+C语言中的变量类型：
+1.自动变量Automatic variables（局部变量local variables）
+2.静态变量Static variables（静态局部变量static local variables）
+3.全局变量Global variables
+4.静态全">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -66,165 +85,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/2015_08_16_NSStringIsEqual/" title="isEqual 和 == 的比较" itemprop="url">isEqual 和 == 的比较</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T11:45:53.000Z" itemprop="datePublished"> Published 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>== 和 isEqual 都是用来判断连个变量是否相等；</p>
-<h2 id=""><a href="#" class="headerlink" title="=="></a>==</h2><p>1.<code>数值型</code>的基本类型变量比较：不一定要求数据类型严格相同，只要值相等，则返回真；</p>
-<p>例如：<code>int型50 == float型50.0f；</code></p>
-<p>2.<code>指针类型</code>变量比较：必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
-<p>3.没有继承关系的两个指针变量比较：编译时提示警告；</p>
-<h2 id="isEqual"><a href="#isEqual" class="headerlink" title="isEqual"></a>isEqual</h2><p>1.<code>指针类型</code>变量比较：同 ==，都是必须指向同一个对象，即两个指针变量保存的内存地址相同，返回真；</p>
-<p>2.NSString 的 isEqual 方法：只要两个字符串包含相同的字符串序列，则返回真；</p>
-<p>因为 isEqual 方法就指针类型变量的比较，本身与 == 没有区别，同时没有太大的意义，所以 NSString 重写了该方法，实现了值比较而不是地址比较。我们在编程时同样可以重写该方法来满足我们所要求的比较方式；</p>
-<h2 id="字符型常量"><a href="#字符型常量" class="headerlink" title="字符型常量"></a>字符型常量</h2><p>像类似于<code>@&quot;hello&quot;</code>这种字符型常量是由常量池来存储管理的，常量池可以保证相同的字符串直接量只有一个；</p>
-<p>而<code>[NSString stringWithFormat:@&quot;hello&quot;]</code>类型的字符串对象是运行时创建出来的，它被保存在运行时内存区（即堆内存），不会放入常量池中；</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
-</div>
-
-
-  <div class="article-tags">
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-  <span></span> <a href="/tags/isEqual/">isEqual</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_NSStringIsEqual/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSStringIsEqual/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/2015_08_16_NSString/" title="NSString 转换" itemprop="url">NSString 转换</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="其它-——-gt-NSString"><a href="#其它-——-gt-NSString" class="headerlink" title="其它 ——&gt; NSString"></a>其它 ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSStringFromRange</span>( <span class="built_in">NSRange</span> range );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromRect</span>( <span class="built_in">NSRect</span> aRect );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSelector</span>( SEL aSelector );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromClass</span>( __<span class="keyword">unsafe_unretained</span> Class aClass );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromProtocol</span>( Protocol *proto );</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSStringFromHashTable</span>( <span class="built_in">NSHashTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromMapTable</span>( <span class="built_in">NSMapTable</span> *table );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromPoint</span>( <span class="built_in">NSPoint</span> aPoint );</div><div class="line"></div><div class="line"><span class="built_in">NSStringFromSize</span>( <span class="built_in">NSSize</span> aSize );</div></pre></td></tr></table></figure>
-<p>举例：</p>
-<pre><code>NSString *string = NSStringFromClass([NSArray class]);
-
-NSLog(@&quot;NSArray 的类名是：%@&quot;,string);
-
-输出如下：
-
-2015-08-18 16:10:17.908 NewCommandTest[845:137450] NSArray 的类名是：NSArray
-</code></pre><h2 id="NSNumber-——-gt-NSString"><a href="#NSNumber-——-gt-NSString" class="headerlink" title="NSNumber ——&gt; NSString"></a>NSNumber ——&gt; NSString</h2><pre><code>NSNumber *number = [NSNumber numberWithInt:20];
-
-// 转换方法1
-NSString *string = [number description];
-
-// 转换方法2
-NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]];
-</code></pre><p>本例是将<code>@20</code>转换为<code>@&quot;20&quot;</code>。</p>
-<h2 id="NSData-——-gt-NSString"><a href="#NSData-——-gt-NSString" class="headerlink" title="NSData ——&gt; NSString"></a>NSData ——&gt; NSString</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithContentsOfURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"http://www.baidu.com"</span>]];</div><div class="line">       </div><div class="line"><span class="built_in">NSString</span> *string = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</div></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/16/2015_08_16_NSString/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Objective-C/">Objective-C</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/NSString/">NSString</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_NSString/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_NSString/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/08/16/2016_09_22_Blocks/" title="Blosks 浅析" itemprop="url">Blosks 浅析</a>
@@ -238,9 +102,16 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h2 id="1-Blocks概要"><a href="#1-Blocks概要" class="headerlink" title="1 Blocks概要"></a>1 Blocks概要</h2><p>带有自动变量（局部变量）的匿名函数（在标准的C和Objective-C语言中是不允许有匿名函数的）。</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Blocks概要"><span class="toc-number">1.</span> <span class="toc-text">1 Blocks概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Blocks模式"><span class="toc-number">2.</span> <span class="toc-text">2 Blocks模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Blocks语法"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Blocks语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完整形式的Block语法格式："><span class="toc-number">2.1.1.</span> <span class="toc-text">完整形式的Block语法格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略返回值类型的Block语法格式："><span class="toc-number">2.1.2.</span> <span class="toc-text">省略返回值类型的Block语法格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略返回值类型时则Block的返回值类型为："><span class="toc-number">2.1.3.</span> <span class="toc-text">省略返回值类型时则Block的返回值类型为：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略返回值类型和参数列表的Block语法格式："><span class="toc-number">2.1.4.</span> <span class="toc-text">省略返回值类型和参数列表的Block语法格式：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Block类型变量"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Block类型变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-截获自动变量值和-block说明符"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 截获自动变量值和__block说明符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对象类型变量的截获："><span class="toc-number">2.3.1.</span> <span class="toc-text">对象类型变量的截获：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Blocks的实现"><span class="toc-number">3.</span> <span class="toc-text">3 Blocks的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Block的本质"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 Block的本质</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解析"><span class="toc-number">3.1.1.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解读："><span class="toc-number">3.1.2.</span> <span class="toc-text">解读：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#综上分析得出结论："><span class="toc-number">3.1.3.</span> <span class="toc-text">综上分析得出结论：</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="1-Blocks概要"><a href="#1-Blocks概要" class="headerlink" title="1 Blocks概要"></a>1 Blocks概要</h2><p>带有自动变量（局部变量）的匿名函数（在标准的C和Objective-C语言中是不允许有匿名函数的）。</p>
 <p>C语言中的变量类型：</p>
 <p>1.自动变量Automatic variables（局部变量local variables）</p>
 <p>2.静态变量Static variables（静态局部变量static local variables）</p>
@@ -515,14 +386,9 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 <p>即把栈上生成的<code>__main_block_impl_0</code>结构体的实例<code>tmp</code>的指针赋给变量<code>blk</code>；</p>
 <p>我猜<code>^{printf(&quot;Block&quot;);}</code>就是所谓的<code>Block（value）</code>，该 Block 等价为<code>__main_block_impl_0</code>结构体类型的自动变量；换句话说，该 Block 就是<code>__main_block_impl_0</code>结构体在栈上生成的实例；</p>
 <h4 id="综上分析得出结论："><a href="#综上分析得出结论：" class="headerlink" title="综上分析得出结论："></a>综上分析得出结论：</h4><p><code>void (^blk)(void) = ^{printf(&quot;Block&quot;);};</code>中的<code>^{printf(&quot;Block&quot;);}</code>为<code>__main_block_impl_0</code>结构体在栈上生成的实例；而<code>blk</code>为指向该实例的指针变量；</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 <div class="article-categories">
@@ -540,98 +406,55 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 
 
 
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2015/08/16/2016_09_22_Blocks/" data-title="Blosks 浅析 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/2016_09_22_Blocks/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2016_09_22_Blocks/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
 </footer>
 
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> Published 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="克隆Octopress"><a href="#克隆Octopress" class="headerlink" title="克隆Octopress"></a>克隆Octopress</h3><p>从Github上将Octopress项目克隆到本地的Octopress目录下：</p>
-<pre><code>git clone git://github.com/imathis/octopress.git Octopress
-</code></pre><h3 id="进入Octopress项目根目录"><a href="#进入Octopress项目根目录" class="headerlink" title="进入Octopress项目根目录"></a>进入Octopress项目根目录</h3><pre><code>cd Octopress
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/16/2015_08_16_Octopress/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Blog/">Blog</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Octopress/">Octopress</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
+   	       
+	</article>
 	
-	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_Octopress/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_Octopress/" data-count-type="comments">&nbsp;</a>
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/08/16/2015_08_16_NSString/" title="NSString 转换">
+  <strong>上一篇：</strong><br/>
+  <span>
+  NSString 转换</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/08/16/2015_08_16_Octopress/"  title="用 Octopress 搭建静态博客并发布文章">
+ <strong>下一篇：</strong><br/> 
+ <span>用 Octopress 搭建静态博客并发布文章
+</span>
+</a>
+</div>
+
+</nav>
+
 	
-</div>
-
-</footer>
-
-
-    </article>
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/16/2016_09_22_Blocks/" data-title="Blosks 浅析" data-url="http://liu2er.com/2015/08/16/2016_09_22_Blocks/"></div>
+</section>
 
 
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Blocks概要"><span class="toc-number">1.</span> <span class="toc-text">1 Blocks概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Blocks模式"><span class="toc-number">2.</span> <span class="toc-text">2 Blocks模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Blocks语法"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Blocks语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#完整形式的Block语法格式："><span class="toc-number">2.1.1.</span> <span class="toc-text">完整形式的Block语法格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略返回值类型的Block语法格式："><span class="toc-number">2.1.2.</span> <span class="toc-text">省略返回值类型的Block语法格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略返回值类型时则Block的返回值类型为："><span class="toc-number">2.1.3.</span> <span class="toc-text">省略返回值类型时则Block的返回值类型为：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#省略返回值类型和参数列表的Block语法格式："><span class="toc-number">2.1.4.</span> <span class="toc-text">省略返回值类型和参数列表的Block语法格式：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Block类型变量"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Block类型变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-截获自动变量值和-block说明符"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 截获自动变量值和__block说明符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#对象类型变量的截获："><span class="toc-number">2.3.1.</span> <span class="toc-text">对象类型变量的截获：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Blocks的实现"><span class="toc-number">3.</span> <span class="toc-text">3 Blocks的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Block的本质"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 Block的本质</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#解析"><span class="toc-number">3.1.1.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解读："><span class="toc-number">3.1.2.</span> <span class="toc-text">解读：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#综上分析得出结论："><span class="toc-number">3.1.3.</span> <span class="toc-text">综上分析得出结论：</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
@@ -802,14 +625,103 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
 
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
@@ -857,4 +769,4 @@ var _hmt = _hmt || [];
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
