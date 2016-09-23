@@ -364,6 +364,62 @@
 <p>如果应用还没有启动，通过push冷启动后，仍然能在启动后获取Payload：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</div><div class="line">    <span class="built_in">NSDictionary</span>* userInfo = [launchOptions objectForKey:<span class="built_in">UIApplicationLaunchOptionsRemoteNotificationKey</span>];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Payload: %@"</span>, userInfo);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>当Payload设置了badge，应用图标上将一直显示一个数字提示，如果要清除数字提示，或者设置成其他数字，调用下面函数就可以完成。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[<span class="built_in">UIApplication</span> sharedApplication] setApplicationIconBadgeNumber:number];</div></pre></td></tr></table></figure></p>
 <p>number为0就会清除数字提示。</p>
+<p>如果 APP 处于非运行状态，当通知到达时，alert message、sound、badge value 直接展示，如果 APP 处于运行状态，则通知消息将以 NSDictionary 的方式传给 delegate 方法。</p>
+<h2 id="APNs-server"><a href="#APNs-server" class="headerlink" title="APNs server:"></a>APNs server:</h2><ul>
+<li><strong>Development server:</strong> <code>api.development.push.apple.com:443</code></li>
+<li><strong>Production server:</strong> <code>api.push.apple.com:443</code></li>
+</ul>
+<h2 id="APP-不在前台"><a href="#APP-不在前台" class="headerlink" title="APP 不在前台"></a>APP 不在前台</h2><p>当 APP 没有运行在前台时，点击通知后，iOS 系统会打开 APP，并调用 <strong>application:didFinishLaunchingWithOptions:</strong> 方法，并将通知消息传递给 options 参数：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions;</div></pre></td></tr></table></figure></p>
+<p>同时还会调用 <strong>application:didReceiveRemoteNotification:fetchCompletionHandler:</strong> 方法：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didReceiveRemoteNotification:(<span class="built_in">NSDictionary</span> *)userInfo fetchCompletionHandler:(<span class="keyword">void</span> (^)(<span class="built_in">UIBackgroundFetchResult</span>))completionHandler;</div></pre></td></tr></table></figure></p>
+<h2 id="APP-在前台"><a href="#APP-在前台" class="headerlink" title="APP 在前台"></a>APP 在前台</h2><p>iOS 不会展示通知，而是调用 <strong>application:didReceiveRemoteNotification: </strong> 和 <strong>application:didReceiveRemoteNotification:fetchCompletionHandler:</strong> 两个方法中的一个（哪个实现了调用哪个）。</p>
+<p>为了能够 handle the custom actions in iOS 8 or newer，还得实现 <strong>application:handleActionWithIdentifier:forRemoteNotification:completionHandler:</strong> 方法。<br>You receive the action identifier, which you can use to determine what action was tapped. You also receive the notification, which you can use to retrieve any information you need to handle that action. Finally, the system passes you the completion handler, which you must call when you finish handling the action. </p>
+<h2 id="APP-在前台-1"><a href="#APP-在前台-1" class="headerlink" title="APP 在前台"></a>APP 在前台</h2><p>当 APP 在前台时，Notification 有两种传输方式：<code>自研通道</code>、<code>APNs通道</code>，默认走<code>自研通道</code></p>
+<h3 id="自研通道"><a href="#自研通道" class="headerlink" title="自研通道"></a>自研通道</h3><ol>
+<li><p>获得 Notification：</p>
+<blockquote>
+<ul>
+<li><p>在 PSPushServiceDelegate 的代理方法<code>onRecvMessage:</code>里直接获得 Notification：</p>
+<pre><code>- (void)onRecvMessage:(PSPushMessage *)message
+</code></pre></li>
+<li><p>PSPushMessage 有三个属性，其中 msgBody 即为需要的 Notification</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>处理 Notification：</p>
+<blockquote>
+<p>有两种处理 Notification 的方法：</p>
+<ol>
+<li><p>弹窗</p>
+</li>
+<li><p>LocalNotification</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h3 id="APNs通道"><a href="#APNs通道" class="headerlink" title="APNs通道"></a>APNs通道</h3><ul>
+<li>有两个代理方法获得并处理 Notification：<blockquote>
+<pre><code>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+</code></pre><p>和</p>
+<pre><code>-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+</code></pre><p>若同时实现了两个方法，则只执行 application:didReceiveRemoteNotification:fetchCompletionHandler: 方法</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="APP-在后台"><a href="#APP-在后台" class="headerlink" title="APP 在后台"></a>APP 在后台</h1><p>当 APP 在后台时，Notification 默认走<code>APNs通道</code>，当<code>APNs通道</code>走不通时也会走<code>自研通道</code>，Notification 的获取流程如下：</p>
+<ol>
+<li>直接展示 Notification：alert、badge、sound</li>
+<li>在 APP <code>冷启动</code>时把 Notification 通过 didFinishLaunchingWithOptions: 传递给 launchOptions 参数，冷启动意味着在测试时无法获取 Notification<pre><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+</code></pre></li>
+<li>（不管是冷启动还是热启动）同时还会调用 application:didReceiveRemoteNotification:fetchCompletionHandler: 方法，userInfo 即为需要的 Notification，在该方法中处理 Notification<pre><code>-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+</code></pre></li>
+</ol>
+<p>注：</p>
+<ul>
+<li>必须是以点击通知的方式打开 APP，而不能直接打开 APP    ，否则无法获得 Notification</li>
+<li>application:didReceiveRemoteNotification:fetchCompletionHandler: 好像是 iOS 8以后才有的方法，所以当 APP 在后台时，对于 iOS 8 以前的设备只能通过步骤 2 来处理</li>
+</ul>
 
         
         
