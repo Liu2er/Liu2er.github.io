@@ -74,6 +74,98 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/08/22/2015_08_22_OCFragmentary/" title="OC：零碎知识总结" itemprop="url">OC：零碎知识总结</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-22T13:55:07.000Z" itemprop="datePublished"> Published 2015-08-22</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="判断编译环境：ARC还是MRC？"><a href="#判断编译环境：ARC还是MRC？" class="headerlink" title="判断编译环境：ARC还是MRC？"></a>判断编译环境：ARC还是MRC？</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#if __has_feature(objc_arc)</span></div><div class="line"><span class="comment">// 当前编译环境是ARC</span></div><div class="line"></div><div class="line"><span class="meta">#else</span></div><div class="line"><span class="comment">// 当前编译环境是MRC</span></div><div class="line"></div><div class="line"><span class="meta">#endif</span></div></pre></td></tr></table></figure>
+<h2 id="UIView、UIWindow、CALayer"><a href="#UIView、UIWindow、CALayer" class="headerlink" title="UIView、UIWindow、CALayer"></a>UIView、UIWindow、CALayer</h2><ol>
+<li>UIView：<ul>
+<li>属于<code>UIKit.framework</code>框架；</li>
+<li>负责显示内容；</li>
+<li>可以响应触摸事件；</li>
+</ul>
+</li>
+<li>UIWindow：<ul>
+<li>属于<code>UIKit.framework</code>框架；</li>
+<li>UIWindow是一种特殊的UIView，通常一个程序中只有一个UIWindow，但是可以手动创建多个UIWindow，并同时加到程序里面；</li>
+<li>UIWindow主要有三个作用：<ul>
+<li>作为容器，包含APP中所要显示的所有视图；</li>
+<li>传递触摸消息到程序中的View和其他对象；</li>
+<li>与UIViewController协同工作，方便完成设备方向旋转的支持；</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CALayer：<ul>
+<li>属于<code>QuartzCore.framework</code>框架；</li>
+<li>负责绘制内容；</li>
+<li>不能响应触摸事件；</li>
+</ul>
+</li>
+</ol>
+<h2 id="设置状态栏隐藏"><a href="#设置状态栏隐藏" class="headerlink" title="设置状态栏隐藏"></a>设置状态栏隐藏</h2><p>在程序的启动过程中隐藏状态栏，在info.plist文件中添加如下内容即可：</p>
+<p><img src="/images/2015_08_22_OCFragmentary1.png" alt="图片"></p>
+<p>在APP指定的控制器的视图上隐藏状态栏，在控制器添加如下方法即可：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)prefersStatusBarHidden &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="App-Icons苹果官方指南"><a href="#App-Icons苹果官方指南" class="headerlink" title="App Icons苹果官方指南"></a>App Icons苹果官方指南</h2><p><a href="https://developer.apple.com/library/ios/qa/qa1686/_index.html" target="_blank" rel="external">App Icons 苹果官方指南</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Fragmentary/">Fragmentary</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/08/22/2015_08_22_OCFragmentary/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/22/2015_08_22_OCFragmentary/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/17/2015_08_17_Multithreading/" title="多线程编程之 概述" itemprop="url">多线程编程之 概述</a>
   </h1>
   <p class="article-author">By
@@ -1317,7 +1409,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>13</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>14</sup></a></li>
 		  
 		
 		</ul>
@@ -1334,7 +1426,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
 			
 		
 			
@@ -1350,11 +1442,11 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
 			
 		
 			
@@ -1362,11 +1454,11 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
 			
 		
 			
@@ -1382,11 +1474,11 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 			
@@ -1395,6 +1487,10 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 		
 			
 				<li><a href="/tags/Blosks/" title="Blosks">Blosks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
 			
 		
 		</ul>

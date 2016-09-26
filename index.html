@@ -74,6 +74,131 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/09/26/2016_09_26_Notifications/" title="Local and Remote Notifications" itemprop="url">Local and Remote Notifications</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-09-26T02:40:06.000Z" itemprop="datePublished"> Published 2016-09-26</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="About-Local-and-Remote-Notifications"><a href="#About-Local-and-Remote-Notifications" class="headerlink" title="About Local and Remote Notifications"></a>About Local and Remote Notifications</h2><h3 id="Notifications-的分类"><a href="#Notifications-的分类" class="headerlink" title="Notifications 的分类"></a>Notifications 的分类</h3><ul>
+<li>User Notifications<ul>
+<li>Local Notifications</li>
+</ul>
+<ul>
+<li>Remote Notifications（Push Notifications）</li>
+</ul>
+</li>
+<li>Broadcast Notificaitons (NSNotificationCenter 类)</li>
+<li>Key-value Observing Notifications</li>
+</ul>
+<h3 id="User-Notifications"><a href="#User-Notifications" class="headerlink" title="User Notifications"></a>User Notifications</h3><p>User notifications 可以使没有运行在前台的 APP 通知其用户有消息到达。比如，这个消息可以是一个信息、一个即将到来的日历事件或者是远程服务器上的新数据。当系统呈现该通知消息时，不管是本地通知还是远程通知，其展现形式是一样的。它们可以展示一个通知消息或者在应用图标上标记数字小红点。当通知消息或应用图标有数字小红点时，也可以发出声音提示。</p>
+<blockquote>
+<p>User notifications enable an app that isn’t running in the foreground to let its users know it has information for them. The information could be a message, an impending calendar event, or new data on a remote server, for example. When presented by the operating system, user notifications, whether local or remote in origin, look and sound the same. They can display an alert message or they can badge the app icon. They can also play a sound when the alert or badge number is shown.</p>
+</blockquote>
+<p>接收到 user notification 后，用户可以通过点击它来打开相应的 app 查看消息细节。当 app 处于非活跃状态时，用户也可以选择忽略该信息。</p>
+<blockquote>
+<p>Upon receiving a user notification, the user can tap it to launch the associated app and see the details. They can also choose to ignore the notification, in which case the app is not activated.</p>
+</blockquote>
+<h3 id="At-a-Glance"><a href="#At-a-Glance" class="headerlink" title="At a Glance"></a>At a Glance</h3><p>Local notifications 和 remote notifications 看起来一样，但实际上它们用于不同的情况，而且其配置和管理方式也不同。</p>
+<blockquote>
+<p>Local and remote notifications appear the same to a user, but they serve different use cases and you configure and manage them differently.</p>
+</blockquote>
+<h4 id="Local-notifications-和-Remote-notifications-的区别"><a href="#Local-notifications-和-Remote-notifications-的区别" class="headerlink" title="Local notifications 和 Remote notifications 的区别"></a>Local notifications 和 Remote notifications 的区别</h4><ul>
+<li>A local notification is scheduled and sent by the app itself, without necessary involvement of the Internet.</li>
+<li>A remote notification, also called a push notification, arrives from outside the device. It originates on a remote server that you manage—the app’s notification provider—and is pushed to your app on a user’s device via the Apple Push Notification service (APNs).</li>
+</ul>
+<h4 id="Registering-Scheduling-and-Handling-User-Notifications"><a href="#Registering-Scheduling-and-Handling-User-Notifications" class="headerlink" title="Registering, Scheduling, and Handling User Notifications"></a>Registering, Scheduling, and Handling User Notifications</h4><p>系统要在接下来的某个时间发送一个 local notification，app 需要注册通知类型、创建本地通知对象（用 UNNotificationRequest 类或 NSUserNotification 类），设置一个发送时间、说明展示细节，然后发送。要接收 remote notifications，app 要注册通知类型，并将由系统获得的 app 的 deviceToken 传达给自己的后台服务器。</p>
+<blockquote>
+<p>For the system to deliver a local notification at a later time, an app registers notification types, creates a local notification object (using either the UNNotificationRequest or NSUserNotification class), assigns it a delivery date and time, specifies presentation details, and schedules it for delivery. To receive remote notifications, an app must register notification types, then pass to its provider an app-specific device token it gets from the operating system.</p>
+</blockquote>
+<p>当系统发送一个 local notification 或 remote notification 且相应的 app 没有运行在前台时，该通知可以通过以信息、图标数字小红点和声音的方式来展现。当用户点击了通知消息或者触发按钮（或者触发滑动条），app 将会启动，并调用一个方法来传递本地通知对象或远程通知 payload。如果当通知消息到达时 app 是运行在前台的，将会以代理的方式来接收该本地或远程通知消息。</p>
+<blockquote>
+<p>When the operating system delivers a local notification or remote notification and the target app is not running in the foreground, it can present the notification to the user through an alert, icon badge number, or sound. If there is a notification alert and the user taps or clicks an action button (or moves the action slider), the app launches and calls a method to pass in the local-notification object or remote-notification payload. If the app is running in the foreground when the notification is delivered, the app delegate receives a local or remote notification.</p>
+</blockquote>
+<p>在 iOS 8 及更新的系统中，user notifications 可以包含自定义的行为。而且，当用户到达特定的地理位置时，基于位置服务的通知也可以被送达。</p>
+<blockquote>
+<p>In iOS 8 and later, user notifications can include custom actions. Also, location-based local notifications can be sent whenever the user arrives at a particular geographic location.</p>
+</blockquote>
+<h4 id="Apple-Push-Notification-Service"><a href="#Apple-Push-Notification-Service" class="headerlink" title="Apple Push Notification Service"></a>Apple Push Notification Service</h4><p>苹果推送通知服务（APNs）向拥有注册了接收该通知的 app 的设备传送远程通知。设备上每个 app 需要与 APNs 建立 accredited and encrypted IP 连接，app 通过该长连接来接收通知消息。后台服务器通过一个持续的、安全的通道与 APNs 建立连接来监视其客户 app 的输入数据。当一个 app 的新数据达到时，后台服务器通过该通道向 APNs 准备并发送一个通知，这个通知再被传输到指定设备。</p>
+<blockquote>
+<p>Apple Push Notification service (APNs) propagates remote notifications to devices having apps registered to receive those notifications. Each app on a device establishes an accredited and encrypted IP connection with the service and receives notifications over this persistent connection. Providers connect with APNs through a persistent and secure channel while monitoring incoming data intended for their client apps. When new data for an app arrives, the provider prepares and sends a notification through the channel to APNs, which pushes the notification to the target device.</p>
+</blockquote>
+<p>APNs Provider API 是异步的，并于 2015 年 12 月开始使用 HTTP/2 网络协议来从你自己的后台服务器向 APNs 向发送远程通知请求。后台服务器创建每个外发通知，并用此通道发送给 APNs。</p>
+<blockquote>
+<p>The APNs Provider API is asynchronous and, starting in December 2015, uses the HTTP/2 network protocol to send remote notification requests from your provider server to APNs. The provider composes each outgoing notification and sends it over this channel to APNs.</p>
+</blockquote>
+<h4 id="Security-Credentials-for-Remote-Notifications"><a href="#Security-Credentials-for-Remote-Notifications" class="headerlink" title="Security Credentials for Remote Notifications"></a>Security Credentials for Remote Notifications</h4><p>为了给你的 app 开发和部署一个远程通知<code>后台服务器</code>，你必须从你的开发者帐号中获得有效的身份认证。<code>基于 HTTP/2 的 APNs provider API</code> 可以让你的开发和发布环境只用一个认证证书就可以。具体参考 <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40012582" target="_blank" rel="external">App Distribution Guide</a> 里的 <a href="https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6" target="_blank" rel="external">Configuring Push Notifications</a>。</p>
+<blockquote>
+<p>To develop and deploy a remote notification provider server for your app, you must obtain valid credentials from your developer account. The HTTP/2-based APNs provider API lets you use a single certificate for the development and production environments, as described in Configuring Push Notifications in App Distribution Guide.</p>
+</blockquote>
+<p>现在你可以使用<code>基于 token 的认证</code>来向 与你的 Team ID 相关的所有 app 发送通知了。例如，你的单一认证证书允许你发送通知给你的主 app，这是通过 bundle ID 来识别的，也可以发送给你相关的、即使运行在后台的 <code>Apple Watch 应用</code>和 <code>VoIP 服务</code>。</p>
+<blockquote>
+<p>You can now use token-based authentication to send to notifications to all the apps associated with your Team ID. For example, your single certificate lets you send notifications to your primary app, as identified by its bundle ID, and also to associated Apple Watch complications and to VoIP services even when they are running in the background.</p>
+</blockquote>
+<h4 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h4><p><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072" target="_blank" rel="external">App Programming Guide for iOS</a> 介绍了编写 iOS app 时的高级模式。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072" target="_blank" rel="external">App Programming Guide for iOS</a> describes the high level patterns for writing iOS apps.</p>
+</blockquote>
+<p>对于 local notification 和 remote notification 客户端的实现，我们是假设你已经熟悉了 <code>iOS app</code> 的开发。对于后台服务器的实现，<code>TLS/SSL</code> 和 <code>sockets 流</code>的知识会很有帮助。</p>
+<blockquote>
+<p>For local notifications and the client-side implementation of remote notifications, familiarity with app development for iOS is assumed. For the provider side of the implementation, knowledge of TLS/SSL and streaming sockets is helpful.</p>
+</blockquote>
+<h2 id="Local-and-Remote-Notifications-in-Depth"><a href="#Local-and-Remote-Notifications-in-Depth" class="headerlink" title="Local and Remote Notifications in Depth"></a>Local and Remote Notifications in Depth</h2><h2 id="Registering-Scheduling-and-Handling-User-Notifications-1"><a href="#Registering-Scheduling-and-Handling-User-Notifications-1" class="headerlink" title="Registering, Scheduling, and Handling User Notifications"></a>Registering, Scheduling, and Handling User Notifications</h2><h2 id="Apple-Push-Notification-Service-1"><a href="#Apple-Push-Notification-Service-1" class="headerlink" title="Apple Push Notification Service"></a>Apple Push Notification Service</h2><h2 id="Provisioning-and-Development"><a href="#Provisioning-and-Development" class="headerlink" title="Provisioning and Development"></a>Provisioning and Development</h2><h2 id="The-Remote-Notification-Payload"><a href="#The-Remote-Notification-Payload" class="headerlink" title="The Remote Notification Payload"></a>The Remote Notification Payload</h2><h2 id="APNs-Provider-API"><a href="#APNs-Provider-API" class="headerlink" title="APNs Provider API"></a>APNs Provider API</h2><h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Binary-Provider-API"><a href="#Binary-Provider-API" class="headerlink" title="Binary Provider API"></a>Binary Provider API</h3><h3 id="Legacy-Notification-Format"><a href="#Legacy-Notification-Format" class="headerlink" title="Legacy Notification Format"></a>Legacy Notification Format</h3><h3 id="Document-Revision-History"><a href="#Document-Revision-History" class="headerlink" title="Document Revision History"></a>Document Revision History</h3>
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Notifications/">Notifications</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/09/26/2016_09_26_Notifications/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/09/26/2016_09_26_Notifications/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/09/21/2016_09_21_DataPersistence/" title="数据化持久技术" itemprop="url">数据化持久技术</a>
   </h1>
   <p class="article-author">By
@@ -1047,98 +1172,6 @@ Program ended with exit code: 0
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/22/2015_08_22_OCFragmentary/" title="OC：零碎知识总结" itemprop="url">OC：零碎知识总结</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-22T13:55:07.000Z" itemprop="datePublished"> Published 2015-08-22</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="判断编译环境：ARC还是MRC？"><a href="#判断编译环境：ARC还是MRC？" class="headerlink" title="判断编译环境：ARC还是MRC？"></a>判断编译环境：ARC还是MRC？</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#if __has_feature(objc_arc)</span></div><div class="line"><span class="comment">// 当前编译环境是ARC</span></div><div class="line"></div><div class="line"><span class="meta">#else</span></div><div class="line"><span class="comment">// 当前编译环境是MRC</span></div><div class="line"></div><div class="line"><span class="meta">#endif</span></div></pre></td></tr></table></figure>
-<h2 id="UIView、UIWindow、CALayer"><a href="#UIView、UIWindow、CALayer" class="headerlink" title="UIView、UIWindow、CALayer"></a>UIView、UIWindow、CALayer</h2><ol>
-<li>UIView：<ul>
-<li>属于<code>UIKit.framework</code>框架；</li>
-<li>负责显示内容；</li>
-<li>可以响应触摸事件；</li>
-</ul>
-</li>
-<li>UIWindow：<ul>
-<li>属于<code>UIKit.framework</code>框架；</li>
-<li>UIWindow是一种特殊的UIView，通常一个程序中只有一个UIWindow，但是可以手动创建多个UIWindow，并同时加到程序里面；</li>
-<li>UIWindow主要有三个作用：<ul>
-<li>作为容器，包含APP中所要显示的所有视图；</li>
-<li>传递触摸消息到程序中的View和其他对象；</li>
-<li>与UIViewController协同工作，方便完成设备方向旋转的支持；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>CALayer：<ul>
-<li>属于<code>QuartzCore.framework</code>框架；</li>
-<li>负责绘制内容；</li>
-<li>不能响应触摸事件；</li>
-</ul>
-</li>
-</ol>
-<h2 id="设置状态栏隐藏"><a href="#设置状态栏隐藏" class="headerlink" title="设置状态栏隐藏"></a>设置状态栏隐藏</h2><p>在程序的启动过程中隐藏状态栏，在info.plist文件中添加如下内容即可：</p>
-<p><img src="/images/2015_08_22_OCFragmentary1.png" alt="图片"></p>
-<p>在APP指定的控制器的视图上隐藏状态栏，在控制器添加如下方法即可：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)prefersStatusBarHidden &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="App-Icons苹果官方指南"><a href="#App-Icons苹果官方指南" class="headerlink" title="App Icons苹果官方指南"></a>App Icons苹果官方指南</h2><p><a href="https://developer.apple.com/library/ios/qa/qa1686/_index.html" target="_blank" rel="external">App Icons 苹果官方指南</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/iOS/">iOS</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Fragmentary/">Fragmentary</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/22/2015_08_22_OCFragmentary/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/22/2015_08_22_OCFragmentary/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -1176,7 +1209,7 @@ Program ended with exit code: 0
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>13</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>14</sup></a></li>
 		  
 		
 		</ul>
@@ -1193,7 +1226,7 @@ Program ended with exit code: 0
 			
 		
 			
-				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
 			
 		
 			
@@ -1209,11 +1242,11 @@ Program ended with exit code: 0
 			
 		
 			
-				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
 			
 		
 			
@@ -1221,11 +1254,11 @@ Program ended with exit code: 0
 			
 		
 			
-				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
 			
 		
 			
@@ -1241,11 +1274,11 @@ Program ended with exit code: 0
 			
 		
 			
-				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 			
@@ -1254,6 +1287,10 @@ Program ended with exit code: 0
 		
 			
 				<li><a href="/tags/Blosks/" title="Blosks">Blosks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
 			
 		
 		</ul>
