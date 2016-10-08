@@ -1,0 +1,508 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>iOS 动画 | Liu2er的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Liu2er">
+    
+
+    <meta name="keywords" content="iOS, Animation">
+    <meta name="description" content="iOS 动画分类CABasicAnimation 举例12345678910111213141516/** *  位移动画演示 */-(void)positionAnimation&amp;#123;    //使用CABasicAnimation创建基础动画    CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@&quot;pos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 动画">
+<meta property="og:url" content="http://liu2er.com/2016/10/08/2016_10_08_iOSAnimation/index.html">
+<meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="iOS 动画分类CABasicAnimation 举例12345678910111213141516/** *  位移动画演示 */-(void)positionAnimation&amp;#123;    //使用CABasicAnimation创建基础动画    CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@&quot;pos">
+<meta property="og:updated_time" content="2016-10-08T02:19:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 动画">
+<meta name="twitter:description" content="iOS 动画分类CABasicAnimation 举例12345678910111213141516/** *  位移动画演示 */-(void)positionAnimation&amp;#123;    //使用CABasicAnimation创建基础动画    CABasicAnimation *anima = [CABasicAnimation animationWithKeyPath:@&quot;pos">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
+				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:liu2er.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/08/2016_10_08_iOSAnimation/" title="iOS 动画" itemprop="url">iOS 动画</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-08T02:06:39.000Z" itemprop="datePublished"> Published 2016-10-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-动画分类"><span class="toc-number">1.</span> <span class="toc-text">iOS 动画分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CABasicAnimation-举例"><span class="toc-number">1.1.</span> <span class="toc-text">CABasicAnimation 举例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CABasicAnimation-的高级用法：CAAnimationGroup"><span class="toc-number">1.1.1.</span> <span class="toc-text">CABasicAnimation 的高级用法：CAAnimationGroup</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIView-的动画举例"><span class="toc-number">1.2.</span> <span class="toc-text">UIView 的动画举例</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="iOS-动画分类"><a href="#iOS-动画分类" class="headerlink" title="iOS 动画分类"></a>iOS 动画分类</h2><h3 id="CABasicAnimation-举例"><a href="#CABasicAnimation-举例" class="headerlink" title="CABasicAnimation 举例"></a>CABasicAnimation 举例</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> *  位移动画演示</div><div class="line"> */</div><div class="line">-(<span class="keyword">void</span>)positionAnimation&#123;</div><div class="line">    <span class="comment">//使用CABasicAnimation创建基础动画</span></div><div class="line">    <span class="built_in">CABasicAnimation</span> *anima = [<span class="built_in">CABasicAnimation</span> animationWithKeyPath:<span class="string">@"position"</span>];</div><div class="line">    anima.fromValue = [<span class="built_in">NSValue</span> valueWithCGPoint:<span class="built_in">CGPointMake</span>(<span class="number">0</span>, <span class="number">0</span>)];</div><div class="line">    anima.toValue = [<span class="built_in">NSValue</span> valueWithCGPoint:<span class="built_in">CGPointMake</span>(<span class="number">100</span>, <span class="number">100</span>)];</div><div class="line">    anima.duration = <span class="number">1.0</span>f;</div><div class="line">    <span class="comment">//如果fillMode=kCAFillModeForwards和removedOnComletion=NO，那么在动画执行完毕后，图层会保持显示动画执行后的状态。</span></div><div class="line">    <span class="comment">//但在实质上，图层的属性值还是动画执行前的初始值，并没有真正被改变。</span></div><div class="line">    <span class="comment">//anima.fillMode = kCAFillModeForwards;</span></div><div class="line">    <span class="comment">//anima.removedOnCompletion = NO;</span></div><div class="line">    anima.timingFunction = [<span class="built_in">CAMediaTimingFunction</span> functionWithName:kCAMediaTimingFunctionEaseIn];</div><div class="line">    [_demoView.layer addAnimation:anima forKey:<span class="string">@"positionAnimation"</span>];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="CABasicAnimation-的高级用法：CAAnimationGroup"><a href="#CABasicAnimation-的高级用法：CAAnimationGroup" class="headerlink" title="CABasicAnimation 的高级用法：CAAnimationGroup"></a>CABasicAnimation 的高级用法：CAAnimationGroup</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建组动画对象</span></div><div class="line">   <span class="built_in">CAAnimationGroup</span> *group = [<span class="built_in">CAAnimationGroup</span> animation];</div><div class="line">   </div><div class="line">   <span class="comment">//CABasic动画</span></div><div class="line">   <span class="built_in">CABasicAnimation</span> *animation1 = [<span class="built_in">CABasicAnimation</span> animationWithKeyPath:<span class="string">@"transform.scale.y"</span>];</div><div class="line">   animation1.fromValue = @<span class="number">1.5</span>;</div><div class="line">   animation1.toValue = @<span class="number">0.5</span>;</div><div class="line">   </div><div class="line">   <span class="comment">//关键帧动画</span></div><div class="line">   <span class="built_in">CAKeyframeAnimation</span> *animation2 = [<span class="built_in">CAKeyframeAnimation</span> animationWithKeyPath:<span class="string">@"position"</span>];</div><div class="line">   animation2.values = @[[<span class="built_in">NSValue</span> valueWithCGPoint:<span class="built_in">CGPointMake</span>(<span class="number">100</span>, <span class="number">100</span>)],</div><div class="line">                         [<span class="built_in">NSValue</span> valueWithCGPoint:<span class="built_in">CGPointMake</span>(<span class="number">200</span>, <span class="number">150</span>)],</div><div class="line">                         [<span class="built_in">NSValue</span> valueWithCGPoint:<span class="built_in">CGPointMake</span>(<span class="number">100</span>, <span class="number">200</span>)],</div><div class="line">                         [<span class="built_in">NSValue</span> valueWithCGPoint:<span class="built_in">CGPointMake</span>(<span class="number">200</span>, <span class="number">250</span>)]];</div><div class="line">   </div><div class="line">   <span class="comment">//group添加动画数组，group中动画对象并发执行</span></div><div class="line">   [group setAnimations:@[animation1, animation2]];</div><div class="line">   [group setDuration:<span class="number">4.0</span>f];</div><div class="line">   </div><div class="line">   [_demoView.layer addAnimation:group forKey:<span class="string">@"group"</span>];</div></pre></td></tr></table></figure>
+<h3 id="UIView-的动画举例"><a href="#UIView-的动画举例" class="headerlink" title="UIView 的动画举例"></a>UIView 的动画举例</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)changeFrame &#123;</div><div class="line">    [<span class="built_in">UIView</span> beginAnimations:<span class="string">@"FrameAni"</span> context:<span class="literal">nil</span>];</div><div class="line">    [<span class="built_in">UIView</span> setAnimationDuration:<span class="number">1.0</span>];</div><div class="line">    [<span class="built_in">UIView</span> setAnimationDelegate:<span class="keyword">self</span>];</div><div class="line">    [<span class="built_in">UIView</span> setAnimationWillStartSelector:<span class="keyword">@selector</span>(startAni:)];</div><div class="line">    [<span class="built_in">UIView</span> setAnimationDidStopSelector:<span class="keyword">@selector</span>(stopAni:)];</div><div class="line">    [<span class="built_in">UIView</span> setAnimationRepeatCount:<span class="number">1</span>];</div><div class="line">    [<span class="built_in">UIView</span> setAnimationCurve:<span class="built_in">UIViewAnimationCurveEaseInOut</span>];</div><div class="line">    <span class="keyword">self</span>.cartCenter.frame = <span class="keyword">self</span>.centerShow.frame;</div><div class="line">    [<span class="built_in">UIView</span> commitAnimations];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)startAni:(<span class="built_in">NSString</span> *)aniID &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ start"</span>,aniID);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)stopAni:(<span class="built_in">NSString</span> *)aniID &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ stop"</span>,aniID);</div><div class="line">&#125;</div></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Animation/">Animation</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2016/10/08/2016_10_08_iOSAnimation/" data-title="iOS 动画 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/09/28/2016_09_28_NSLog/"  title="NSLog 使用总结">
+ <strong>下一篇：</strong><br/> 
+ <span>NSLog 使用总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/08/2016_10_08_iOSAnimation/" data-title="iOS 动画" data-url="http://liu2er.com/2016/10/08/2016_10_08_iOSAnimation/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-动画分类"><span class="toc-number">1.</span> <span class="toc-text">iOS 动画分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CABasicAnimation-举例"><span class="toc-number">1.1.</span> <span class="toc-text">CABasicAnimation 举例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CABasicAnimation-的高级用法：CAAnimationGroup"><span class="toc-number">1.1.1.</span> <span class="toc-text">CABasicAnimation 的高级用法：CAAnimationGroup</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UIView-的动画举例"><span class="toc-number">1.2.</span> <span class="toc-text">UIView 的动画举例</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Objective-C/" title="Objective-C">Objective-C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>16</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/RAC/" title="RAC">RAC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GCD/" title="GCD">GCD<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSUserDefaults/" title="NSUserDefaults">NSUserDefaults<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blosks/" title="Blosks">Blosks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSLog/" title="NSLog">NSLog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Liu2er">Liu2er</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

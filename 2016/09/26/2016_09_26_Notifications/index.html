@@ -11,7 +11,8 @@
     
 
     <meta name="keywords" content="iOS, Notifications">
-    <meta name="description" content="About Local and Remote NotificationsNotifications 的分类
+    <meta name="description" content="本文翻译自苹的果 Notification 官方文档
+About Local and Remote NotificationsNotifications 的分类
 User Notifications
 Local Notifications
 
@@ -19,13 +20,13 @@ Local Notifications
 Remote Notifications（Push Notifications）
 
 
-Broadcast Notificaitons (NSNotificationCenter 类)
-Key-value Obs">
+Broadcast Notificaitons (NSNotifica">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Local and Remote Notifications">
 <meta property="og:url" content="http://liu2er.com/2016/09/26/2016_09_26_Notifications/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="About Local and Remote NotificationsNotifications 的分类
+<meta property="og:description" content="本文翻译自苹的果 Notification 官方文档
+About Local and Remote NotificationsNotifications 的分类
 User Notifications
 Local Notifications
 
@@ -33,12 +34,12 @@ Local Notifications
 Remote Notifications（Push Notifications）
 
 
-Broadcast Notificaitons (NSNotificationCenter 类)
-Key-value Obs">
-<meta property="og:updated_time" content="2016-09-26T10:51:45.000Z">
+Broadcast Notificaitons (NSNotifica">
+<meta property="og:updated_time" content="2016-09-28T11:58:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Local and Remote Notifications">
-<meta name="twitter:description" content="About Local and Remote NotificationsNotifications 的分类
+<meta name="twitter:description" content="本文翻译自苹的果 Notification 官方文档
+About Local and Remote NotificationsNotifications 的分类
 User Notifications
 Local Notifications
 
@@ -46,8 +47,7 @@ Local Notifications
 Remote Notifications（Push Notifications）
 
 
-Broadcast Notificaitons (NSNotificationCenter 类)
-Key-value Obs">
+Broadcast Notificaitons (NSNotifica">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -71,7 +71,7 @@ Key-value Obs">
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -87,7 +87,7 @@ Key-value Obs">
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -110,20 +110,21 @@ Key-value Obs">
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-26T02:40:06.000Z" itemprop="datePublished"> 发表于 2016-09-26</time>
+    <time datetime="2016-09-26T02:40:06.000Z" itemprop="datePublished"> Published 2016-09-26</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-Local-and-Remote-Notifications"><span class="toc-number">1.</span> <span class="toc-text">About Local and Remote Notifications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Notifications-的分类"><span class="toc-number">1.1.</span> <span class="toc-text">Notifications 的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Notifications"><span class="toc-number">1.2.</span> <span class="toc-text">User Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#At-a-Glance"><span class="toc-number">1.3.</span> <span class="toc-text">At a Glance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Local-notifications-和-Remote-notifications-的区别"><span class="toc-number">1.3.1.</span> <span class="toc-text">Local notifications 和 Remote notifications 的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Registering-Scheduling-and-Handling-User-Notifications"><span class="toc-number">1.3.2.</span> <span class="toc-text">Registering, Scheduling, and Handling User Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Apple-Push-Notification-Service"><span class="toc-number">1.3.3.</span> <span class="toc-text">Apple Push Notification Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Security-Credentials-for-Remote-Notifications"><span class="toc-number">1.3.4.</span> <span class="toc-text">Security Credentials for Remote Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Prerequisites"><span class="toc-number">1.3.5.</span> <span class="toc-text">Prerequisites</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-and-Remote-Notifications-in-Depth"><span class="toc-number">2.</span> <span class="toc-text">Local and Remote Notifications in Depth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Registering-Scheduling-and-Handling-User-Notifications-1"><span class="toc-number">3.</span> <span class="toc-text">Registering, Scheduling, and Handling User Notifications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Registering-Your-iOS-App’s-Supported-User-Interaction-Types"><span class="toc-number">3.1.</span> <span class="toc-text">Registering Your iOS App’s Supported User Interaction Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Registering-for-Remote-Notifications"><span class="toc-number">3.2.</span> <span class="toc-text">Registering for Remote Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Registering-Your-Actionable-Notification-Types"><span class="toc-number">3.3.</span> <span class="toc-text">Registering Your Actionable Notification Types</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Defining-Your-Actionable-Notifications"><span class="toc-number">3.3.1.</span> <span class="toc-text">Defining Your Actionable Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scheduling-an-Actionable-Notification"><span class="toc-number">3.3.2.</span> <span class="toc-text">Scheduling an Actionable Notification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handling-an-Actionable-Notification"><span class="toc-number">3.3.3.</span> <span class="toc-text">Handling an Actionable Notification</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduling-Local-Notifications"><span class="toc-number">3.4.</span> <span class="toc-text">Scheduling Local Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-Local-and-Remote-Notifications"><span class="toc-number">3.5.</span> <span class="toc-text">Handling Local and Remote Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduling-Location-Based-Local-Notifications"><span class="toc-number">3.6.</span> <span class="toc-text">Scheduling Location-Based Local Notifications</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Registering-for-Location-Based-Local-Notifications"><span class="toc-number">3.6.1.</span> <span class="toc-text">Registering for Location-Based Local Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handling-Core-Location-Callbacks"><span class="toc-number">3.6.2.</span> <span class="toc-text">Handling Core Location Callbacks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handling-Location-Based-Local-Notifications"><span class="toc-number">3.6.3.</span> <span class="toc-text">Handling Location-Based Local Notifications</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preparing-Custom-Alert-Sounds"><span class="toc-number">3.7.</span> <span class="toc-text">Preparing Custom Alert Sounds</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Passing-the-Provider-the-Current-Language-Preference-Remote-Notifications"><span class="toc-number">3.8.</span> <span class="toc-text">Passing the Provider the Current Language Preference (Remote Notifications)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Push-Notification-Service-1"><span class="toc-number">4.</span> <span class="toc-text">Apple Push Notification Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Provisioning-and-Development"><span class="toc-number">5.</span> <span class="toc-text">Provisioning and Development</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Remote-Notification-Payload"><span class="toc-number">6.</span> <span class="toc-text">The Remote Notification Payload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APNs-Provider-API"><span class="toc-number">7.</span> <span class="toc-text">APNs Provider API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Appendix"><span class="toc-number">8.</span> <span class="toc-text">Appendix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binary-Provider-API"><span class="toc-number">8.1.</span> <span class="toc-text">Binary Provider API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Legacy-Notification-Format"><span class="toc-number">8.2.</span> <span class="toc-text">Legacy Notification Format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document-Revision-History"><span class="toc-number">8.3.</span> <span class="toc-text">Document Revision History</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="About-Local-and-Remote-Notifications"><a href="#About-Local-and-Remote-Notifications" class="headerlink" title="About Local and Remote Notifications"></a>About Local and Remote Notifications</h2><h3 id="Notifications-的分类"><a href="#Notifications-的分类" class="headerlink" title="Notifications 的分类"></a>Notifications 的分类</h3><ul>
+		<p>本文翻译自<a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/Introduction.html#//apple_ref/doc/uid/TP40008194-CH1-SW1" target="_blank" rel="external">苹的果 Notification 官方文档</a></p>
+<h2 id="About-Local-and-Remote-Notifications"><a href="#About-Local-and-Remote-Notifications" class="headerlink" title="About Local and Remote Notifications"></a>About Local and Remote Notifications</h2><h3 id="Notifications-的分类"><a href="#Notifications-的分类" class="headerlink" title="Notifications 的分类"></a>Notifications 的分类</h3><ul>
 <li>User Notifications<ul>
 <li>Local Notifications</li>
 </ul>
@@ -207,7 +208,131 @@ Key-value Obs">
 <p>To register your app’s supported interaction types, call the registerUserNotificationSettings: method of the shared UIApplication object. Use the settings object to specify whether your app badges its icon, displays alert messages, or plays sounds. If you do not request any interaction types, the system pushes all notifications to your app silently. Listing 2-1 shows a short code snippet for an app that supports displaying alert messages and playing sounds. (The cast to the UIUserNotificationType type, in the first line of the snippet, is required by the notifications API.)</p>
 </blockquote>
 <p>表 2-1 通知类型注册<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIUserNotificationType</span> types = (<span class="built_in">UIUserNotificationType</span>) (<span class="built_in">UIUserNotificationTypeBadge</span> | <span class="built_in">UIUserNotificationTypeSound</span> | <span class="built_in">UIUserNotificationTypeAlert</span>);</div><div class="line"></div><div class="line"><span class="built_in">UIUserNotificationSettings</span> *mySettings = [<span class="built_in">UIUserNotificationSettings</span> settingsForTypes:types categories:<span class="literal">nil</span>];</div><div class="line"></div><div class="line">[[<span class="built_in">UIApplication</span> sharedApplication] registerUserNotificationSettings:mySettings];</div></pre></td></tr></table></figure></p>
-<h3 id="Registering-for-Remote-Notifications"><a href="#Registering-for-Remote-Notifications" class="headerlink" title="Registering for Remote Notifications"></a>Registering for Remote Notifications</h3><h3 id="Registering-Your-Actionable-Notification-Types"><a href="#Registering-Your-Actionable-Notification-Types" class="headerlink" title="Registering Your Actionable Notification Types"></a>Registering Your Actionable Notification Types</h3><h4 id="Defining-Your-Actionable-Notifications"><a href="#Defining-Your-Actionable-Notifications" class="headerlink" title="Defining Your Actionable Notifications"></a>Defining Your Actionable Notifications</h4><h4 id="Scheduling-an-Actionable-Notification"><a href="#Scheduling-an-Actionable-Notification" class="headerlink" title="Scheduling an Actionable Notification"></a>Scheduling an Actionable Notification</h4><h4 id="Handling-an-Actionable-Notification"><a href="#Handling-an-Actionable-Notification" class="headerlink" title="Handling an Actionable Notification"></a>Handling an Actionable Notification</h4><h3 id="Scheduling-Local-Notifications"><a href="#Scheduling-Local-Notifications" class="headerlink" title="Scheduling Local Notifications"></a>Scheduling Local Notifications</h3><h3 id="Handling-Local-and-Remote-Notifications"><a href="#Handling-Local-and-Remote-Notifications" class="headerlink" title="Handling Local and Remote Notifications"></a>Handling Local and Remote Notifications</h3><h3 id="Scheduling-Location-Based-Local-Notifications"><a href="#Scheduling-Location-Based-Local-Notifications" class="headerlink" title="Scheduling Location-Based Local Notifications"></a>Scheduling Location-Based Local Notifications</h3><h4 id="Registering-for-Location-Based-Local-Notifications"><a href="#Registering-for-Location-Based-Local-Notifications" class="headerlink" title="Registering for Location-Based Local Notifications"></a>Registering for Location-Based Local Notifications</h4><h4 id="Handling-Core-Location-Callbacks"><a href="#Handling-Core-Location-Callbacks" class="headerlink" title="Handling Core Location Callbacks"></a>Handling Core Location Callbacks</h4><h4 id="Handling-Location-Based-Local-Notifications"><a href="#Handling-Location-Based-Local-Notifications" class="headerlink" title="Handling Location-Based Local Notifications"></a>Handling Location-Based Local Notifications</h4><h3 id="Preparing-Custom-Alert-Sounds"><a href="#Preparing-Custom-Alert-Sounds" class="headerlink" title="Preparing Custom Alert Sounds"></a>Preparing Custom Alert Sounds</h3><h3 id="Passing-the-Provider-the-Current-Language-Preference-Remote-Notifications"><a href="#Passing-the-Provider-the-Current-Language-Preference-Remote-Notifications" class="headerlink" title="Passing the Provider the Current Language Preference (Remote Notifications)"></a>Passing the Provider the Current Language Preference (Remote Notifications)</h3><h2 id="Apple-Push-Notification-Service-1"><a href="#Apple-Push-Notification-Service-1" class="headerlink" title="Apple Push Notification Service"></a>Apple Push Notification Service</h2><h2 id="Provisioning-and-Development"><a href="#Provisioning-and-Development" class="headerlink" title="Provisioning and Development"></a>Provisioning and Development</h2><h2 id="The-Remote-Notification-Payload"><a href="#The-Remote-Notification-Payload" class="headerlink" title="The Remote Notification Payload"></a>The Remote Notification Payload</h2><h2 id="APNs-Provider-API"><a href="#APNs-Provider-API" class="headerlink" title="APNs Provider API"></a>APNs Provider API</h2><h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Binary-Provider-API"><a href="#Binary-Provider-API" class="headerlink" title="Binary Provider API"></a>Binary Provider API</h3><h3 id="Legacy-Notification-Format"><a href="#Legacy-Notification-Format" class="headerlink" title="Legacy Notification Format"></a>Legacy Notification Format</h3><h3 id="Document-Revision-History"><a href="#Document-Revision-History" class="headerlink" title="Document Revision History"></a>Document Revision History</h3>  
+<p>除了注册 app 的交互类型，也可以注册一个或多个 Category，用于辨认通知的目的。</p>
+<blockquote>
+<p>In addition to registering your app’s interaction types, apps can register one or more categories. Categories are supported for both local and remote notifications, and you use them to identify the purpose of the notification. Your iOS app can use the category identifier to decide how to handle the notification. In watchOS, categories are also used to customize the notification interface displayed to the user.</p>
+</blockquote>
+<p>从 iOS 8 开始，</p>
+<blockquote>
+<p>Starting in iOS 8, you can optionally create actionable notifications by registering custom actions for a notification type. When an actionable notification arrives, the system creates a button for each registered action and adds those buttons to the notification interface. These action buttons give the user a quick way to perform tasks related to the notification. For example, a remote notification for a meeting invite might offer actions to accept or decline the meeting. When the user taps one of your action buttons, the system notifies your app, giving you an opportunity to perform the corresponding task. For information about how to configure actionable notifications, see Registering Your Actionable Notification Types.</p>
+</blockquote>
+<p>app 第一次调用 <code>registerUserNotificationSettings:</code> 方法时，iOS 会提示用户是否要允许这些具体的交互（即是否允许应用程序图标小角标、展示消息或播放声音）。app 在随后的启动过程中，调用此方法时不会再提示用户是否允许交互设置了。当调用完此方法后，iOS 异步地传递该结果到 <code>application:didRegisterUserNotificationSettings:</code> 代理方法。第一次注册通知的设置时，iOS 等用户相应后再调用此方法，但是在接下来的调用中，就会直接返回已经存在的设置结果。</p>
+<p>注：<code>application:didRegisterUserNotificationSettings:</code> 方法可以返回用户在<strong>设置</strong>里关于该 app 的设置结果。<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// APP 每次冷启动时都会调用本方法，输出真实的通知允许状态(即设置里的通知开关状态)</span></div><div class="line">-(<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)application didRegisterUserNotificationSettings:(<span class="built_in">UIUserNotificationSettings</span> *)notificationSettings &#123;</div><div class="line">    <span class="built_in">NSString</span> *messageString = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"%@"</span>, notificationSettings];</div><div class="line">    <span class="built_in">UIAlertView</span> *alertView = [[<span class="built_in">UIAlertView</span> alloc] initWithTitle:<span class="string">@"通知"</span> message:messageString delegate:<span class="keyword">self</span> cancelButtonTitle:<span class="string">@"知道了"</span> otherButtonTitles:<span class="literal">nil</span>, <span class="literal">nil</span>];</div><div class="line">    [alertView show];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>The first time an app calls the <code>registerUserNotificationSettings:</code> method, iOS prompts the user to allow the specified interactions. On subsequent launches, calling this method does not prompt the user. After you call the method, iOS reports the results asynchronously to the <code>application:didRegisterUserNotificationSettings:</code> method of your app delegate. The first time you register your settings, iOS waits for the user’s response before calling this method, but on subsequent calls it returns the existing user settings.</p>
+</blockquote>
+<p>用户可以在<strong>设置</strong>里改变 app 通知的设置。</p>
+<blockquote>
+<p>The user can change the notification settings for your app at any time using the Settings app. Because settings can change, always call the <code>registerUserNotificationSettings:</code> at launch time and use the <code>application:didRegisterUserNotificationSettings:</code> method to get the response. If the user disallows specific notification types, avoid using those types when configuring local and remote notifications for your app.</p>
+</blockquote>
+<h3 id="Registering-for-Remote-Notifications"><a href="#Registering-for-Remote-Notifications" class="headerlink" title="Registering for Remote Notifications"></a>Registering for Remote Notifications</h3><p>app 要想接收远程通知，必须向 APNs 注册并获取相关的 deviceToken。iOS 8 以后的系统的注册包括以下步骤：</p>
+<ul>
+<li>注册通知的交互类型。</li>
+<li>调用 <code>registerForRemoteNotifications</code> 方法注册远程通知。</li>
+<li>用代理方法  <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code> 拿到 deviceToken，用 <code>application:didFailToRegisterForRemoteNotificationsWithError:</code> 方法处理错误情况。</li>
+<li>注册成功后，就可以向自己的产生通知内容的后台服务器发送 deviceToken 了。</li>
+</ul>
+<blockquote>
+<p>An app that wants to receive remote notifications must register with Apple Push Notification service (APNs) to get an appropriate device token. In iOS 8 and later, registration involves the following steps:</p>
+<ul>
+<li>Register your app’s supported interaction types as described in Registering Your iOS App’s Supported User Interaction Types.</li>
+<li>Call the <code>registerForRemoteNotifications</code> method to register your app for remote notifications. (In macOS, you use the registerForRemoteNotificationTypes: method to register your app’s interaction types and register for remote notifications in one step.)</li>
+<li>Use your app delegate’s <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code> method to receive the device token needed to deliver remote notifications. Use the <code>application:didFailToRegisterForRemoteNotificationsWithError:</code> method to process errors.</li>
+<li>If registration was successful, send the device token to the server you use to generate remote notifications.</li>
+</ul>
+</blockquote>
+<p>注：如果没有网络连接的话，<code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code> 和 <code>application:didFailToRegisterForRemoteNotificationsWithError:</code> 都不会被调用。</p>
+<blockquote>
+<p>If a cellular or Wi-Fi connection is not available, neither the <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code> method nor the <code>application:didFailToRegisterForRemoteNotificationsWithError:</code> method is called. For Wi-Fi connections, this sometimes occurs when the device cannot connect with APNs over the configured port. If this happens, the user can move to another Wi-Fi network that isn’t blocking the required port or, on an iPhone or iPad, wait until the cellular data service becomes available. In either case, the device should be able to make the connection, and then one of the delegate methods is called.</p>
+</blockquote>
+<p>deviceToken 是可以变化的，所以 app 每次启动时都要进行注册，并把获取的 deviceToken 发给自己的服务器。当用户恢复备份的数据到一个新设备或电脑时，或重装系统时，deviceToken 都是会发生变化的。所以，当迁移数据到一个新设备或电脑时，用户要在远程通知到来之前至少启动一次 app。</p>
+<blockquote>
+<p>The device token is your key to sending push notifications to your app on a specific device. Device tokens can change, so your app needs to reregister every time it is launched and pass the received token back to your server. If you fail to update the device token, remote notifications might not make their way to the user’s device. Device tokens always change when the user restores backup data to a new device or computer or reinstalls the operating system. When migrating data to a new device or computer, the user must launch your app once before remote notifications can be delivered to that device.</p>
+</blockquote>
+<p>不要缓存 deviceToken，而是每次需要 deviceToken 时都直接从系统上获取。如果你的 app 之前注册过远程通知，再次调用  <code>registerForRemoteNotifications</code>  方法不会引起额外的开支，iOS 会向你的代理返回已存的 deviceToken。另外，当 deviceToken 发生变化时就会调用代理方法，而不是仅当注册通知或重复注册时。</p>
+<blockquote>
+<p>Never cache a device token; always get the token from the system whenever you need it. If your app previously registered for remote notifications, calling the <code>registerForRemoteNotifications</code> method again does not incur any additional overhead, and iOS returns the existing device token to your app delegate immediately. In addition, iOS calls your delegate method any time the device token changes, not just in response to your app registering or re-registering.</p>
+</blockquote>
+<p>表 2-2 展示了如何给 iOS app 注册远程通知。当注册完 app 所支持的通知交互类型后，就会调用<strong>单例的 app 对象</strong>的 <code>registerForRemoteNotifications</code> 方法。一接收到 deviceToken 代理方法就会调用自定义的代码将该 deviceToken 传给自己的后台服务器。</p>
+<blockquote>
+<p>Listing 2-2 shows how to register for remote notifications in an iOS app. After registering the app’s supported action types, the method calls the <code>registerForRemoteNotifications</code> method of the shared app object. Upon receiving the device token, the delegate method calls custom code to deliver that token to its parent server. In macOS, the method you use to register your interaction types is different, but the delegate methods you use to process registration are similar.</p>
+</blockquote>
+<p>表 2-2<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)applicationDidFinishLaunching:(<span class="built_in">UIApplication</span> *)app &#123;</div><div class="line">    <span class="comment">// other setup tasks here....</span></div><div class="line">    </div><div class="line">    <span class="comment">// Register the supported interaction types.</span></div><div class="line">    <span class="built_in">UIUserNotificationType</span> types = <span class="built_in">UIUserNotificationTypeBadge</span> | <span class="built_in">UIUserNotificationTypeSound</span> | <span class="built_in">UIUserNotificationTypeAlert</span>;</div><div class="line">    <span class="built_in">UIUserNotificationSettings</span> *mySettings = [<span class="built_in">UIUserNotificationSettings</span> settingsForTypes:types categories:<span class="literal">nil</span>];</div><div class="line">    [[<span class="built_in">UIApplication</span> sharedApplication] registerUserNotificationSettings:mySettings];</div><div class="line">    </div><div class="line">    <span class="comment">// Register for remote notifications.</span></div><div class="line">    [[<span class="built_in">UIApplication</span> sharedApplication] registerForRemoteNotifications];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Handle remote notification registration.</span></div><div class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)app didRegisterForRemoteNotificationsWithDeviceToken:(<span class="built_in">NSData</span> *)devToken &#123;</div><div class="line">    <span class="keyword">const</span> <span class="keyword">void</span> *devTokenBytes = [devToken bytes];</div><div class="line">    <span class="keyword">self</span>.registered = <span class="literal">YES</span>;</div><div class="line">    [<span class="keyword">self</span> sendProviderDeviceToken:devTokenBytes]; <span class="comment">// 将 deviceToken 传给自己后台服务器的自定义方法</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)app didFailToRegisterForRemoteNotificationsWithError:(<span class="built_in">NSError</span> *)err &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Error in registration. Error: %@"</span>, err);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在<code>application:didFailToRegisterForRemoteNotificationsWithError:</code> 的实现里，应该适当地处理错误对象，并禁止掉与远程通知相关的任何方面。因为通知有可能不能送达，所以最好是适当地降低风险，避免任何不必要的处理和展示这些通知的工作。</p>
+<blockquote>
+<p>In your <code>application:didFailToRegisterForRemoteNotificationsWithError:</code> implementation, you should process the error object appropriately and disable any features related to remote notifications. Because notifications are not going to be arriving anyway, it is usually better to degrade gracefully and avoid any unnecessary work needed to process or display those notifications.</p>
+</blockquote>
+<p>可控的通知可以让你在你的本地或远程通知的标准 iOS 界面上增加自定义的控制按钮。可控的通知可以让用户简单快捷地执行相关操作来回复通知。在 iOS 8 之前用户只有一种默认的通知控制。iOS 8 及以后的系统中，锁屏、通知状态栏和通知中心的通知入口可以展示一到两个自定义控制。模式警告可以展示4个。当用户选择一种自定义的控制时，iOS 会通知你的 app，这样你就可以通过该控制来执行操作。</p>
+<blockquote>
+<p>Actionable notifications let you add custom action buttons to the standard iOS interfaces for local and push notifications. Actionable notifications give the user a quick and easy way to perform relevant tasks in response to a notification. Prior to iOS 8, user notifications had only one default action. In iOS 8 and later, the lock screen, notification banners, and notification entries in Notification Center can display one or two custom actions. Modal alerts can display up to four. When the user selects a custom action, iOS notifies your app so that you can perform the task associated with that action.</p>
+</blockquote>
+<h3 id="Registering-Your-Actionable-Notification-Types"><a href="#Registering-Your-Actionable-Notification-Types" class="headerlink" title="Registering Your Actionable Notification Types"></a>Registering Your Actionable Notification Types</h3><blockquote>
+<p>The configuration of custom actions depends on defining one or more categories for your notifications. Each category represents a type of notification that your app might receive, and you are responsible for defining the categories your app supports. For each category, you define the actions that a user might take when receiving a notification of that type. You then register your categories and actions with iOS using the same registerUserNotificationSettings: method you use to register the interaction types your app supports.</p>
+<p>Each custom action consists of a button title and the information that iOS needs to notify your app when the action is selected. To create an action, create an instance of the UIMutableUserNotificationAction class and configure its properties appropriately. Listing 2-3 shows a code snippet for creating a single “accept” action. You create separate action objects for distinct action your app supports.</p>
+</blockquote>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIMutableUserNotificationAction</span> *acceptAction = [[<span class="built_in">UIMutableUserNotificationAction</span> alloc] init];</div><div class="line"></div><div class="line"><span class="comment">// The identifier that you use internally to handle the action.</span></div><div class="line">acceptAction.identifier = <span class="string">@"ACCEPT_IDENTIFIER"</span>;</div><div class="line"></div><div class="line"><span class="comment">// The localized title of the action button.</span></div><div class="line">acceptAction.title = <span class="string">@"Accept"</span>;</div><div class="line"></div><div class="line"><span class="comment">// Specifies whether the app must be in the foreground to perform the action.</span></div><div class="line">acceptAction.activationMode = <span class="built_in">UIUserNotificationActivationModeBackground</span>;</div><div class="line"></div><div class="line"><span class="comment">// Destructive actions are highlighted appropriately to indicate their nature.</span></div><div class="line">acceptAction.destructive = <span class="literal">NO</span>;</div><div class="line"></div><div class="line"><span class="comment">// Indicates whether user authentication is required to perform the action.</span></div><div class="line">acceptAction.authenticationRequired = <span class="literal">NO</span>;</div></pre></td></tr></table></figure>
+<h4 id="Defining-Your-Actionable-Notifications"><a href="#Defining-Your-Actionable-Notifications" class="headerlink" title="Defining Your Actionable Notifications"></a>Defining Your Actionable Notifications</h4><h4 id="Scheduling-an-Actionable-Notification"><a href="#Scheduling-an-Actionable-Notification" class="headerlink" title="Scheduling an Actionable Notification"></a>Scheduling an Actionable Notification</h4><h4 id="Handling-an-Actionable-Notification"><a href="#Handling-an-Actionable-Notification" class="headerlink" title="Handling an Actionable Notification"></a>Handling an Actionable Notification</h4><h3 id="Scheduling-Local-Notifications"><a href="#Scheduling-Local-Notifications" class="headerlink" title="Scheduling Local Notifications"></a>Scheduling Local Notifications</h3><p>在 iOS 系统中，创建一个 UILocalNotification 对象并用 UIApplication 的 <code>scheduleLocalNotification:</code> 方法来安排传送。</p>
+<blockquote>
+<p>In iOS, you create a UILocalNotification object and schedule its delivery using the <code>scheduleLocalNotification:</code> method of UIApplication. In macOS, you create an NSUserNotification object (which includes a delivery time) and the NSUserNotificationCenter is responsible for delivering it appropriately. (A macOS app can also adopt the NSUserNotificationCenterDelegate protocol to customize the behavior of the default NSUserNotificationCenter object.)</p>
+<p>Creating and scheduling local notifications in iOS requires that you perform the following steps:</p>
+<ol>
+<li>In iOS 8 and later, register for notification types, as described in Registering Your iOS App’s Supported User Interaction Types. (In macOS and earlier versions of iOS, you need register only for remote notifications.) If you already registered notification types, call currentUserNotificationSettings to get the types of notifications the user accepts from your app.</li>
+<li>Allocate and initialize a UILocalNotification object.</li>
+<li>Set the date and time that the operating system should deliver the notification. This is the fireDate property.If you set the timeZone property to the NSTimeZone object for the current locale, the system automatically adjusts the fire date when the device travels across (and is reset for) different time zones. (Time zones affect the values of date components—that is, day, month, hour, year, and minute—that the system calculates for a given calendar and date value.) You can also schedule the notification for delivery on a recurring basis (daily, weekly, monthly, and so on).</li>
+<li>As appropriate, configure an alert, icon badge, or sound so that the notification can be delivered to users according to their preferences. (To learn about when different notification types are appropriate, see Notifications.)<ul>
+<li>An alert has a property for the message (the alertBody property) and for the title of the action button or slider (alertAction). Specify strings that are localized for the user’s current language preference. If your notifications can be displayed on Apple Watch, assign a value to the alertTitle property.</li>
+<li>To display a number in a badge on the app icon, use the applicationIconBadgeNumber property.</li>
+<li>To play a sound, assign a sound to the soundName property. You can assign the filename of a nonlocalized custom sound in the app’s main bundle (or data container) or you can assign UILocalNotificationDefaultSoundName to get the default system sound. A sound should always accompany the display of an alert message or the badging of an icon; a sound should not be played in the absence of other notification types.</li>
+</ul>
+</li>
+<li>Optionally, you can attach custom data to the notification through the userInfo property. For example, a notification that’s sent when a CloudKit record changes includes the identifier of the record, so that a handler can get the record and update it.</li>
+<li>Optionally, in iOS 8 and later, your local notification can present custom actions that your app can perform in response to user interaction, as described in Registering Your Actionable Notification Types.</li>
+<li>Schedule the local notification for delivery.You schedule a local notification by calling scheduleLocalNotification:. The app uses the fire date specified in the UILocalNotification object for the moment of delivery. Alternatively, you can present the notification immediately by calling the presentLocalNotificationNow: method.</li>
+</ol>
+</blockquote>
+<h3 id="Handling-Local-and-Remote-Notifications"><a href="#Handling-Local-and-Remote-Notifications" class="headerlink" title="Handling Local and Remote Notifications"></a>Handling Local and Remote Notifications</h3><p>让我们回顾一下当通知到达时的可能场景。</p>
+<blockquote>
+<p>Let’s review the possible scenarios that can arise when the system delivers a local notification or a remote notification for an app.</p>
+</blockquote>
+<p><strong>通知到达时 app 没有在前台。</strong>这种情况下，系统呈现通知，可能包括展示信息、应用程序图标小角标、播放声音、展示一个或多个控制按钮供用户点击。</p>
+<blockquote>
+<p><strong>The notification is delivered when the app isn’t running in the foreground.</strong> In this case, the system presents the notification, displaying an alert, badging an icon, perhaps playing a sound, and perhaps displaying one or more action buttons for the user to tap.</p>
+</blockquote>
+<p><strong>用户点击了一个 iOS 8 通知的自定义的控制按钮。</strong>这种情况下，iOS 调用 <code>application:handleActionWithIdentifier:forRemoteNotification:completionHandler:</code> 或 <code>application:handleActionWithIdentifier:forLocalNotification:completionHandler:</code>。</p>
+<blockquote>
+<p><strong>The user taps a custom action button in an iOS 8 notification.</strong> In this case, iOS calls either <code>application:handleActionWithIdentifier:forRemoteNotification:completionHandler:</code> or <code>application:handleActionWithIdentifier:forLocalNotification:completionHandler:</code>. In both methods, you get the identifier of the action so that you can determine which button the user tapped. You also get either the remote or local notification object, so that you can retrieve any information you need to handle the action.</p>
+</blockquote>
+<p><strong>用户点击了通知消息的默认按钮或点击了 app 的图标</strong></p>
+<blockquote>
+<p><strong>The user taps the default button in the alert or taps (or clicks) the app icon.</strong> If the default action button is tapped (on a device running iOS), the system launches the app and the app calls its delegate’s application:didFinishLaunchingWithOptions: method, passing in the notification payload (for remote notifications) or the local-notification object (for local notifications). Although application:didFinishLaunchingWithOptions: isn’t the best place to handle the notification, getting the payload at this point gives you the opportunity to start the update process before your handler method is called.</p>
+<p>For remote notifications, the system also calls the application:didReceiveRemoteNotification:fetchCompletionHandler: method of the app delegate.</p>
+<p>If the app icon is clicked on a computer running macOS, the app calls the delegate’s applicationDidFinishLaunching: method in which the delegate can obtain the remote-notification payload. If the app icon is tapped on a device running iOS, the app calls the same method, but furnishes no information about the notification.</p>
+</blockquote>
+<p><strong>通知到达时 app 运行在前台</strong></p>
+<blockquote>
+<p><strong>The notification is delivered when the app is running in the foreground.</strong> The app calls the application:didReceiveRemoteNotification:fetchCompletionHandler: or application:didReceiveLocalNotification: method of the app delegate. (If application:didReceiveRemoteNotification:fetchCompletionHandler: isn’t implemented, the system calls application:didReceiveRemoteNotification:.) In macOS, the system calls application:didReceiveRemoteNotification:.</p>
+<p>n app can use the passed-in remote-notification payload or, in iOS, the UILocalNotification object to help set the context for processing the item related to the notification. Ideally, the delegate does the following on each platform to handle the delivery of remote and local notifications in all situations:</p>
+<ul>
+<li>For macOS, the delegate should adopt the NSApplicationDelegate protocol and implement the application:didReceiveRemoteNotification: method.</li>
+<li>For iOS, the delegate should should adopt the UIApplicationDelegate protocol and implement the application:didReceiveRemoteNotification:fetchCompletionHandler: or application:didReceiveLocalNotification: methods. To handle notification actions, implement the application:handleActionWithIdentifier:forLocalNotification:completionHandler: or application:handleActionWithIdentifier:forRemoteNotification:completionHandler: methods.</li>
+</ul>
+<p>The delegate for an iOS app in Listing 2-11 implements the application:didFinishLaunchingWithOptions: method to handle a local notification. It gets the associated UILocalNotification object from the launch-options dictionary using the UIApplicationLaunchOptionsLocalNotificationKey key. From the UILocalNotification object’s userInfo dictionary, it accesses the to-do item that is the reason for the notification and uses it to set the app’s initial context. As shown in this example, you might appropriately reset the badge number on the app icon—or remove it if there are no outstanding items—as part of handling the notification.</p>
+</blockquote>
+<p>Listing 2-11  Handling a local notification when an app is launched<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)app didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</div><div class="line">    <span class="built_in">UILocalNotification</span> *localNotif = [launchOptions objectForKey:<span class="built_in">UIApplicationLaunchOptionsLocalNotificationKey</span>];</div><div class="line">    <span class="keyword">if</span> (localNotif) &#123;</div><div class="line">        <span class="built_in">NSString</span> *itemName = [localNotif.userInfo objectForKey:ToDoItemKey];</div><div class="line">        [viewController displayItem:itemName];  <span class="comment">// custom method</span></div><div class="line">        app.applicationIconBadgeNumber = localNotif.applicationIconBadgeNumber<span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">    [window addSubview:viewController.view];</div><div class="line">    [window makeKeyAndVisible];</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>The implementation for a remote notification would be similar, except that you would use a specially declared constant in each platform as a key to access the notification payload:</p>
+<ul>
+<li>In iOS, the delegate, in its implementation of the application:didFinishLaunchingWithOptions: method, uses the UIApplicationLaunchOptionsRemoteNotificationKey key to access the payload from the launch-options dictionary.</li>
+<li>In macOS, the delegate, in its implementation of the applicationDidFinishLaunching: method, uses the NSApplicationLaunchRemoteNotificationKey key to access the payload dictionary from the userInfo dictionary of the NSNotification object that is passed into the method.<br>The payload itself is an NSDictionary object that contains the elements of the notification—alert message, badge number, sound, and so on. It can also contain custom data the app can use to provide context when setting up the initial user interface. See The Remote Notification Payload for details about the remote-notification payload.</li>
+</ul>
+<p>Important: Delivery of remote notifications is not guaranteed, so you should not use the notification payload to deliver sensitive data or data that can’t be retrieved by other means.<br>One example of an appropriate usage for a custom payload property is a string identifying an email account from which messages are downloaded to an email client; the app can incorporate this string in its download user-interface. Another example of custom payload property is a timestamp for when the provider first sent the notification; the client app can use this value to gauge how old the notification is.</p>
+<p>When handling remote notifications in your notification handling methods, the app delegate might perform a major additional task. Just after the app launches, the delegate should connect with its provider and fetch the waiting data.<br>Note: A client app should always communicate with its provider asynchronously or on a secondary thread.<br>The code in Listing 2-12 shows an implementation of the application:didReceiveLocalNotification: method which is called when app is running in the foreground. Here the app delegate does the same work as it does in Listing 2-11. It can access the UILocalNotification object directly this time because this object is an argument of the method.</p>
+</blockquote>
+<p>Listing 2-12  Handling a local notification when an app is already running<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)application:(<span class="built_in">UIApplication</span> *)app didReceiveLocalNotification:(<span class="built_in">UILocalNotification</span> *)notif &#123;</div><div class="line">    <span class="built_in">NSString</span> *itemName = [notif.userInfo objectForKey:ToDoItemKey];</div><div class="line">    [viewController displayItem:itemName];  <span class="comment">// custom method</span></div><div class="line">    app.applicationIconBadgeNumber = notification.applicationIconBadgeNumber - <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>If you want your app to catch remote notifications that the system delivers while it is running in the foreground, the app delegate must implement the application:didReceiveRemoteNotification:fetchCompletionHandler: method. The delegate should begin the procedure for downloading the waiting data, message, or other item and, after this concludes, it should remove the badge from the app icon. The dictionary passed in the second parameter of this method is the notification payload; you should not use any custom properties it contains to alter your app’s current context.</p>
+</blockquote>
+<h3 id="Scheduling-Location-Based-Local-Notifications"><a href="#Scheduling-Location-Based-Local-Notifications" class="headerlink" title="Scheduling Location-Based Local Notifications"></a>Scheduling Location-Based Local Notifications</h3><h4 id="Registering-for-Location-Based-Local-Notifications"><a href="#Registering-for-Location-Based-Local-Notifications" class="headerlink" title="Registering for Location-Based Local Notifications"></a>Registering for Location-Based Local Notifications</h4><h4 id="Handling-Core-Location-Callbacks"><a href="#Handling-Core-Location-Callbacks" class="headerlink" title="Handling Core Location Callbacks"></a>Handling Core Location Callbacks</h4><h4 id="Handling-Location-Based-Local-Notifications"><a href="#Handling-Location-Based-Local-Notifications" class="headerlink" title="Handling Location-Based Local Notifications"></a>Handling Location-Based Local Notifications</h4><h3 id="Preparing-Custom-Alert-Sounds"><a href="#Preparing-Custom-Alert-Sounds" class="headerlink" title="Preparing Custom Alert Sounds"></a>Preparing Custom Alert Sounds</h3><h3 id="Passing-the-Provider-the-Current-Language-Preference-Remote-Notifications"><a href="#Passing-the-Provider-the-Current-Language-Preference-Remote-Notifications" class="headerlink" title="Passing the Provider the Current Language Preference (Remote Notifications)"></a>Passing the Provider the Current Language Preference (Remote Notifications)</h3><h2 id="Apple-Push-Notification-Service-1"><a href="#Apple-Push-Notification-Service-1" class="headerlink" title="Apple Push Notification Service"></a>Apple Push Notification Service</h2><h2 id="Provisioning-and-Development"><a href="#Provisioning-and-Development" class="headerlink" title="Provisioning and Development"></a>Provisioning and Development</h2><h2 id="The-Remote-Notification-Payload"><a href="#The-Remote-Notification-Payload" class="headerlink" title="The Remote Notification Payload"></a>The Remote Notification Payload</h2><h2 id="APNs-Provider-API"><a href="#APNs-Provider-API" class="headerlink" title="APNs Provider API"></a>APNs Provider API</h2><h2 id="Appendix"><a href="#Appendix" class="headerlink" title="Appendix"></a>Appendix</h2><h3 id="Binary-Provider-API"><a href="#Binary-Provider-API" class="headerlink" title="Binary Provider API"></a>Binary Provider API</h3><h3 id="Legacy-Notification-Format"><a href="#Legacy-Notification-Format" class="headerlink" title="Legacy Notification Format"></a>Legacy Notification Format</h3><h3 id="Document-Revision-History"><a href="#Document-Revision-History" class="headerlink" title="Document Revision History"></a>Document Revision History</h3>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -242,6 +367,14 @@ Key-value Obs">
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/09/28/2016_09_28_NSLog/" title="NSLog 使用总结">
+  <strong>上一篇：</strong><br/>
+  <span>
+  NSLog 使用总结</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2016/09/21/2016_09_21_DataPersistence/"  title="数据化持久技术">
@@ -260,17 +393,17 @@ Key-value Obs">
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#About-Local-and-Remote-Notifications"><span class="toc-number">1.</span> <span class="toc-text">About Local and Remote Notifications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Notifications-的分类"><span class="toc-number">1.1.</span> <span class="toc-text">Notifications 的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Notifications"><span class="toc-number">1.2.</span> <span class="toc-text">User Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#At-a-Glance"><span class="toc-number">1.3.</span> <span class="toc-text">At a Glance</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Local-notifications-和-Remote-notifications-的区别"><span class="toc-number">1.3.1.</span> <span class="toc-text">Local notifications 和 Remote notifications 的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Registering-Scheduling-and-Handling-User-Notifications"><span class="toc-number">1.3.2.</span> <span class="toc-text">Registering, Scheduling, and Handling User Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Apple-Push-Notification-Service"><span class="toc-number">1.3.3.</span> <span class="toc-text">Apple Push Notification Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Security-Credentials-for-Remote-Notifications"><span class="toc-number">1.3.4.</span> <span class="toc-text">Security Credentials for Remote Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Prerequisites"><span class="toc-number">1.3.5.</span> <span class="toc-text">Prerequisites</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-and-Remote-Notifications-in-Depth"><span class="toc-number">2.</span> <span class="toc-text">Local and Remote Notifications in Depth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Registering-Scheduling-and-Handling-User-Notifications-1"><span class="toc-number">3.</span> <span class="toc-text">Registering, Scheduling, and Handling User Notifications</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Registering-Your-iOS-App’s-Supported-User-Interaction-Types"><span class="toc-number">3.1.</span> <span class="toc-text">Registering Your iOS App’s Supported User Interaction Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Registering-for-Remote-Notifications"><span class="toc-number">3.2.</span> <span class="toc-text">Registering for Remote Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Registering-Your-Actionable-Notification-Types"><span class="toc-number">3.3.</span> <span class="toc-text">Registering Your Actionable Notification Types</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Defining-Your-Actionable-Notifications"><span class="toc-number">3.3.1.</span> <span class="toc-text">Defining Your Actionable Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scheduling-an-Actionable-Notification"><span class="toc-number">3.3.2.</span> <span class="toc-text">Scheduling an Actionable Notification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handling-an-Actionable-Notification"><span class="toc-number">3.3.3.</span> <span class="toc-text">Handling an Actionable Notification</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduling-Local-Notifications"><span class="toc-number">3.4.</span> <span class="toc-text">Scheduling Local Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-Local-and-Remote-Notifications"><span class="toc-number">3.5.</span> <span class="toc-text">Handling Local and Remote Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduling-Location-Based-Local-Notifications"><span class="toc-number">3.6.</span> <span class="toc-text">Scheduling Location-Based Local Notifications</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Registering-for-Location-Based-Local-Notifications"><span class="toc-number">3.6.1.</span> <span class="toc-text">Registering for Location-Based Local Notifications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handling-Core-Location-Callbacks"><span class="toc-number">3.6.2.</span> <span class="toc-text">Handling Core Location Callbacks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handling-Location-Based-Local-Notifications"><span class="toc-number">3.6.3.</span> <span class="toc-text">Handling Location-Based Local Notifications</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Preparing-Custom-Alert-Sounds"><span class="toc-number">3.7.</span> <span class="toc-text">Preparing Custom Alert Sounds</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Passing-the-Provider-the-Current-Language-Preference-Remote-Notifications"><span class="toc-number">3.8.</span> <span class="toc-text">Passing the Provider the Current Language Preference (Remote Notifications)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple-Push-Notification-Service-1"><span class="toc-number">4.</span> <span class="toc-text">Apple Push Notification Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Provisioning-and-Development"><span class="toc-number">5.</span> <span class="toc-text">Provisioning and Development</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Remote-Notification-Payload"><span class="toc-number">6.</span> <span class="toc-text">The Remote Notification Payload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APNs-Provider-API"><span class="toc-number">7.</span> <span class="toc-text">APNs Provider API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Appendix"><span class="toc-number">8.</span> <span class="toc-text">Appendix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Binary-Provider-API"><span class="toc-number">8.1.</span> <span class="toc-text">Binary Provider API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Legacy-Notification-Format"><span class="toc-number">8.2.</span> <span class="toc-text">Legacy Notification Format</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Document-Revision-History"><span class="toc-number">8.3.</span> <span class="toc-text">Document Revision History</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -278,7 +411,7 @@ Key-value Obs">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -298,7 +431,7 @@ Key-value Obs">
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>14</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>16</sup></a></li>
 		  
 		
 		</ul>
@@ -307,7 +440,7 @@ Key-value Obs">
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -315,7 +448,7 @@ Key-value Obs">
 			
 		
 			
-				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -331,11 +464,15 @@ Key-value Obs">
 			
 		
 			
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
 			
 		
 			
@@ -348,10 +485,6 @@ Key-value Obs">
 		
 			
 				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -379,7 +512,15 @@ Key-value Obs">
 			
 		
 			
+				<li><a href="/tags/NSLog/" title="NSLog">NSLog<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -589,7 +730,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

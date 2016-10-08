@@ -40,7 +40,7 @@
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -56,7 +56,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -74,6 +74,239 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/08/20/2015_08_20_DelegateForDatapass/" title="用委托在视图间传递消息的经典范例" itemprop="url">用委托在视图间传递消息的经典范例</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-08-20T06:50:28.000Z" itemprop="datePublished"> Published 2016-08-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>iOS中视图间数据传递的方式常有的有如下几种：</p>
+<ol>
+<li>采用代理模式</li>
+<li>采用iOS消息机制</li>
+<li>使用文件，NSUserdefault或者数据库来传递</li>
+<li>通过AppDelegate定义全局变量（或者使用UIApplication、定义一个单例类等）</li>
+<li>通过控制器属性传递</li>
+</ol>
+<p>今天我们主要采用第一种方式进行数据传递，这在iOS开发中也是最常见的一种多视图传参方式。使用代理方式传递参数的步骤如下：</p>
+<ol>
+<li>定义协议，协议中定义好传参时所需要的方法</li>
+<li>目标视图控制器定义一个代理对象</li>
+<li>源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</li>
+<li>需要传参的时候在目标窗口调用代理的协议方法</li>
+</ol>
+<p>本例的操作如下所示：<br>一个界面为主视图，点击绿色的Button会Modal出第二个视图，在第二个视图的文本框里输入数据，并点击绿色的Button，会返回到主视图，并且把在第二个视图中输入的数据显示到主视图的文本框里，从而实现了参数跨视图传递；</p>
+<p><img src="/images/2015_08_20_DelegateForDatapass1.png" width="32%">  <img src="/images/2015_08_20_DelegateForDatapass2.png" width="32%">  <img src="/images/2015_08_20_DelegateForDatapass3.png" width="32%"><br><!--![图片1](/images/2015_08_20_DelegateForDatapass1.png)
+![图片2](/images/2015_08_20_DelegateForDatapass2.png =240x426)
+![图片3](/images/2015_08_20_DelegateForDatapass3.png =240x426)--></p>
+<p>整个程序的文件组织形式如下图所示：<br><img src="/images/2015_08_20_DelegateForDatapass4.png" width="33%"><br><!--![图片4](/images/2015_08_20_DelegateForDatapass4.png =260x374)--></p>
+<h2 id="定义协议，协议中定义好传参时所需要的方法"><a href="#定义协议，协议中定义好传参时所需要的方法" class="headerlink" title="定义协议，协议中定义好传参时所需要的方法"></a>定义协议，协议中定义好传参时所需要的方法</h2><p>其中定义协议的文件为：<code>UIViewPassValueDelegate.h</code>。</p>
+<p><strong>UIViewPassValueDelegate.h</strong>的源代码为：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span></span></div><div class="line"></div><div class="line"><span class="comment">// 本方法为传参时所需要的方法</span></div><div class="line">- (<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<h2 id="源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"><a href="#源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身" class="headerlink" title="源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身"></a>源视图控制器实现协议，并在初始化目标控制器时指定目标控制器的代理为其自身</h2><p>源视图控制器就是这里的“主视图控制器”，在主视图控制器的实现文件中实现了该协议方法。其中主视图的相关文件为：<code>JJMainViewController.h</code>、<code>JJMainViewController.m</code>和<code>Main.storyboard</code>。</p>
+<p>源代码分别为：</p>
+<p><strong>JJMainViewController.h</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="comment">// 导入协议文件的头文件</span></div><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="comment">// 遵守协议</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJMainViewController</span> : <span class="title">UIViewController</span> &lt;<span class="title">UIViewPassValueDelegate</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">// 本属性为主界面上用来接收另一个视图传递过来的数据</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *valueField;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>JJMainViewController.m</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JJMainViewController.h"</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"JJAnotherViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">JJMainViewController</span> </span></div><div class="line"></div><div class="line"><span class="comment">// 主视图遵守了委托协议，并实现了委托方法，本方法把另一个视图里的数据传递过来</span></div><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value &#123;</div><div class="line">    <span class="keyword">self</span>.valueField.text = value;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)clickButton:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    </div><div class="line">    JJAnotherViewController *antherVC = [[JJAnotherViewController alloc] init];</div><div class="line">    </div><div class="line">    <span class="comment">// 把主视图设为另一个视图的委托对象</span></div><div class="line">    antherVC.delegate = <span class="keyword">self</span>;</div><div class="line">    </div><div class="line">    <span class="comment">// 点击了主视图的Button后Modal到另一个视图</span></div><div class="line">    [<span class="keyword">self</span> presentViewController:antherVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<h2 id="目标视图控制器定义一个代理对象"><a href="#目标视图控制器定义一个代理对象" class="headerlink" title="目标视图控制器定义一个代理对象"></a>目标视图控制器定义一个代理对象</h2><p>这里的目标视图就是本例子中的“另一个视图”。另一个视图的文件为：<code>JJAnotherViewController.h</code>、<code>JJAnotherViewController.m</code>和<code>JJAnotherViewController.xib</code>。</p>
+<p>源代码分别为：</p>
+<p><strong>JJAnotherViewController.h</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJAnotherViewController</span> : <span class="title">UIViewController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *value;</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;<span class="built_in">UIViewPassValueDelegate</span>&gt; delegate;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>JJAnotherViewController.m</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"JJAnotherViewController.h"</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">JJAnotherViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)backButton:(<span class="keyword">id</span>)sender &#123;</div><div class="line">    </div><div class="line">    <span class="comment">// 需要传参的时候在目标窗口调用代理的协议方法</span></div><div class="line">    [<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.value.text];</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span> dismissViewControllerAnimated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p>综上，我们来重新将上述过程总结成大白话。为了能把目标视图里的数据通过委托协议传递给主视图，其过程如下：</p>
+<ol>
+<li>定义协议，协议中声明了一个方法，该方法用于把目标视图里的数据传递给源视图；</li>
+<li>分别创建源视图和目标视图的控制器，并搭建好各自的界面；</li>
+<li>在目标视图控制器的头文件里导入协议头文件，并定义一个用来存储待传递的数据的属性，和一个代理属性；</li>
+<li>在目标视图控制器的实现文件里调用其代理属性的协议方法，并把待传的数据作为参数传入该方法；</li>
+<li>让源视图控制器成为目标视图控制器的代理对象，从而源视图就可以接收来自目标视图的数据了，方法是：<ol>
+<li>在源视图控制器的头文件里导入协议文件的头文件；</li>
+<li>在源视图控制器的头文件里遵守协议，即用尖括号声明；</li>
+<li>实现协议方法，在协议方法里接收来自目标视图的数据。参数由该协议方法的参数传递过来；</li>
+</ol>
+</li>
+</ol>
+<p>注：</p>
+<ul>
+<li><p>协议：本例中的<em>UIViewPassValueDelegate.h</em></p>
+</li>
+<li><p>协议方法：本例中的<em>- (void)passValue:(NSString \</em>)value*</p>
+</li>
+<li><p>源视图：本例中的<em>JJMainViewController</em></p>
+</li>
+<li><p>目标视图：本例中的<em>JJAnotherViewController</em></p>
+</li>
+<li><p>待传递的数据：本例中的目标视图里的文本框里输入的数据</p>
+</li>
+<li><p>为了防止循环引用代理属性的标识符应为assign，为了让各种对象都能成为本对象的代理对象其类型应为id</p>
+</li>
+</ul>
+<h3 id="进一步抽取"><a href="#进一步抽取" class="headerlink" title="进一步抽取"></a>进一步抽取</h3><p><strong>关键步骤一：</strong>定义协议，协议中定义好可以用来传参的方法，本协议也可以直接定义到主视图控制器的.h文件里<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span></span></div><div class="line"></div><div class="line"><span class="comment">// 本方法为传参时所需要的方法</span></div><div class="line">- (<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤二：</strong>在主视图控制器的.m文件中把本控制器的对象设为代理对象<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">JJAnotherViewController *antherVC = [[JJAnotherViewController alloc] init];</div><div class="line"></div><div class="line">antherVC.delegate = <span class="keyword">self</span>;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤三：</strong>同时，在主视图控制器的.m文件中实现协议方法<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value &#123;</div><div class="line">    <span class="keyword">self</span>.valueField.text = value;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤四：</strong>在另一个视图控制器的.h文件中引入协议，并定义代理属性<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">"UIViewPassValueDelegate.h"</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="keyword">id</span> &lt;<span class="built_in">UIViewPassValueDelegate</span>&gt; delegate;</div><div class="line"></div><div class="line">若代理协议是在“主视图控制器”的.h文件中定义的，则本步骤的代码如下方式：</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">UIViewPassValueDelegate</span>;</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) <span class="keyword">id</span>&lt;KCMainDelegate&gt; delegate;</div></pre></td></tr></table></figure></p>
+<p><strong>关键步骤五：</strong>最后，在另一个视图控制器的.m文件中调用代理属性的协议方法传递参数</p>
+<pre><code class="objc">[<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.value.text];
+</code></pre>
+<h2 id="参考网址"><a href="#参考网址" class="headerlink" title="参考网址"></a>参考网址</h2><ol>
+<li><p><a href="http://www.cnblogs.com/kenshincui/p/3940746.html#autoid-4-0-0" target="_blank" rel="external">iOS开发系列–视图切换</a></p>
+</li>
+<li><p><a href="http://www.cnblogs.com/heri/archive/2013/03/18/2965815.html" target="_blank" rel="external">ios页面间传递参数四种方式</a>    </p>
+</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Delegate/">Delegate</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/08/20/2015_08_20_DelegateForDatapass/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/08/20/2015_08_20_DelegateForDatapass/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/07/12/2016_07_12_GitNote/" title="Git 学习笔记" itemprop="url">Git 学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-07-11T16:00:00.000Z" itemprop="datePublished"> Published 2016-07-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="一张图读懂-Git"><a href="#一张图读懂-Git" class="headerlink" title="一张图读懂 Git"></a>一张图读懂 Git</h2><p><strong><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000" target="_blank" rel="external">工作区和暂存区的概念 – 廖雪峰</a></strong></p>
+<p><img src="/images/2016071201_git_learn_note_00.png" alt="2016071201_git_learn_note_00"></p>
+<h2 id="Git-常用命令"><a href="#Git-常用命令" class="headerlink" title="Git 常用命令"></a>Git 常用命令</h2><p><strong><a href="http://www.ruanyifeng.com/blog/2014/06/git_remote.html" target="_blank" rel="external">Git远程操作详解 – 阮一峰</a></strong></p>
+<ul>
+<li><code>git clone &lt;git地址&gt;</code>：本地没有repository时，将远程repository整个下载过来。</li>
+<li><code>git pull</code>：本地有repository，将远程repository里新的commit数据(如有的话)下载过来，并且与本地代码merge。</li>
+<li><code>git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;</code>：用于将本地分支的更新，推送到远程主机。如果省略远程分支名，则表示将本地分支推送与之存在”追踪关系”的远程分支（通常两者同名），如果该远程分支不存在，则会被新建。eg：<code>git push origin master</code></li>
+<li><code>git fetch</code>：将远程仓库的更新同步到本地</li>
+<li><p><code>git pull</code>：取回远程仓库某个分支的更新，再与本地的指定分支合并</p>
+</li>
+<li><p>查看分支：<code>git branch</code></p>
+</li>
+<li>创建分支：<code>git branch &lt;name&gt;</code></li>
+<li>切换分支：<code>git checkout &lt;name&gt;</code></li>
+<li>创建+切换分支：<code>git checkout -b &lt;name&gt;</code></li>
+<li>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></li>
+<li><p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+</li>
+<li><p>创建一个与本地分支同名的远程分支：</p>
+<p>  $ git push origin &lt;本地分支名&gt; </p>
+</li>
+</ul>
+<p><strong><a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用 Git 命令清单 – 阮一峰</a></strong></p>
+<h2 id="分支的创建、合并、删除图示"><a href="#分支的创建、合并、删除图示" class="headerlink" title="分支的创建、合并、删除图示"></a>分支的创建、合并、删除图示</h2><p><strong><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000" target="_blank" rel="external">分支的创建、合并、删除图示 – 廖雪峰</a></strong></p>
+<p>假设原来只有 master 分支 ↓ ：<br><img src="/images/2016071201_git_learn_note_01.png" alt="2016071201_git_learn_note_01"></p>
+<p>创建一个叫 dev 的新分支，并切换到该分支上 ↓ ：<code>git checkout -b dev</code><br><img src="/images/2016071201_git_learn_note_02.png" alt="2016071201_git_learn_note_02"></p>
+<p>在 dev 分支上进行一次提交 ↓ ：<code>git commit -m &quot;在dev分支上提交更改&quot;</code><br><img src="/images/2016071201_git_learn_note_03.png" alt="2016071201_git_learn_note_03"></p>
+<p>把 dev 合并到 master 上 ↓ ：<code>git merge dev</code><br><img src="/images/2016071201_git_learn_note_04.png" alt="2016071201_git_learn_note_04"></p>
+<p>删除 dev 分支 ↓ ：<code>git branch -d dev</code><br><img src="/images/2016071201_git_learn_note_05.png" alt="2016071201_git_learn_note_05"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong><code>master：</code></strong>主分支；</li>
+<li><strong><code>HEAD：</code></strong>始终指向当前分支；</li>
+<li>Git 创建、合并、删除分支非常快，因为这些操作都是对指针的操作，改改 HEAD 的指向，工作区的文件都没有任何变化；</li>
+<li>Git 鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在 master 分支上工作效果是一样的，但过程更安全。</li>
+</ul>
+<h2 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h2><ul>
+<li><strong>fork 按钮：</strong>fork 用于将他人的仓库复制到我们账号中。如果我们想要参与开源项目，首先要 fork 下别人的项目，然后在我们复制过来的仓库中，对别人的代码做修改。</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Git/">Git</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Git/">Git</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/07/12/2016_07_12_GitNote/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/07/12/2016_07_12_GitNote/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/08/22/2015_08_22_OCFragmentary/" title="OC：零碎知识总结" itemprop="url">OC：零碎知识总结</a>
   </h1>
   <p class="article-author">By
@@ -81,7 +314,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-22T13:55:07.000Z" itemprop="datePublished"> 发表于 2015-08-22</time>
+    <time datetime="2015-08-22T13:55:07.000Z" itemprop="datePublished"> Published 2015-08-22</time>
     
   </p>
 </header>
@@ -173,7 +406,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-17T12:48:54.000Z" itemprop="datePublished"> 发表于 2015-08-17</time>
+    <time datetime="2015-08-17T12:48:54.000Z" itemprop="datePublished"> Published 2015-08-17</time>
     
   </p>
 </header>
@@ -238,7 +471,7 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-17T12:27:35.000Z" itemprop="datePublished"> 发表于 2015-08-17</time>
+    <time datetime="2015-08-17T12:27:35.000Z" itemprop="datePublished"> Published 2015-08-17</time>
     
   </p>
 </header>
@@ -401,7 +634,7 @@ dispatch_set_target_queue(mySDQ, myGDQ);
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-17T07:31:01.000Z" itemprop="datePublished"> 发表于 2015-08-17</time>
+    <time datetime="2015-08-17T07:31:01.000Z" itemprop="datePublished"> Published 2015-08-17</time>
     
   </p>
 </header>
@@ -738,7 +971,7 @@ dispatch_set_target_queue(mySDQ, myGDQ);
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-17T02:48:28.000Z" itemprop="datePublished"> 发表于 2015-08-17</time>
+    <time datetime="2015-08-17T02:48:28.000Z" itemprop="datePublished"> Published 2015-08-17</time>
     
   </p>
 </header>
@@ -828,7 +1061,7 @@ int main(int argc,char* argv[])
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:45:53.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
+    <time datetime="2015-08-16T11:45:53.000Z" itemprop="datePublished"> Published 2015-08-16</time>
     
   </p>
 </header>
@@ -900,7 +1133,7 @@ int main(int argc,char* argv[])
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
+    <time datetime="2015-08-16T11:12:14.000Z" itemprop="datePublished"> Published 2015-08-16</time>
     
   </p>
 </header>
@@ -981,7 +1214,7 @@ NSString *string = [NSString stringWithFormat:@&quot;%d&quot;, [number intValue]
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-16T07:28:30.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
+    <time datetime="2015-08-16T07:28:30.000Z" itemprop="datePublished"> Published 2015-08-16</time>
     
   </p>
 </header>
@@ -1305,83 +1538,16 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/08/16/2015_08_16_Octopress/" title="用 Octopress 搭建静态博客并发布文章" itemprop="url">用 Octopress 搭建静态博客并发布文章</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
-		
-  <p class="article-time">
-    <time datetime="2015-08-16T05:51:41.000Z" itemprop="datePublished"> 发表于 2015-08-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="搭建博客"><a href="#搭建博客" class="headerlink" title="搭建博客"></a>搭建博客</h2><h3 id="克隆Octopress"><a href="#克隆Octopress" class="headerlink" title="克隆Octopress"></a>克隆Octopress</h3><p>从Github上将Octopress项目克隆到本地的Octopress目录下：</p>
-<pre><code>git clone git://github.com/imathis/octopress.git Octopress
-</code></pre><h3 id="进入Octopress项目根目录"><a href="#进入Octopress项目根目录" class="headerlink" title="进入Octopress项目根目录"></a>进入Octopress项目根目录</h3><pre><code>cd Octopress
-</code></pre>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/08/16/2015_08_16_Octopress/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/Blog/">Blog</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Octopress/">Octopress</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/08/16/2015_08_16_Octopress/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/08/16/2015_08_16_Octopress/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next<span></span></a>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -1389,7 +1555,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -1409,7 +1575,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>14</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>16</sup></a></li>
 		  
 		
 		</ul>
@@ -1418,7 +1584,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -1426,7 +1592,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -1442,11 +1608,15 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
 			
 		
 			
@@ -1459,10 +1629,6 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 		
 			
 				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -1490,7 +1656,15 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
+				<li><a href="/tags/NSLog/" title="NSLog">NSLog<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -1611,7 +1785,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
