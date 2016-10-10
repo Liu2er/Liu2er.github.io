@@ -53,7 +53,7 @@ NSOperation 代表一个多线程任务，每个 NSOperation 中又可以封装�
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -69,7 +69,7 @@ NSOperation 代表一个多线程任务，每个 NSOperation 中又可以封装�
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -92,14 +92,14 @@ NSOperation 代表一个多线程任务，每个 NSOperation 中又可以封装�
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2015-08-17T07:31:01.000Z" itemprop="datePublished"> 發表於 2015-08-17</time>
+    <time datetime="2015-08-17T07:31:01.000Z" itemprop="datePublished"> Published 2015-08-17</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NSOperationQueue"><span class="toc-number">1.</span> <span class="toc-text">NSOperationQueue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#有两种-NSOperationQueue-队列类型："><span class="toc-number">1.1.</span> <span class="toc-text">有两种 NSOperationQueue 队列类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#往队列里添加任务的三种方式："><span class="toc-number">1.2.</span> <span class="toc-text">往队列里添加任务的三种方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperationQueue-的其它方法"><span class="toc-number">1.3.</span> <span class="toc-text">NSOperationQueue 的其它方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最大并发数"><span class="toc-number">1.3.1.</span> <span class="toc-text">最大并发数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取消队列"><span class="toc-number">1.3.2.</span> <span class="toc-text">取消队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#暂停任务"><span class="toc-number">1.3.3.</span> <span class="toc-text">暂停任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#返回当前的队列"><span class="toc-number">1.3.4.</span> <span class="toc-text">返回当前的队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待"><span class="toc-number">1.3.5.</span> <span class="toc-text">等待</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperationQueue-的属性"><span class="toc-number">1.4.</span> <span class="toc-text">NSOperationQueue 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSOperation"><span class="toc-number">2.</span> <span class="toc-text">NSOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperation-的方法"><span class="toc-number">2.1.</span> <span class="toc-text">NSOperation 的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#开启操作"><span class="toc-number">2.1.1.</span> <span class="toc-text">开启操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取消操作"><span class="toc-number">2.1.2.</span> <span class="toc-text">取消操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置依赖"><span class="toc-number">2.1.3.</span> <span class="toc-text">设置依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待执行完毕"><span class="toc-number">2.1.4.</span> <span class="toc-text">等待执行完毕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其它"><span class="toc-number">2.1.5.</span> <span class="toc-text">其它</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperation-的属性"><span class="toc-number">2.2.</span> <span class="toc-text">NSOperation 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSInvocationOperation"><span class="toc-number">3.</span> <span class="toc-text">NSInvocationOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSInvocationOperation-的方法"><span class="toc-number">3.1.</span> <span class="toc-text">NSInvocationOperation 的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSInvocationOperation-的属性"><span class="toc-number">3.2.</span> <span class="toc-text">NSInvocationOperation 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSBlockOperation"><span class="toc-number">4.</span> <span class="toc-text">NSBlockOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBlockOperation-的方法"><span class="toc-number">4.1.</span> <span class="toc-text">NSBlockOperation 的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBlockOperation-的属性"><span class="toc-number">4.2.</span> <span class="toc-text">NSBlockOperation 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义的-NSOperation-的子类"><span class="toc-number">5.</span> <span class="toc-text">自定义的 NSOperation 的子类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回到主线程的三种方式"><span class="toc-number">6.</span> <span class="toc-text">回到主线程的三种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用performSelector-方法"><span class="toc-number">6.1.</span> <span class="toc-text">用performSelector 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用GCD"><span class="toc-number">6.2.</span> <span class="toc-text">用GCD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-NSOperationQueue"><span class="toc-number">6.3.</span> <span class="toc-text">用 NSOperationQueue</span></a></li></ol></li></ol>
 		
@@ -441,17 +441,17 @@ NSOperation 代表一个多线程任务，每个 NSOperation 中又可以封装�
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NSOperationQueue"><span class="toc-number">1.</span> <span class="toc-text">NSOperationQueue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#有两种-NSOperationQueue-队列类型："><span class="toc-number">1.1.</span> <span class="toc-text">有两种 NSOperationQueue 队列类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#往队列里添加任务的三种方式："><span class="toc-number">1.2.</span> <span class="toc-text">往队列里添加任务的三种方式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperationQueue-的其它方法"><span class="toc-number">1.3.</span> <span class="toc-text">NSOperationQueue 的其它方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#最大并发数"><span class="toc-number">1.3.1.</span> <span class="toc-text">最大并发数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取消队列"><span class="toc-number">1.3.2.</span> <span class="toc-text">取消队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#暂停任务"><span class="toc-number">1.3.3.</span> <span class="toc-text">暂停任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#返回当前的队列"><span class="toc-number">1.3.4.</span> <span class="toc-text">返回当前的队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待"><span class="toc-number">1.3.5.</span> <span class="toc-text">等待</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperationQueue-的属性"><span class="toc-number">1.4.</span> <span class="toc-text">NSOperationQueue 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSOperation"><span class="toc-number">2.</span> <span class="toc-text">NSOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperation-的方法"><span class="toc-number">2.1.</span> <span class="toc-text">NSOperation 的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#开启操作"><span class="toc-number">2.1.1.</span> <span class="toc-text">开启操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取消操作"><span class="toc-number">2.1.2.</span> <span class="toc-text">取消操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置依赖"><span class="toc-number">2.1.3.</span> <span class="toc-text">设置依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#等待执行完毕"><span class="toc-number">2.1.4.</span> <span class="toc-text">等待执行完毕</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其它"><span class="toc-number">2.1.5.</span> <span class="toc-text">其它</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSOperation-的属性"><span class="toc-number">2.2.</span> <span class="toc-text">NSOperation 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSInvocationOperation"><span class="toc-number">3.</span> <span class="toc-text">NSInvocationOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSInvocationOperation-的方法"><span class="toc-number">3.1.</span> <span class="toc-text">NSInvocationOperation 的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSInvocationOperation-的属性"><span class="toc-number">3.2.</span> <span class="toc-text">NSInvocationOperation 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NSBlockOperation"><span class="toc-number">4.</span> <span class="toc-text">NSBlockOperation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBlockOperation-的方法"><span class="toc-number">4.1.</span> <span class="toc-text">NSBlockOperation 的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NSBlockOperation-的属性"><span class="toc-number">4.2.</span> <span class="toc-text">NSBlockOperation 的属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义的-NSOperation-的子类"><span class="toc-number">5.</span> <span class="toc-text">自定义的 NSOperation 的子类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回到主线程的三种方式"><span class="toc-number">6.</span> <span class="toc-text">回到主线程的三种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用performSelector-方法"><span class="toc-number">6.1.</span> <span class="toc-text">用performSelector 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用GCD"><span class="toc-number">6.2.</span> <span class="toc-text">用GCD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用-NSOperationQueue"><span class="toc-number">6.3.</span> <span class="toc-text">用 NSOperationQueue</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -459,7 +459,7 @@ NSOperation 代表一个多线程任务，每个 NSOperation 中又可以封装�
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -488,7 +488,7 @@ NSOperation 代表一个多线程任务，每个 NSOperation 中又可以封装�
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -778,7 +778,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

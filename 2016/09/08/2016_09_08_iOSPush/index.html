@@ -106,7 +106,7 @@ Mac 上的消息推送测试工具 PushMeBaby
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -122,7 +122,7 @@ Mac 上的消息推送测试工具 PushMeBaby
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -145,14 +145,14 @@ Mac 上的消息推送测试工具 PushMeBaby
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> 發表於 2016-09-08</time>
+    <time datetime="2016-09-08T08:29:04.000Z" itemprop="datePublished"> Published 2016-09-08</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#deviceToken"><span class="toc-number">2.1.</span> <span class="toc-text">deviceToken</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deviceToken-的获取方法"><span class="toc-number">2.2.</span> <span class="toc-text">deviceToken 的获取方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作流程"><span class="toc-number">3.</span> <span class="toc-text">操作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Payload"><span class="toc-number">4.</span> <span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端接收-push-消息"><span class="toc-number">5.</span> <span class="toc-text">客户端接收 push 消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APNs-server"><span class="toc-number">6.</span> <span class="toc-text">APNs server:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-不在前台"><span class="toc-number">7.</span> <span class="toc-text">APP 不在前台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-在前台"><span class="toc-number">8.</span> <span class="toc-text">APP 在前台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-在前台-1"><span class="toc-number">9.</span> <span class="toc-text">APP 在前台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自研通道"><span class="toc-number">9.1.</span> <span class="toc-text">自研通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APNs通道"><span class="toc-number">9.2.</span> <span class="toc-text">APNs通道</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#APP-在后台"><span class="toc-number"></span> <span class="toc-text">APP 在后台</span></a>
 		
@@ -378,17 +378,17 @@ Mac 上的消息推送测试工具 PushMeBaby
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.</span> <span class="toc-text">参考资料</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念"><span class="toc-number">2.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#deviceToken"><span class="toc-number">2.1.</span> <span class="toc-text">deviceToken</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deviceToken-的获取方法"><span class="toc-number">2.2.</span> <span class="toc-text">deviceToken 的获取方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作流程"><span class="toc-number">3.</span> <span class="toc-text">操作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Payload"><span class="toc-number">4.</span> <span class="toc-text">Payload</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端接收-push-消息"><span class="toc-number">5.</span> <span class="toc-text">客户端接收 push 消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APNs-server"><span class="toc-number">6.</span> <span class="toc-text">APNs server:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-不在前台"><span class="toc-number">7.</span> <span class="toc-text">APP 不在前台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-在前台"><span class="toc-number">8.</span> <span class="toc-text">APP 在前台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#APP-在前台-1"><span class="toc-number">9.</span> <span class="toc-text">APP 在前台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自研通道"><span class="toc-number">9.1.</span> <span class="toc-text">自研通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APNs通道"><span class="toc-number">9.2.</span> <span class="toc-text">APNs通道</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#APP-在后台"><span class="toc-number"></span> <span class="toc-text">APP 在后台</span></a>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -396,7 +396,7 @@ Mac 上的消息推送测试工具 PushMeBaby
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -425,7 +425,7 @@ Mac 上的消息推送测试工具 PushMeBaby
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -715,7 +715,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
