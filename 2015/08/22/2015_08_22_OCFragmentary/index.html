@@ -12,46 +12,19 @@
 
     <meta name="keywords" content="iOS, Fragmentary">
     <meta name="description" content="判断编译环境：ARC还是MRC？1234567#if __has_feature(objc_arc)// 当前编译环境是ARC#else// 当前编译环境是MRC#endif
-UIView、UIWindow、CALayer
-UIView：
-属于UIKit.framework框架；
-负责显示内容；
-可以响应触摸事件；
-
-
-UIWindow：
-属于UIKit.framework框架；
-UIWindow">
+源码注释123456789101112#if __has_include(&amp;lt;JJObject.h&amp;gt;)NS_ASSUME_NONNULL_BEGIN@interface JJObject : NSObject...">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OC：零碎知识总结">
 <meta property="og:url" content="http://liu2er.com/2015/08/22/2015_08_22_OCFragmentary/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
 <meta property="og:description" content="判断编译环境：ARC还是MRC？1234567#if __has_feature(objc_arc)// 当前编译环境是ARC#else// 当前编译环境是MRC#endif
-UIView、UIWindow、CALayer
-UIView：
-属于UIKit.framework框架；
-负责显示内容；
-可以响应触摸事件；
-
-
-UIWindow：
-属于UIKit.framework框架；
-UIWindow">
+源码注释123456789101112#if __has_include(&amp;lt;JJObject.h&amp;gt;)NS_ASSUME_NONNULL_BEGIN@interface JJObject : NSObject...">
 <meta property="og:image" content="http://liu2er.com/images/2015_08_22_OCFragmentary1.png">
-<meta property="og:updated_time" content="2016-10-09T08:21:09.000Z">
+<meta property="og:updated_time" content="2016-10-17T06:35:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC：零碎知识总结">
 <meta name="twitter:description" content="判断编译环境：ARC还是MRC？1234567#if __has_feature(objc_arc)// 当前编译环境是ARC#else// 当前编译环境是MRC#endif
-UIView、UIWindow、CALayer
-UIView：
-属于UIKit.framework框架；
-负责显示内容；
-可以响应触摸事件；
-
-
-UIWindow：
-属于UIKit.framework框架；
-UIWindow">
+源码注释123456789101112#if __has_include(&amp;lt;JJObject.h&amp;gt;)NS_ASSUME_NONNULL_BEGIN@interface JJObject : NSObject...">
 <meta name="twitter:image" content="http://liu2er.com/images/2015_08_22_OCFragmentary1.png">
 
     
@@ -124,11 +97,16 @@ UIWindow">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">2.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">3.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">4.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">5.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码注释"><span class="toc-number">2.</span> <span class="toc-text">源码注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">3.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">4.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">5.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">6.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
 		
 		</div>
 		
 		<h2 id="判断编译环境：ARC还是MRC？"><a href="#判断编译环境：ARC还是MRC？" class="headerlink" title="判断编译环境：ARC还是MRC？"></a>判断编译环境：ARC还是MRC？</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#if __has_feature(objc_arc)</span></div><div class="line"><span class="comment">// 当前编译环境是ARC</span></div><div class="line"></div><div class="line"><span class="meta">#else</span></div><div class="line"><span class="comment">// 当前编译环境是MRC</span></div><div class="line"></div><div class="line"><span class="meta">#endif</span></div></pre></td></tr></table></figure>
+<h2 id="源码注释"><a href="#源码注释" class="headerlink" title="源码注释"></a>源码注释</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#if __has_include(<span class="meta-string">&lt;JJObject.h&gt;</span>)</span></div><div class="line"></div><div class="line"><span class="built_in">NS_ASSUME_NONNULL_BEGIN</span></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">JJObject</span> : <span class="title">NSObject</span></span></div><div class="line">...</div><div class="line">- (<span class="keyword">nullable</span> <span class="keyword">instancetype</span>)initWithName:(<span class="built_in">NSString</span> *)name;</div><div class="line">...</div><div class="line"><span class="keyword">@end</span></div><div class="line"><span class="built_in">NS_ASSUME_NONNULL_END</span></div><div class="line"></div><div class="line"><span class="comment">// 禁止通过下面方式实例化对象</span></div><div class="line">- (<span class="keyword">instancetype</span>)new UNAVAILABLE_ATTRIBUTE</div></pre></td></tr></table></figure>
+<p><code>__has_include</code> 用来检查 <code>Frameworks</code> 是否引入某个类</p>
+<p>接口中 <code>nullable</code> 的是少数,一般都为 <code>nonnull</code>,为了防止写一大堆 <code>nonnull</code>，Foundation 供了一对宏<code>NS_ASSUME_NONNULL_BEGIN</code>、<code>NS_ASSUME_NONNULL_END</code>，包在里面的对象默认加 <code>nonnull</code> 修饰符，如果是<code>nullable</code> 的,只需要把 <code>nullable</code> 的指出来就行</p>
+<p><code>UNAVAILABLE_ATTRIBUTE</code> 的宏定义为 <code>#define UNAVAILABLE_ATTRIBUTE __attribute__((unavailable))</code>, <code>__attribute__</code> 是 <code>Clang</code> 提供的一种源码注解，是GNU C特色之一，方便开发者向编译器表达某种要求，括号里是传达某种命令（format、deprecated、availability、unavailable、const、cleanup、constructor、destructor、noreturn、nonnull、aligned、packed）。为方便使用，一些常用属性也被 Cocoa 定义成宏，比如 <code>UNAVAILABLE_ATTRIBUTE</code>、<code>NS_CLASS_AVAILABLE_IOS(9_0)</code>。<br><code>unavailable</code> 告诉编译器该方法失效，在封装单例或初始化某个类前必须做一些事时，对一些方法禁用是非常不错的选择。还可以给个信息提示:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)new __attribute__((unavailable(<span class="string">"new方法不可用，请用initWithName:"</span>)));</div></pre></td></tr></table></figure></p>
+<p>本文参考了 <a href="http://www.jianshu.com/p/b8dcf6634fab" target="_blank" rel="external">YYCache源码分析(一)</a> 和 <a href="http://www.jianshu.com/p/6153eccdbe62" target="_blank" rel="external">神奇的<strong>attribute</strong></a>。</p>
 <h2 id="UIView、UIWindow、CALayer"><a href="#UIView、UIWindow、CALayer" class="headerlink" title="UIView、UIWindow、CALayer"></a>UIView、UIWindow、CALayer</h2><ol>
 <li>UIView：<ul>
 <li>属于<code>UIKit.framework</code>框架；</li>
@@ -228,7 +206,7 @@ UIWindow">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">2.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">3.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">4.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">5.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码注释"><span class="toc-number">2.</span> <span class="toc-text">源码注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">3.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">4.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">5.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">6.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
  
   </div>
 
