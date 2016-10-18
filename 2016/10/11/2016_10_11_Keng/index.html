@@ -4,23 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>UIButton 笔记 | Liu2er的技术博客</title>
+    <title>开发过程中踩过的坑 | Liu2er的技术博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Liu2er">
     
 
-    <meta name="keywords" content="iOS, UIButton">
-    <meta name="description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
+    <meta name="keywords" content="iOS, Keng">
+    <meta name="description" content="回主线程刷新 tableView请求数据回来后一定要重新刷新self.tableView，而且是在主线程中刷新，否则会出现没有数据，只有点击了屏幕才会有数据出现
+123456789101112131415161718- (void)requestData &amp;#123;    NSURLSession *session = [NSURLSession sharedSession];    NSURL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIButton 笔记">
-<meta property="og:url" content="http://liu2er.com/2016/09/18/2016_09_18_UIButton/index.html">
+<meta property="og:title" content="开发过程中踩过的坑">
+<meta property="og:url" content="http://liu2er.com/2016/10/11/2016_10_11_Keng/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
-<meta property="og:description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
-<meta property="og:updated_time" content="2016-09-18T02:57:01.000Z">
+<meta property="og:description" content="回主线程刷新 tableView请求数据回来后一定要重新刷新self.tableView，而且是在主线程中刷新，否则会出现没有数据，只有点击了屏幕才会有数据出现
+123456789101112131415161718- (void)requestData &amp;#123;    NSURLSession *session = [NSURLSession sharedSession];    NSURL">
+<meta property="og:updated_time" content="2016-10-11T07:38:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIButton 笔记">
-<meta name="twitter:description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
+<meta name="twitter:title" content="开发过程中踩过的坑">
+<meta name="twitter:description" content="回主线程刷新 tableView请求数据回来后一定要重新刷新self.tableView，而且是在主线程中刷新，否则会出现没有数据，只有点击了屏幕才会有数据出现
+123456789101112131415161718- (void)requestData &amp;#123;    NSURLSession *session = [NSURLSession sharedSession];    NSURL">
 
     
     <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
@@ -76,14 +79,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/18/2016_09_18_UIButton/" title="UIButton 笔记" itemprop="url">UIButton 笔记</a>
+      <a href="/2016/10/11/2016_10_11_Keng/" title="开发过程中踩过的坑" itemprop="url">开发过程中踩过的坑</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
+    <time datetime="2016-10-11T07:29:01.000Z" itemprop="datePublished"> 发表于 2016-10-11</time>
     
   </p>
 </header>
@@ -92,21 +95,12 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回主线程刷新-tableView"><span class="toc-number">1.</span> <span class="toc-text">回主线程刷新 tableView</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="UIEdgeInsets属性"><a href="#UIEdgeInsets属性" class="headerlink" title="UIEdgeInsets属性"></a>UIEdgeInsets属性</h2><h3 id="UIEdgeInsets"><a href="#UIEdgeInsets" class="headerlink" title="UIEdgeInsets"></a>UIEdgeInsets</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">UIEdgeInsets</span> &#123;</div><div class="line">    <span class="built_in">CGFloat</span> top, left, bottom, right;  <span class="comment">// specify amount to inset (positive) for each of the edges. values can be negative to 'outset'</span></div><div class="line">&#125; <span class="built_in">UIEdgeInsets</span>;</div></pre></td></tr></table></figure>
-<p>UIButton的UIEdgeInsets相关属性有三个：</p>
-<ol>
-<li>contentEdgeInsets</li>
-<li>imageEdgeInsets</li>
-<li>titleEdgeInsets</li>
-</ol>
-<p>image 的 UIEdgeInsets 属性的top、left、bottom 都是相对于 button 的，right 是相对于 title；<br>title 的 UIEdgeInsets 属性的top、bottom、right 都是相对于 button 的，left 是相对于 image；</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//拿到title和image的大小：</span></div><div class="line"><span class="built_in">CGSize</span> titleSize = <span class="keyword">self</span>.pureButton.titleLabel.bounds.size;</div><div class="line"><span class="built_in">CGSize</span> imageSize = <span class="keyword">self</span>.pureButton.imageView.bounds.size;</div><div class="line"><span class="comment">//分别设置偏移量:记住偏移量是位移</span></div><div class="line"><span class="keyword">self</span>.pureButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, -imageSize.width, <span class="number">0</span>, imageSize.width);</div><div class="line"><span class="keyword">self</span>.pureButton.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, titleSize.width, <span class="number">0</span>, -titleSize.width);</div></pre></td></tr></table></figure>
-<p>举例：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#define layoutCoefficient ([UIScreen mainScreen].bounds.size.width == 414 ? 1 : ([UIScreen mainScreen].bounds.size.width == 375 ? 0.91 : 0.77))</span></div><div class="line"></div><div class="line"><span class="built_in">CGFloat</span> offset = <span class="number">5.</span>;</div><div class="line">[<span class="keyword">self</span>.subscribeButton setImage:[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"subscribe_gray"</span>]scaledToSize:<span class="built_in">CGSizeMake</span>(<span class="number">15</span> * layoutCoefficient, <span class="number">15</span> * layoutCoefficient)] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitle:<span class="string">@"订阅"</span> forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton.titleLabel setFont:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">18</span> * layoutCoefficient]];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitleColor:[<span class="built_in">UIColor</span> whiteColor] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line"><span class="keyword">self</span>.subscribeButton.contentEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span> + offset);</div><div class="line"><span class="keyword">self</span>.subscribeButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, offset, <span class="number">0</span>, -offset);</div></pre></td></tr></table></figure>  
+		<h2 id="回主线程刷新-tableView"><a href="#回主线程刷新-tableView" class="headerlink" title="回主线程刷新 tableView"></a>回主线程刷新 tableView</h2><p>请求数据回来后一定要重新刷新self.tableView，而且是在主线程中刷新，否则会出现没有数据，只有点击了屏幕才会有数据出现</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)requestData &#123;</div><div class="line">    <span class="built_in">NSURLSession</span> *session = [<span class="built_in">NSURLSession</span> sharedSession];</div><div class="line">    <span class="built_in">NSURL</span> *url = [<span class="built_in">NSURL</span> URLWithString:<span class="string">@"https://huidu.dper.com/testflight/listOwners?type=0"</span>];</div><div class="line">    <span class="built_in">NSURLSessionTask</span> *task = [session dataTaskWithURL:url completionHandler:^(<span class="built_in">NSData</span> * _Nullable data, <span class="built_in">NSURLResponse</span> * _Nullable response, <span class="built_in">NSError</span> * _Nullable error) &#123;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> (error) &#123;</div><div class="line">            <span class="comment">// 处理 error</span></div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="comment">// 处理请求回来的数据</span></div><div class="line">        </div><div class="line">        <span class="comment">// 返回主线程刷新 tableView</span></div><div class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</div><div class="line">            [<span class="keyword">self</span>.tableView reloadData];</div><div class="line">        &#125;);</div><div class="line">    &#125;];</div><div class="line">    [task resume];</div><div class="line">&#125;</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -119,7 +113,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/UIButton/">UIButton</a>
+  <span></span> <a href="/tags/Keng/">Keng</a>
   </div>
 
 </div>
@@ -128,7 +122,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://liu2er.com/2016/09/18/2016_09_18_UIButton/" data-title="UIButton 笔记 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://liu2er.com/2016/10/11/2016_10_11_Keng/" data-title="开发过程中踩过的坑 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -142,18 +136,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/09/21/2016_09_21_DataPersistence/" title="数据化持久技术">
+ <a href="/2016/10/18/2016_10_18_UIImage/" title="UIImage 和 UIImageView">
   <strong>上一篇：</strong><br/>
   <span>
-  数据化持久技术</span>
+  UIImage 和 UIImageView</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/09/08/2016_09_08_iOSPush/"  title="iOS Push">
+<a href="/2016/10/08/2016_10_08_iOSAnimation/"  title="iOS 动画">
  <strong>下一篇：</strong><br/> 
- <span>iOS Push
+ <span>iOS 动画
 </span>
 </a>
 </div>
@@ -162,7 +156,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/09/18/2016_09_18_UIButton/" data-title="UIButton 笔记" data-url="http://liu2er.com/2016/09/18/2016_09_18_UIButton/"></div>
+	<div class="ds-thread" data-thread-key="2016/10/11/2016_10_11_Keng/" data-title="开发过程中踩过的坑" data-url="http://liu2er.com/2016/10/11/2016_10_11_Keng/"></div>
 </section>
 
 
@@ -172,7 +166,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#回主线程刷新-tableView"><span class="toc-number">1.</span> <span class="toc-text">回主线程刷新 tableView</span></a></li></ol>
  
   </div>
 

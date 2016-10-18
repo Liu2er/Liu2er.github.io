@@ -35,7 +35,7 @@ imageView.image =：完全填充，图片被拉">
 参考 五种创建UIImage的类方法。
 图片的添加与大小
 imageView.image =：完全填充，图片被拉">
-<meta property="og:updated_time" content="2016-10-18T08:32:35.000Z">
+<meta property="og:updated_time" content="2016-10-18T08:41:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIImage 和 UIImageView">
 <meta name="twitter:description" content="图片的5种创建方式
@@ -154,7 +154,7 @@ imageView.image =：完全填充，图片被拉">
 <li><p>方法3：<code>把 UIImageView 放到最底层</code><br>iOS 视图都是一个图层，最先放置的视图就会在最底层，因此，最先给一个视图添加一个 UIImageView 后，然后再在上面一一添加其他控件，效果也跟背景图片差不多。</p>
 </li>
 </ul>
-<h2 id="关于图片的尺寸问题"><a href="#关于图片的尺寸问题" class="headerlink" title="关于图片的尺寸问题"></a>关于图片的尺寸问题</h2><p>在 Retina 屏幕上，如果图片 <code>TestImage.png</code> 的尺寸为 <code>128 x 128</code>，如果对同一张图片用不同的命名，会有如下结果</p>
+<h2 id="关于图片的尺寸问题"><a href="#关于图片的尺寸问题" class="headerlink" title="关于图片的尺寸问题"></a>关于图片的尺寸问题</h2><p>在 Retina 屏幕上，如果图片 <code>TestImage.png</code> 的尺寸为 <code>300 x 300</code>，如果对同一张图片用不同的命名，会有如下结果</p>
 <table>
 <thead>
 <tr>
@@ -166,22 +166,22 @@ imageView.image =：完全填充，图片被拉">
 <tbody>
 <tr>
 <td>TestImage.png</td>
-<td>128 x 128</td>
+<td>300 x 300</td>
 <td>1.0</td>
 </tr>
 <tr>
 <td>TestImage@2x.png</td>
-<td>64 x 64</td>
+<td>150 x 150</td>
 <td>2.0</td>
 </tr>
 <tr>
 <td>TestImage@3x.png</td>
-<td>42.666666666666664 x 42.666666666666664</td>
+<td>100 x 100</td>
 <td>3.0</td>
 </tr>
 <tr>
 <td>TestImage@4x.png</td>
-<td>128 x 128</td>
+<td>300 x 300</td>
 <td>1.0</td>
 </tr>
 </tbody>
@@ -222,11 +222,19 @@ imageView.image =：完全填充，图片被拉">
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2016/10/18/2016_10_18_KengUIImage/" title="UIImage 和 UIImageView">
+  <strong>上一篇：</strong><br/>
+  <span>
+  UIImage 和 UIImageView</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2016/10/18/2016_10_18_KengUIImage/"  title="UIImage 和 UIImageView">
+<a href="/2016/10/11/2016_10_11_Keng/"  title="开发过程中踩过的坑">
  <strong>下一篇：</strong><br/> 
- <span>UIImage 和 UIImageView
+ <span>开发过程中踩过的坑
 </span>
 </a>
 </div>
@@ -278,7 +286,7 @@ imageView.image =：完全填充，图片被拉">
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>18</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
 		  
 		
 		</ul>
