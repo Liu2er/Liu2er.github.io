@@ -74,6 +74,258 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2016/10/18/2016_10_18_UIImage/" title="UIImage 和 UIImageView" itemprop="url">UIImage 和 UIImageView</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-18T07:14:13.000Z" itemprop="datePublished"> Published 2016-10-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="图片的5种创建方式"><a href="#图片的5种创建方式" class="headerlink" title="图片的5种创建方式"></a>图片的5种创建方式</h2><ul>
+<li>使用类方法 <code>imageNamed:</code> 创建</li>
+<li>使用类方法 <code>imageWithContentsOfFile:</code> 创建</li>
+<li>使用类方法 <code>imageWithData:</code> 创建</li>
+<li>使用类方法 <code>imageWithCGImage:</code> 创建</li>
+<li>使用类方法 <code>imageWithCIImage:</code> 创建</li>
+</ul>
+<p>参考 <a href="http://www.superqq.com/blog/2015/07/28/four-create-uiimage-method/" target="_blank" rel="external">五种创建UIImage的类方法</a>。</p>
+<h2 id="图片的添加与大小"><a href="#图片的添加与大小" class="headerlink" title="图片的添加与大小"></a>图片的添加与大小</h2><ul>
+<li><code>imageView.image =</code>：完全填充，图片被拉伸。<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">20</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">   <span class="comment">// [imageView setImage:[UIImage imageNamed:@"TestImage"]];</span></div><div class="line">   imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage"</span>];    </div><div class="line">   [<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用 <code>imageNamed:</code> 初始化的时候，系统会先去检查缓存中是否存在该名字的图片，如果不存在，则系统先缓存该图片，再返回该图片对象；如果存在，直接返回要加载的图片对象。这种机制适合于那种频繁用到界面贴图类的加载，但如果我们需要短时间内频繁的加载一些一次性的图像的话，最好不要使用这种方法。（当收到内存警告的时候，系统可能会将UIImage内部的存储图像的内存释放，下一次需要绘制的时候会重新去加载。）</p>
+<ul>
+<li><p><code>imageView.backgroundColor =</code>：图片原来尺寸，但是 imageView 里充满了该 image。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> colorWithPatternImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">   [<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>[imageView sizeToFit]</code>：重新把 UIImageView 的 size 改变为图片的大小。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">200</span>)];</div><div class="line">imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>];</div><div class="line">[imageView sizeToFit];</div><div class="line">[<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="给-UIView-设置背景图片的三种方式"><a href="#给-UIView-设置背景图片的三种方式" class="headerlink" title="给 UIView 设置背景图片的三种方式"></a>给 UIView 设置背景图片的三种方式</h2><ul>
+<li><p>方法1：<code>[self.view sendSubviewToBack:imageView]</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">100</span>)];</div><div class="line">[imageView setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">[<span class="keyword">self</span>.view addSubview:imageView];</div><div class="line">[<span class="keyword">self</span>.view sendSubviewToBack:imageView];</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法2：<code>view.backgroundColor = [UIColor colorWithPatternImage:image]</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *view = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">view.backgroundColor = [<span class="built_in">UIColor</span> colorWithPatternImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">[<span class="keyword">self</span>.view addSubview:view];</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法3：<code>把 UIImageView 放到最底层</code><br>iOS 视图都是一个图层，最先放置的视图就会在最底层，因此，最先给一个视图添加一个 UIImageView 后，然后再在上面一一添加其他控件，效果也跟背景图片差不多。</p>
+</li>
+</ul>
+<h2 id="关于图片的尺寸问题"><a href="#关于图片的尺寸问题" class="headerlink" title="关于图片的尺寸问题"></a>关于图片的尺寸问题</h2><p>在 Retina 屏幕上，如果图片 <code>TestImage.png</code> 的尺寸为 <code>128 x 128</code>，如果对同一张图片用不同的命名，会有如下结果</p>
+<table>
+<thead>
+<tr>
+<th>图片名称</th>
+<th>NSLog图片的size</th>
+<th>image.scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TestImage.png</td>
+<td>128 x 128</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>TestImage@2x.png</td>
+<td>64 x 64</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>TestImage@3x.png</td>
+<td>42.666666666666664 x 42.666666666666664</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>TestImage@4x.png</td>
+<td>128 x 128</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>在界面布局中逻辑坐标系中的单位是 <code>point</code>，而实际的绘制都是在设备坐标系单位是 <code>pixel</code> 进行的，系统会自动帮我们完成从 point 到 pixel 之间的转化。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/UIImage/">UIImage</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/10/18/2016_10_18_UIImage/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/10/18/2016_10_18_UIImage/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/18/2016_10_18_KengUIImage/" title="UIImage 和 UIImageView" itemprop="url">UIImage 和 UIImageView</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-18T07:14:13.000Z" itemprop="datePublished"> Published 2016-10-18</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="图片的5种创建方式"><a href="#图片的5种创建方式" class="headerlink" title="图片的5种创建方式"></a>图片的5种创建方式</h2><ul>
+<li>使用类方法 <code>imageNamed:</code> 创建</li>
+<li>使用类方法 <code>imageWithContentsOfFile:</code> 创建</li>
+<li>使用类方法 <code>imageWithData:</code> 创建</li>
+<li>使用类方法 <code>imageWithCGImage:</code> 创建</li>
+<li>使用类方法 <code>imageWithCIImage:</code> 创建</li>
+</ul>
+<p>参考 <a href="http://www.superqq.com/blog/2015/07/28/four-create-uiimage-method/" target="_blank" rel="external">五种创建UIImage的类方法</a>。</p>
+<h2 id="图片的添加与大小"><a href="#图片的添加与大小" class="headerlink" title="图片的添加与大小"></a>图片的添加与大小</h2><ul>
+<li><code>imageView.image =</code>：完全填充，图片被拉伸。<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">20</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">   <span class="comment">// [imageView setImage:[UIImage imageNamed:@"TestImage"]];</span></div><div class="line">   imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage"</span>];    </div><div class="line">   [<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用 <code>imageNamed:</code> 初始化的时候，系统会先去检查缓存中是否存在该名字的图片，如果不存在，则系统先缓存该图片，再返回该图片对象；如果存在，直接返回要加载的图片对象。这种机制适合于那种频繁用到界面贴图类的加载，但如果我们需要短时间内频繁的加载一些一次性的图像的话，最好不要使用这种方法。（当收到内存警告的时候，系统可能会将UIImage内部的存储图像的内存释放，下一次需要绘制的时候会重新去加载。）</p>
+<ul>
+<li><p><code>imageView.backgroundColor =</code>：图片原来尺寸，但是 imageView 里充满了该 image。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> colorWithPatternImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">   [<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>[imageView sizeToFit]</code>：重新把 UIImageView 的 size 改变为图片的大小。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">200</span>)];</div><div class="line">imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>];</div><div class="line">[imageView sizeToFit];</div><div class="line">[<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="给-UIView-设置背景图片的三种方式"><a href="#给-UIView-设置背景图片的三种方式" class="headerlink" title="给 UIView 设置背景图片的三种方式"></a>给 UIView 设置背景图片的三种方式</h2><ul>
+<li><p>方法1：<code>[self.view sendSubviewToBack:imageView]</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">100</span>)];</div><div class="line">[imageView setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">[<span class="keyword">self</span>.view addSubview:imageView];</div><div class="line">[<span class="keyword">self</span>.view sendSubviewToBack:imageView];</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法2：<code>view.backgroundColor = [UIColor colorWithPatternImage:image]</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *view = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">view.backgroundColor = [<span class="built_in">UIColor</span> colorWithPatternImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">[<span class="keyword">self</span>.view addSubview:view];</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法3：<code>把 UIImageView 放到最底层</code><br>iOS 视图都是一个图层，最先放置的视图就会在最底层，因此，最先给一个视图添加一个 UIImageView 后，然后再在上面一一添加其他控件，效果也跟背景图片差不多。</p>
+</li>
+</ul>
+<h2 id="关于图片的尺寸问题"><a href="#关于图片的尺寸问题" class="headerlink" title="关于图片的尺寸问题"></a>关于图片的尺寸问题</h2><p>在 Retina 屏幕上，如果图片 <code>TestImage.png</code> 的尺寸为 <code>128 x 128</code>，如果对同一张图片用不同的命名，会有如下结果</p>
+<table>
+<thead>
+<tr>
+<th>图片名称</th>
+<th>NSLog图片的size</th>
+<th>image.scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TestImage.png</td>
+<td>128 x 128</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>TestImage@2x.png</td>
+<td>64 x 64</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>TestImage@3x.png</td>
+<td>42.666666666666664 x 42.666666666666664</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>TestImage@4x.png</td>
+<td>128 x 128</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>在界面布局中逻辑坐标系中的单位是 <code>point</code>，而实际的绘制都是在设备坐标系单位是 <code>pixel</code> 进行的，系统会自动帮我们完成从 point 到 pixel 之间的转化。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/UIImage/">UIImage</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2016/10/18/2016_10_18_KengUIImage/#comments" class="ds-thread-count comments-count-link" data-thread-key="2016/10/18/2016_10_18_KengUIImage/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2016/10/08/2016_10_08_iOSAnimation/" title="iOS 动画" itemprop="url">iOS 动画</a>
   </h1>
   <p class="article-author">By
@@ -1449,6 +1701,16 @@ Program ended with exit code: 0
 <p>接口中 <code>nullable</code> 的是少数,一般都为 <code>nonnull</code>,为了防止写一大堆 <code>nonnull</code>，Foundation 供了一对宏<code>NS_ASSUME_NONNULL_BEGIN</code>、<code>NS_ASSUME_NONNULL_END</code>，包在里面的对象默认加 <code>nonnull</code> 修饰符，如果是<code>nullable</code> 的,只需要把 <code>nullable</code> 的指出来就行</p>
 <p><code>UNAVAILABLE_ATTRIBUTE</code> 的宏定义为 <code>#define UNAVAILABLE_ATTRIBUTE __attribute__((unavailable))</code>, <code>__attribute__</code> 是 <code>Clang</code> 提供的一种源码注解，是GNU C特色之一，方便开发者向编译器表达某种要求，括号里是传达某种命令（format、deprecated、availability、unavailable、const、cleanup、constructor、destructor、noreturn、nonnull、aligned、packed）。为方便使用，一些常用属性也被 Cocoa 定义成宏，比如 <code>UNAVAILABLE_ATTRIBUTE</code>、<code>NS_CLASS_AVAILABLE_IOS(9_0)</code>。<br><code>unavailable</code> 告诉编译器该方法失效，在封装单例或初始化某个类前必须做一些事时，对一些方法禁用是非常不错的选择。还可以给个信息提示:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)new __attribute__((unavailable(<span class="string">"new方法不可用，请用initWithName:"</span>)));</div></pre></td></tr></table></figure></p>
 <p>本文参考了 <a href="http://www.jianshu.com/p/b8dcf6634fab" target="_blank" rel="external">YYCache源码分析(一)</a> 和 <a href="http://www.jianshu.com/p/6153eccdbe62" target="_blank" rel="external">神奇的<strong>attribute</strong></a>。</p>
+<h2 id="pragma"><a href="#pragma" class="headerlink" title="#pragma"></a>#pragma</h2><p>虽然 <code>#pragma</code> 最初的目的是为了使得源代码在不同的编译器下能够兼容，但精明的 Xcode 编码器将 <code>#pragma</code> 使用到了极致。<code>#pragma</code> 避开了<strong>注释</strong>和<strong>代码</strong>之间的界限。作为预处理指令，<code>#pragma</code> 在编译时进行计算。但它并不像如 <code>#ifdef...#endif</code> 之类的宏，<code>#pragma</code> 的使用方式不会改变应用运行时的行为。相反，<code>#pragma</code> 声明主要由 Xcode 用来完成两个主要任务：<strong>整理代码</strong>和<strong>防止编译器警告</strong>。</p>
+<ul>
+<li><p>在 <code>@implementation</code> 中使用 <code>#pragma mark</code> 来将代码分割成逻辑区块。<br><code>#pragma mark - &lt;代码段的名字&gt;</code>，如 #pragma mark - UITableViewDelegate</p>
+</li>
+<li><p>用 <code>#pragma</code> 声明来防止来自编译器或者静态分析器的警告。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// completionBlock在AFURLConnectionOperation中被手动的设置为nil来打破循环引用</span></div><div class="line"><span class="meta">#pragma clang diagnostic push</span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Warc-retain-cycles"</span></span></div><div class="line">    <span class="keyword">self</span>.completionBlock = ^ &#123;</div><div class="line">        ...</div><div class="line">    &#125;;</div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过使用 <code>#pragma clang diagnostic push/pop</code>，可以告诉编译器仅仅为某一特定部分的代码（最初的诊断设置在最后的 <code>pop</code> 被恢复）来忽视特定警告。</p>
+<p>参考 <a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas" target="_blank" rel="external">Clang Compiler User’s Manual</a> 和 <a href="http://nshipster.cn/pragma/" target="_blank" rel="external">#pragma</a></p>
 <h2 id="UIView、UIWindow、CALayer"><a href="#UIView、UIWindow、CALayer" class="headerlink" title="UIView、UIWindow、CALayer"></a>UIView、UIWindow、CALayer</h2><ol>
 <li>UIView：<ul>
 <li>属于<code>UIKit.framework</code>框架；</li>
@@ -1474,6 +1736,7 @@ Program ended with exit code: 0
 </ul>
 </li>
 </ol>
+<h2 id="contentSize、contentInset、contentOffset"><a href="#contentSize、contentInset、contentOffset" class="headerlink" title="contentSize、contentInset、contentOffset"></a>contentSize、contentInset、contentOffset</h2><p>参考 <a href="https://segmentfault.com/a/1190000002914912" target="_blank" rel="external">contentSize，contentInset 和 contentOffset 的含义</a></p>
 <h2 id="设置状态栏隐藏"><a href="#设置状态栏隐藏" class="headerlink" title="设置状态栏隐藏"></a>设置状态栏隐藏</h2><p>在程序的启动过程中隐藏状态栏，在info.plist文件中添加如下内容即可：</p>
 <p><img src="/images/2015_08_22_OCFragmentary1.png" alt="图片"></p>
 <p>在APP指定的控制器的视图上隐藏状态栏，在控制器添加如下方法即可：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)prefersStatusBarHidden &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -2770,7 +3033,7 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>16</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>18</sup></a></li>
 		  
 		
 		</ul>
@@ -2787,15 +3050,15 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/UIImage/" title="UIImage">UIImage<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 			
@@ -2823,15 +3086,15 @@ struct __main_block_impl_0 tmp = __main_block_impl_0((void *)__main_block_func_0
 			
 		
 			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 			

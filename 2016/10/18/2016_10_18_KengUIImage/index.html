@@ -1,0 +1,605 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>UIImage 和 UIImageView | Liu2er的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Liu2er">
+    
+
+    <meta name="keywords" content="iOS, UIImage">
+    <meta name="description" content="图片的5种创建方式
+使用类方法 imageNamed: 创建
+使用类方法 imageWithContentsOfFile: 创建
+使用类方法 imageWithData: 创建
+使用类方法 imageWithCGImage: 创建
+使用类方法 imageWithCIImage: 创建
+
+参考 五种创建UIImage的类方法。
+图片的添加与大小
+imageView.image =：完全填充，图片被拉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIImage 和 UIImageView">
+<meta property="og:url" content="http://liu2er.com/2016/10/18/2016_10_18_KengUIImage/index.html">
+<meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="图片的5种创建方式
+使用类方法 imageNamed: 创建
+使用类方法 imageWithContentsOfFile: 创建
+使用类方法 imageWithData: 创建
+使用类方法 imageWithCGImage: 创建
+使用类方法 imageWithCIImage: 创建
+
+参考 五种创建UIImage的类方法。
+图片的添加与大小
+imageView.image =：完全填充，图片被拉">
+<meta property="og:updated_time" content="2016-10-18T08:32:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UIImage 和 UIImageView">
+<meta name="twitter:description" content="图片的5种创建方式
+使用类方法 imageNamed: 创建
+使用类方法 imageWithContentsOfFile: 创建
+使用类方法 imageWithData: 创建
+使用类方法 imageWithCGImage: 创建
+使用类方法 imageWithCIImage: 创建
+
+参考 五种创建UIImage的类方法。
+图片的添加与大小
+imageView.image =：完全填充，图片被拉">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
+				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:liu2er.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/18/2016_10_18_KengUIImage/" title="UIImage 和 UIImageView" itemprop="url">UIImage 和 UIImageView</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-18T07:14:13.000Z" itemprop="datePublished"> Published 2016-10-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图片的5种创建方式"><span class="toc-number">1.</span> <span class="toc-text">图片的5种创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片的添加与大小"><span class="toc-number">2.</span> <span class="toc-text">图片的添加与大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给-UIView-设置背景图片的三种方式"><span class="toc-number">3.</span> <span class="toc-text">给 UIView 设置背景图片的三种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于图片的尺寸问题"><span class="toc-number">4.</span> <span class="toc-text">关于图片的尺寸问题</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="图片的5种创建方式"><a href="#图片的5种创建方式" class="headerlink" title="图片的5种创建方式"></a>图片的5种创建方式</h2><ul>
+<li>使用类方法 <code>imageNamed:</code> 创建</li>
+<li>使用类方法 <code>imageWithContentsOfFile:</code> 创建</li>
+<li>使用类方法 <code>imageWithData:</code> 创建</li>
+<li>使用类方法 <code>imageWithCGImage:</code> 创建</li>
+<li>使用类方法 <code>imageWithCIImage:</code> 创建</li>
+</ul>
+<p>参考 <a href="http://www.superqq.com/blog/2015/07/28/four-create-uiimage-method/" target="_blank" rel="external">五种创建UIImage的类方法</a>。</p>
+<h2 id="图片的添加与大小"><a href="#图片的添加与大小" class="headerlink" title="图片的添加与大小"></a>图片的添加与大小</h2><ul>
+<li><code>imageView.image =</code>：完全填充，图片被拉伸。<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">20</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">   <span class="comment">// [imageView setImage:[UIImage imageNamed:@"TestImage"]];</span></div><div class="line">   imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage"</span>];    </div><div class="line">   [<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>使用 <code>imageNamed:</code> 初始化的时候，系统会先去检查缓存中是否存在该名字的图片，如果不存在，则系统先缓存该图片，再返回该图片对象；如果存在，直接返回要加载的图片对象。这种机制适合于那种频繁用到界面贴图类的加载，但如果我们需要短时间内频繁的加载一些一次性的图像的话，最好不要使用这种方法。（当收到内存警告的时候，系统可能会将UIImage内部的存储图像的内存释放，下一次需要绘制的时候会重新去加载。）</p>
+<ul>
+<li><p><code>imageView.backgroundColor =</code>：图片原来尺寸，但是 imageView 里充满了该 image。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">   imageView.backgroundColor = [<span class="built_in">UIColor</span> colorWithPatternImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">   [<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>[imageView sizeToFit]</code>：重新把 UIImageView 的 size 改变为图片的大小。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">200</span>)];</div><div class="line">imageView.backgroundColor = [<span class="built_in">UIColor</span> orangeColor];</div><div class="line">imageView.image = [<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>];</div><div class="line">[imageView sizeToFit];</div><div class="line">[<span class="keyword">self</span>.view addSubview:imageView];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="给-UIView-设置背景图片的三种方式"><a href="#给-UIView-设置背景图片的三种方式" class="headerlink" title="给 UIView 设置背景图片的三种方式"></a>给 UIView 设置背景图片的三种方式</h2><ul>
+<li><p>方法1：<code>[self.view sendSubviewToBack:imageView]</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">100</span>)];</div><div class="line">[imageView setImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">[<span class="keyword">self</span>.view addSubview:imageView];</div><div class="line">[<span class="keyword">self</span>.view sendSubviewToBack:imageView];</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法2：<code>view.backgroundColor = [UIColor colorWithPatternImage:image]</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIView</span> *view = [[<span class="built_in">UIImageView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>((<span class="keyword">self</span>.view.bounds.size.width - <span class="number">300</span>) * <span class="number">0.5</span>, <span class="number">340</span>, <span class="number">300</span>, <span class="number">300</span>)];</div><div class="line">view.backgroundColor = [<span class="built_in">UIColor</span> colorWithPatternImage:[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"TestImage2"</span>]];</div><div class="line">[<span class="keyword">self</span>.view addSubview:view];</div></pre></td></tr></table></figure>
+</li>
+<li><p>方法3：<code>把 UIImageView 放到最底层</code><br>iOS 视图都是一个图层，最先放置的视图就会在最底层，因此，最先给一个视图添加一个 UIImageView 后，然后再在上面一一添加其他控件，效果也跟背景图片差不多。</p>
+</li>
+</ul>
+<h2 id="关于图片的尺寸问题"><a href="#关于图片的尺寸问题" class="headerlink" title="关于图片的尺寸问题"></a>关于图片的尺寸问题</h2><p>在 Retina 屏幕上，如果图片 <code>TestImage.png</code> 的尺寸为 <code>128 x 128</code>，如果对同一张图片用不同的命名，会有如下结果</p>
+<table>
+<thead>
+<tr>
+<th>图片名称</th>
+<th>NSLog图片的size</th>
+<th>image.scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TestImage.png</td>
+<td>128 x 128</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>TestImage@2x.png</td>
+<td>64 x 64</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>TestImage@3x.png</td>
+<td>42.666666666666664 x 42.666666666666664</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>TestImage@4x.png</td>
+<td>128 x 128</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>在界面布局中逻辑坐标系中的单位是 <code>point</code>，而实际的绘制都是在设备坐标系单位是 <code>pixel</code> 进行的，系统会自动帮我们完成从 point 到 pixel 之间的转化。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/UIImage/">UIImage</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2016/10/18/2016_10_18_KengUIImage/" data-title="UIImage 和 UIImageView | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/10/18/2016_10_18_UIImage/" title="UIImage 和 UIImageView">
+  <strong>上一篇：</strong><br/>
+  <span>
+  UIImage 和 UIImageView</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/10/08/2016_10_08_iOSAnimation/"  title="iOS 动画">
+ <strong>下一篇：</strong><br/> 
+ <span>iOS 动画
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/18/2016_10_18_KengUIImage/" data-title="UIImage 和 UIImageView" data-url="http://liu2er.com/2016/10/18/2016_10_18_KengUIImage/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图片的5种创建方式"><span class="toc-number">1.</span> <span class="toc-text">图片的5种创建方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片的添加与大小"><span class="toc-number">2.</span> <span class="toc-text">图片的添加与大小</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给-UIView-设置背景图片的三种方式"><span class="toc-number">3.</span> <span class="toc-text">给 UIView 设置背景图片的三种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于图片的尺寸问题"><span class="toc-number">4.</span> <span class="toc-text">关于图片的尺寸问题</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Objective-C/" title="Objective-C">Objective-C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>18</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/RAC/" title="RAC">RAC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIImage/" title="UIImage">UIImage<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GCD/" title="GCD">GCD<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSUserDefaults/" title="NSUserDefaults">NSUserDefaults<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blosks/" title="Blosks">Blosks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSLog/" title="NSLog">NSLog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Liu2er">Liu2er</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

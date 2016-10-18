@@ -20,7 +20,7 @@
 <meta property="og:description" content="判断编译环境：ARC还是MRC？1234567#if __has_feature(objc_arc)// 当前编译环境是ARC#else// 当前编译环境是MRC#endif
 源码注释123456789101112#if __has_include(&amp;lt;JJObject.h&amp;gt;)NS_ASSUME_NONNULL_BEGIN@interface JJObject : NSObject...">
 <meta property="og:image" content="http://liu2er.com/images/2015_08_22_OCFragmentary1.png">
-<meta property="og:updated_time" content="2016-10-17T06:35:11.000Z">
+<meta property="og:updated_time" content="2016-10-17T09:07:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC：零碎知识总结">
 <meta name="twitter:description" content="判断编译环境：ARC还是MRC？1234567#if __has_feature(objc_arc)// 当前编译环境是ARC#else// 当前编译环境是MRC#endif
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码注释"><span class="toc-number">2.</span> <span class="toc-text">源码注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">3.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">4.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">5.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">6.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码注释"><span class="toc-number">2.</span> <span class="toc-text">源码注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pragma"><span class="toc-number">3.</span> <span class="toc-text">#pragma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">4.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contentSize、contentInset、contentOffset"><span class="toc-number">5.</span> <span class="toc-text">contentSize、contentInset、contentOffset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">6.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">7.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">8.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
 		
 		</div>
 		
@@ -107,6 +107,16 @@
 <p>接口中 <code>nullable</code> 的是少数,一般都为 <code>nonnull</code>,为了防止写一大堆 <code>nonnull</code>，Foundation 供了一对宏<code>NS_ASSUME_NONNULL_BEGIN</code>、<code>NS_ASSUME_NONNULL_END</code>，包在里面的对象默认加 <code>nonnull</code> 修饰符，如果是<code>nullable</code> 的,只需要把 <code>nullable</code> 的指出来就行</p>
 <p><code>UNAVAILABLE_ATTRIBUTE</code> 的宏定义为 <code>#define UNAVAILABLE_ATTRIBUTE __attribute__((unavailable))</code>, <code>__attribute__</code> 是 <code>Clang</code> 提供的一种源码注解，是GNU C特色之一，方便开发者向编译器表达某种要求，括号里是传达某种命令（format、deprecated、availability、unavailable、const、cleanup、constructor、destructor、noreturn、nonnull、aligned、packed）。为方便使用，一些常用属性也被 Cocoa 定义成宏，比如 <code>UNAVAILABLE_ATTRIBUTE</code>、<code>NS_CLASS_AVAILABLE_IOS(9_0)</code>。<br><code>unavailable</code> 告诉编译器该方法失效，在封装单例或初始化某个类前必须做一些事时，对一些方法禁用是非常不错的选择。还可以给个信息提示:<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (<span class="keyword">instancetype</span>)new __attribute__((unavailable(<span class="string">"new方法不可用，请用initWithName:"</span>)));</div></pre></td></tr></table></figure></p>
 <p>本文参考了 <a href="http://www.jianshu.com/p/b8dcf6634fab" target="_blank" rel="external">YYCache源码分析(一)</a> 和 <a href="http://www.jianshu.com/p/6153eccdbe62" target="_blank" rel="external">神奇的<strong>attribute</strong></a>。</p>
+<h2 id="pragma"><a href="#pragma" class="headerlink" title="#pragma"></a>#pragma</h2><p>虽然 <code>#pragma</code> 最初的目的是为了使得源代码在不同的编译器下能够兼容，但精明的 Xcode 编码器将 <code>#pragma</code> 使用到了极致。<code>#pragma</code> 避开了<strong>注释</strong>和<strong>代码</strong>之间的界限。作为预处理指令，<code>#pragma</code> 在编译时进行计算。但它并不像如 <code>#ifdef...#endif</code> 之类的宏，<code>#pragma</code> 的使用方式不会改变应用运行时的行为。相反，<code>#pragma</code> 声明主要由 Xcode 用来完成两个主要任务：<strong>整理代码</strong>和<strong>防止编译器警告</strong>。</p>
+<ul>
+<li><p>在 <code>@implementation</code> 中使用 <code>#pragma mark</code> 来将代码分割成逻辑区块。<br><code>#pragma mark - &lt;代码段的名字&gt;</code>，如 #pragma mark - UITableViewDelegate</p>
+</li>
+<li><p>用 <code>#pragma</code> 声明来防止来自编译器或者静态分析器的警告。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// completionBlock在AFURLConnectionOperation中被手动的设置为nil来打破循环引用</span></div><div class="line"><span class="meta">#pragma clang diagnostic push</span></div><div class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Warc-retain-cycles"</span></span></div><div class="line">    <span class="keyword">self</span>.completionBlock = ^ &#123;</div><div class="line">        ...</div><div class="line">    &#125;;</div><div class="line"><span class="meta">#pragma clang diagnostic pop</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过使用 <code>#pragma clang diagnostic push/pop</code>，可以告诉编译器仅仅为某一特定部分的代码（最初的诊断设置在最后的 <code>pop</code> 被恢复）来忽视特定警告。</p>
+<p>参考 <a href="http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas" target="_blank" rel="external">Clang Compiler User’s Manual</a> 和 <a href="http://nshipster.cn/pragma/" target="_blank" rel="external">#pragma</a></p>
 <h2 id="UIView、UIWindow、CALayer"><a href="#UIView、UIWindow、CALayer" class="headerlink" title="UIView、UIWindow、CALayer"></a>UIView、UIWindow、CALayer</h2><ol>
 <li>UIView：<ul>
 <li>属于<code>UIKit.framework</code>框架；</li>
@@ -132,6 +142,7 @@
 </ul>
 </li>
 </ol>
+<h2 id="contentSize、contentInset、contentOffset"><a href="#contentSize、contentInset、contentOffset" class="headerlink" title="contentSize、contentInset、contentOffset"></a>contentSize、contentInset、contentOffset</h2><p>参考 <a href="https://segmentfault.com/a/1190000002914912" target="_blank" rel="external">contentSize，contentInset 和 contentOffset 的含义</a></p>
 <h2 id="设置状态栏隐藏"><a href="#设置状态栏隐藏" class="headerlink" title="设置状态栏隐藏"></a>设置状态栏隐藏</h2><p>在程序的启动过程中隐藏状态栏，在info.plist文件中添加如下内容即可：</p>
 <p><img src="/images/2015_08_22_OCFragmentary1.png" alt="图片"></p>
 <p>在APP指定的控制器的视图上隐藏状态栏，在控制器添加如下方法即可：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">BOOL</span>)prefersStatusBarHidden &#123;</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -206,7 +217,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码注释"><span class="toc-number">2.</span> <span class="toc-text">源码注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">3.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">4.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">5.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">6.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断编译环境：ARC还是MRC？"><span class="toc-number">1.</span> <span class="toc-text">判断编译环境：ARC还是MRC？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源码注释"><span class="toc-number">2.</span> <span class="toc-text">源码注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pragma"><span class="toc-number">3.</span> <span class="toc-text">#pragma</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIView、UIWindow、CALayer"><span class="toc-number">4.</span> <span class="toc-text">UIView、UIWindow、CALayer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contentSize、contentInset、contentOffset"><span class="toc-number">5.</span> <span class="toc-text">contentSize、contentInset、contentOffset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置状态栏隐藏"><span class="toc-number">6.</span> <span class="toc-text">设置状态栏隐藏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-Icons苹果官方指南"><span class="toc-number">7.</span> <span class="toc-text">App Icons苹果官方指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可变集合类属性赋值崩溃问题"><span class="toc-number">8.</span> <span class="toc-text">可变集合类属性赋值崩溃问题</span></a></li></ol>
  
   </div>
 
@@ -239,7 +250,7 @@
 		  
 		
 		  
-			<li><a href="/categories/iOS/" title="iOS">iOS<sup>16</sup></a></li>
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>18</sup></a></li>
 		  
 		
 		</ul>
@@ -256,15 +267,15 @@
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/UIImage/" title="UIImage">UIImage<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 			
@@ -292,15 +303,15 @@
 			
 		
 			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
 			
 		
 			
