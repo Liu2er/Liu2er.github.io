@@ -1,0 +1,590 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>UINavigationController 用法汇总 | Liu2er的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Liu2er">
+    
+
+    <meta name="keywords" content="iOS, UINavigationController">
+    <meta name="description" content="extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBarsiOS 7 以后在 ViewController 里面引进了一系列属性用于管理页面布局。下面三个属性是 Apple 官方提供的文档解释：
+
+edgesForExtendedLayout：The extended edges to u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UINavigationController 用法汇总">
+<meta property="og:url" content="http://liu2er.com/2016/10/27/2016_10_27_UINavigationController/index.html">
+<meta property="og:site_name" content="Liu2er的技术博客">
+<meta property="og:description" content="extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBarsiOS 7 以后在 ViewController 里面引进了一系列属性用于管理页面布局。下面三个属性是 Apple 官方提供的文档解释：
+
+edgesForExtendedLayout：The extended edges to u">
+<meta property="og:updated_time" content="2016-10-27T10:25:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UINavigationController 用法汇总">
+<meta name="twitter:description" content="extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBarsiOS 7 以后在 ViewController 里面引进了一系列属性用于管理页面布局。下面三个属性是 Apple 官方提供的文档解释：
+
+edgesForExtendedLayout：The extended edges to u">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Liu2er的技术博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
+				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:liu2er.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/10/27/2016_10_27_UINavigationController/" title="UINavigationController 用法汇总" itemprop="url">UINavigationController 用法汇总</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
+		
+  <p class="article-time">
+    <time datetime="2016-10-27T07:54:53.000Z" itemprop="datePublished"> Published 2016-10-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars"><span class="toc-number">1.</span> <span class="toc-text">extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#edgesForExtendedLayout"><span class="toc-number">1.1.</span> <span class="toc-text">edgesForExtendedLayout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#automaticallyAdjustsScrollViewInsets"><span class="toc-number">1.2.</span> <span class="toc-text">automaticallyAdjustsScrollViewInsets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#navigationController-navigationBar-translucent"><span class="toc-number">1.3.</span> <span class="toc-text">navigationController.navigationBar.translucent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extendedLayoutIncludesOpaqueBars"><span class="toc-number">1.4.</span> <span class="toc-text">extendedLayoutIncludesOpaqueBars</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UINavigationBar"><span class="toc-number">2.</span> <span class="toc-text">UINavigationBar</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars"><a href="#extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars" class="headerlink" title="extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars"></a>extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars</h2><p>iOS 7 以后在 ViewController 里面引进了一系列属性用于管理页面布局。下面三个属性是 Apple 官方提供的文档解释：</p>
+<ul>
+<li><p><a href="https://developer.apple.com/reference/uikit/uiviewcontroller#//apple_ref/occ/instp/UIViewController/edgesForExtendedLayout" target="_blank" rel="external">edgesForExtendedLayout</a>：The extended edges to use for the layout.</p>
+</li>
+<li><p><a href="https://developer.apple.com/reference/uikit/uiviewcontroller#//apple_ref/occ/instp/UIViewController/automaticallyAdjustsScrollViewInsets" target="_blank" rel="external">automaticallyAdjustsScrollViewInsets</a>：A Boolean value that indicates whether the view controller should automatically adjust its scroll view insets.</p>
+</li>
+<li><p><a href="https://developer.apple.com/reference/uikit/uiviewcontroller#//apple_ref/occ/instp/UIViewController/extendedLayoutIncludesOpaqueBars" target="_blank" rel="external">extendedLayoutIncludesOpaqueBars</a>：A Boolean value indicating whether or not the extended layout includes opaque bars.</p>
+</li>
+</ul>
+<p>iOS 7 以后，ViewController 的 View 的布局默认是<code>全屏的</code>，NavigationBar 默认是<code>半透明的</code>。</p>
+<h3 id="edgesForExtendedLayout"><a href="#edgesForExtendedLayout" class="headerlink" title="edgesForExtendedLayout"></a>edgesForExtendedLayout</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    <span class="keyword">self</span>.edgesForExtendedLayout = <span class="built_in">UIRectEdgeNone</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>将 edgesForExtendedLayout 设置成 UIRectEdgeNone，表明 View 是不要扩展到整个屏幕的（但 NavigationBar 依然是半透明的），而是 View 是从 NavigationBar 的下方开始算。</p>
+<h3 id="automaticallyAdjustsScrollViewInsets"><a href="#automaticallyAdjustsScrollViewInsets" class="headerlink" title="automaticallyAdjustsScrollViewInsets"></a>automaticallyAdjustsScrollViewInsets</h3><p>如果页面是 UIScrollView 或者 UITableView，通常我们希望 UIScrollView 或者 UITableView 的内容显示在 navigationBar 下面。通过设置<code>edgesForExtendedLayout = UIRectEdgeNone</code>或者<code>self.navigationController.navigationBar.translucent = NO;</code>可以让 view 的布局从 navigationBar 下面开始，不过它有一个副作用就是当页面滑动的时候，view 是没有办法占满全屏的。</p>
+<h3 id="navigationController-navigationBar-translucent"><a href="#navigationController-navigationBar-translucent" class="headerlink" title="navigationController.navigationBar.translucent"></a>navigationController.navigationBar.translucent</h3><p><code>navigationController.navigationBar.translucent = YES;</code>用于设置 navigationBar 不透明，且 view 是从 navigationBar 下方开始的，即 view 不能占满整个屏幕，即 view 的 (0, 0) 位于 navigationBar 下方（同 iOS 7 之前的特性）。</p>
+<h3 id="extendedLayoutIncludesOpaqueBars"><a href="#extendedLayoutIncludesOpaqueBars" class="headerlink" title="extendedLayoutIncludesOpaqueBars"></a>extendedLayoutIncludesOpaqueBars</h3><p>不管 navigationController.navigationBar.translucent 的值是 true 还是 false，<code>self.extendedLayoutIncludesOpaqueBars = YES</code> 都会使得 view 是从 navigationBar 下方开始算起的。<br>如果状态栏是不透明的，那么页面的布局默认是不会包含状态栏的，除非将这个属性设置成为YES。所以如果你的页面扩展到Navigation Bar (edgesForExtendedLayout=UIRectEdgeAll)，要是这个属性设置成NO (default), 如果状态栏是不透明的话，页面是不会扩展到状态栏的。 </p>
+<p>automaticallyAdjustsScrollViewInsets 并不能帮助我们正常计算ScrollView/TableView的Inset，这时候就自己设置咯。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">self</span>.myTableView.contentInset = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">64</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>情景：</strong>self.window.rootViewController 是 UINavigationController，UINavigationController 的 rootViewController 是 UIViewController， UIViewController 有个 UITableView 属性，UITableView 的 frame 为 UIViewController 的 view 的 bounds。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIViewController</span> *JJVC = [[<span class="built_in">UIViewController</span> alloc] init];</div><div class="line"><span class="built_in">UINavigationController</span> *nav = [[<span class="built_in">UINavigationController</span> alloc] initWithRootViewController:JJVC];</div><div class="line"><span class="keyword">self</span>.window.rootViewController = nav;</div><div class="line">... ...</div><div class="line"><span class="built_in">UITableView</span> *tableView = [[<span class="built_in">UITableView</span> alloc] initWithFrame:<span class="keyword">self</span>.view.bounds];</div><div class="line">[<span class="keyword">self</span>.view addSubview:tableView];</div></pre></td></tr></table></figure>
+<ul>
+<li><p><code>默认</code></p>
+<p>  controller.view 占满整个屏幕，navigationBar 是默认的<code>半透明</code>；</p>
+</li>
+<li><p><code>self.edgesForExtendedLayout = UIRectEdgeNone;</code></p>
+<p>  navigationBar 依然是默认的<code>半透明</code>，但 controller.view 从 navigationBar 下方开始算；<br>  设置了 translucent = false 后，变为不透明，但是 view 依然不占满整个屏幕；</p>
+</li>
+<li><p><code>self.automaticallyAdjustsScrollViewInsets = YES;</code></p>
+<p>  navigationBar 依然是默认的<code>半透明</code>，controller.view 占满整个屏幕，同默认。<br>  但设置了 translucent = false 后，变为不透明，但是 view 也不占满整个屏幕；</p>
+</li>
+<li><p><code>self.extendedLayoutIncludesOpaqueBars = YES</code></p>
+<p>  navigationBar 依然是默认的<code>半透明</code>，controller.view 占满整个屏幕，同默认。<br>  但设置了 translucent = false 后，变为不透明，虽然 controller.view 依然占满整个屏幕，但是 controller.view 上的 tableView 从 navigationBar 下方开始计算（好奇怪）；</p>
+</li>
+<li><p><code>navigationController.navigationBar.translucent = false;</code></p>
+<p>  navigationBar 变为<code>不透明</code>，controller.view 从 navigationBar 下方开始算；</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">translucent = false（不透明）</th>
+<th style="text-align:center">translucent = ture（半透明）</th>
+<th style="text-align:center">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">默认</td>
+<td style="text-align:center">不占满</td>
+<td style="text-align:center">占满</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">self.edgesForExtendedLayout = UIRectEdgeNone</td>
+<td style="text-align:center">不占满</td>
+<td style="text-align:center">不占满（黑背景）</td>
+<td style="text-align:center">奇怪</td>
+</tr>
+<tr>
+<td style="text-align:center">self.automaticallyAdjustsScrollViewInsets = YES</td>
+<td style="text-align:center">不占满</td>
+<td style="text-align:center">占满</td>
+<td style="text-align:center">同默认</td>
+</tr>
+<tr>
+<td style="text-align:center">self.extendedLayoutIncludesOpaqueBars = YES</td>
+<td style="text-align:center">占满</td>
+<td style="text-align:center">占满</td>
+<td style="text-align:center">特别</td>
+</tr>
+</tbody>
+</table>
+<p>结论：</p>
+<ol>
+<li>不管 navigationBar 是半透明还是不透明，都希望 controller.view 能占满屏幕，因为这样风格统一，方便计算，且不影响以后的扩展，且不影响加在上面的 UIScrollView 或者 UITableView 的内容显示，所以用<code>self.extendedLayoutIncludesOpaqueBars = YES</code>最好了；</li>
+</ol>
+<p>参考<a href="http://www.cnblogs.com/wdsunny/p/4556378.html" target="_blank" rel="external">浅析extendedLayout, automaticallyAdjustsScrollViewInsets, extendedLayoutIncludesOpaqueBars</a></p>
+<h2 id="UINavigationBar"><a href="#UINavigationBar" class="headerlink" title="UINavigationBar"></a>UINavigationBar</h2><p>iOS 7以后在ViewController里面引进了一系列属性用于管理页面布局。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/iOS/">iOS</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/UINavigationController/">UINavigationController</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://liu2er.com/2016/10/27/2016_10_27_UINavigationController/" data-title="UINavigationController 用法汇总 | Liu2er的技术博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/10/18/2016_10_18_UIImage/"  title="UIImage 和 UIImageView">
+ <strong>下一篇：</strong><br/> 
+ <span>UIImage 和 UIImageView
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016/10/27/2016_10_27_UINavigationController/" data-title="UINavigationController 用法汇总" data-url="http://liu2er.com/2016/10/27/2016_10_27_UINavigationController/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars"><span class="toc-number">1.</span> <span class="toc-text">extendedLayout、automaticallyAdjustsScrollViewInsets、extendedLayoutIncludesOpaqueBars</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#edgesForExtendedLayout"><span class="toc-number">1.1.</span> <span class="toc-text">edgesForExtendedLayout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#automaticallyAdjustsScrollViewInsets"><span class="toc-number">1.2.</span> <span class="toc-text">automaticallyAdjustsScrollViewInsets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#navigationController-navigationBar-translucent"><span class="toc-number">1.3.</span> <span class="toc-text">navigationController.navigationBar.translucent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extendedLayoutIncludesOpaqueBars"><span class="toc-number">1.4.</span> <span class="toc-text">extendedLayoutIncludesOpaqueBars</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">1.5.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UINavigationBar"><span class="toc-number">2.</span> <span class="toc-text">UINavigationBar</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Blog/" title="Blog">Blog<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/C/" title="C">C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Git/" title="Git">Git<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Objective-C/" title="Objective-C">Objective-C<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/iOS/" title="iOS">iOS<sup>19</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/RAC/" title="RAC">RAC<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Multithreading/" title="Multithreading">Multithreading<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSOperation/" title="NSOperation">NSOperation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GCD/" title="GCD">GCD<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Delegate/" title="Delegate">Delegate<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Git/" title="Git">Git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/isEqual/" title="isEqual">isEqual<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSUserDefaults/" title="NSUserDefaults">NSUserDefaults<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Blosks/" title="Blosks">Blosks<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NSLog/" title="NSLog">NSLog<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Keng/" title="Keng">Keng<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Liu2er">Liu2er</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"liu2er"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

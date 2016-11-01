@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://liu2er.com/2016/09/18/2016_09_18_UIButton/index.html">
 <meta property="og:site_name" content="Liu2er的技术博客">
 <meta property="og:description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
-<meta property="og:updated_time" content="2016-09-18T02:57:01.000Z">
+<meta property="og:updated_time" content="2016-11-01T02:20:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIButton 笔记">
 <meta name="twitter:description" content="UIEdgeInsets属性UIEdgeInsets123typedef struct UIEdgeInsets &amp;#123;    CGFloat top, left, bottom, right;  // specify amount to inset (positive) for each of the edges. values can be negative to &apos;outset&apos;&amp;#1">
@@ -44,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="Liu2er的技术博客">Liu2er的技术博客</a></h1>
 				<h2 class="blog-motto">世界那么大，我早晚要去看</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:liu2er.com">
 					</form>
 					
@@ -83,16 +83,16 @@
 		<a href="/about" title="Liu2er" target="_blank" itemprop="author">Liu2er</a>
 		
   <p class="article-time">
-    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> 发表于 2016-09-18</time>
+    <time datetime="2016-09-18T02:46:13.000Z" itemprop="datePublished"> Published 2016-09-18</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIButton-字体颜色"><span class="toc-number">2.</span> <span class="toc-text">UIButton 字体颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置-UIButton-的字体颜色"><span class="toc-number">2.1.</span> <span class="toc-text">设置 UIButton 的字体颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断-UIButton-的字体颜色"><span class="toc-number">2.2.</span> <span class="toc-text">判断 UIButton 的字体颜色</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -106,7 +106,10 @@
 <p>image 的 UIEdgeInsets 属性的top、left、bottom 都是相对于 button 的，right 是相对于 title；<br>title 的 UIEdgeInsets 属性的top、bottom、right 都是相对于 button 的，left 是相对于 image；</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//拿到title和image的大小：</span></div><div class="line"><span class="built_in">CGSize</span> titleSize = <span class="keyword">self</span>.pureButton.titleLabel.bounds.size;</div><div class="line"><span class="built_in">CGSize</span> imageSize = <span class="keyword">self</span>.pureButton.imageView.bounds.size;</div><div class="line"><span class="comment">//分别设置偏移量:记住偏移量是位移</span></div><div class="line"><span class="keyword">self</span>.pureButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, -imageSize.width, <span class="number">0</span>, imageSize.width);</div><div class="line"><span class="keyword">self</span>.pureButton.imageEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, titleSize.width, <span class="number">0</span>, -titleSize.width);</div></pre></td></tr></table></figure>
 <p>举例：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#define layoutCoefficient ([UIScreen mainScreen].bounds.size.width == 414 ? 1 : ([UIScreen mainScreen].bounds.size.width == 375 ? 0.91 : 0.77))</span></div><div class="line"></div><div class="line"><span class="built_in">CGFloat</span> offset = <span class="number">5.</span>;</div><div class="line">[<span class="keyword">self</span>.subscribeButton setImage:[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"subscribe_gray"</span>]scaledToSize:<span class="built_in">CGSizeMake</span>(<span class="number">15</span> * layoutCoefficient, <span class="number">15</span> * layoutCoefficient)] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitle:<span class="string">@"订阅"</span> forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton.titleLabel setFont:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">18</span> * layoutCoefficient]];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitleColor:[<span class="built_in">UIColor</span> whiteColor] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line"><span class="keyword">self</span>.subscribeButton.contentEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span> + offset);</div><div class="line"><span class="keyword">self</span>.subscribeButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, offset, <span class="number">0</span>, -offset);</div></pre></td></tr></table></figure>  
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#define layoutCoefficient ([UIScreen mainScreen].bounds.size.width == 414 ? 1 : ([UIScreen mainScreen].bounds.size.width == 375 ? 0.91 : 0.77))</span></div><div class="line"></div><div class="line"><span class="built_in">CGFloat</span> offset = <span class="number">5.</span>;</div><div class="line">[<span class="keyword">self</span>.subscribeButton setImage:[[<span class="built_in">UIImage</span> imageNamed:<span class="string">@"subscribe_gray"</span>]scaledToSize:<span class="built_in">CGSizeMake</span>(<span class="number">15</span> * layoutCoefficient, <span class="number">15</span> * layoutCoefficient)] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitle:<span class="string">@"订阅"</span> forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">[<span class="keyword">self</span>.subscribeButton.titleLabel setFont:[<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">18</span> * layoutCoefficient]];</div><div class="line">[<span class="keyword">self</span>.subscribeButton setTitleColor:[<span class="built_in">UIColor</span> whiteColor] forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line"><span class="keyword">self</span>.subscribeButton.contentEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span> + offset);</div><div class="line"><span class="keyword">self</span>.subscribeButton.titleEdgeInsets = <span class="built_in">UIEdgeInsetsMake</span>(<span class="number">0</span>, offset, <span class="number">0</span>, -offset);</div></pre></td></tr></table></figure>
+<h2 id="UIButton-字体颜色"><a href="#UIButton-字体颜色" class="headerlink" title="UIButton 字体颜色"></a>UIButton 字体颜色</h2><h3 id="设置-UIButton-的字体颜色"><a href="#设置-UIButton-的字体颜色" class="headerlink" title="设置 UIButton 的字体颜色"></a>设置 UIButton 的字体颜色</h3><p>设置 UIButton 字体颜色要用下面方法：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.btn setTitleColor:[<span class="built_in">UIColor</span> whiteColor] forState:<span class="built_in">UIControlStateNormal</span>];</div></pre></td></tr></table></figure></p>
+<p>而不是：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.btn.titleLabel setTextColor:[<span class="built_in">UIColor</span> whiteColor]];</div><div class="line"><span class="comment">// 或</span></div><div class="line"><span class="keyword">self</span>.btn.titleLabel.textColor = [<span class="built_in">UIColor</span> whiteColor];</div></pre></td></tr></table></figure></p>
+<h3 id="判断-UIButton-的字体颜色"><a href="#判断-UIButton-的字体颜色" class="headerlink" title="判断 UIButton 的字体颜色"></a>判断 UIButton 的字体颜色</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">CGColorEqualToColor</span>(<span class="keyword">self</span>.btn.currentTitleColor.CGColor, [<span class="built_in">UIColor</span> whiteColor].CGColor)) &#123;</div><div class="line">       ... ...</div><div class="line">   &#125;</div></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -167,17 +170,17 @@
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UIEdgeInsets属性"><span class="toc-number">1.</span> <span class="toc-text">UIEdgeInsets属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#UIEdgeInsets"><span class="toc-number">1.1.</span> <span class="toc-text">UIEdgeInsets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UIButton-字体颜色"><span class="toc-number">2.</span> <span class="toc-text">UIButton 字体颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置-UIButton-的字体颜色"><span class="toc-number">2.1.</span> <span class="toc-text">设置 UIButton 的字体颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#判断-UIButton-的字体颜色"><span class="toc-number">2.2.</span> <span class="toc-text">判断 UIButton 的字体颜色</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -185,7 +188,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -214,7 +217,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -222,19 +225,11 @@
 			
 		
 			
-				<li><a href="/tags/UIImage/" title="UIImage">UIImage<sup>2</sup></a></li>
+				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/UINavigationController/" title="UINavigationController">UINavigationController<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GCD/" title="GCD">GCD<sup>1</sup></a></li>
+				<li><a href="/tags/NSString/" title="NSString">NSString<sup>1</sup></a></li>
 			
 		
 			
@@ -246,7 +241,19 @@
 			
 		
 			
+				<li><a href="/tags/GCD/" title="GCD">GCD<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Fragmentary/" title="Fragmentary">Fragmentary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
 			
 		
 			
@@ -258,7 +265,7 @@
 			
 		
 			
-				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+				<li><a href="/tags/Octopress/" title="Octopress">Octopress<sup>1</sup></a></li>
 			
 		
 			
@@ -266,15 +273,11 @@
 			
 		
 			
-				<li><a href="/tags/C/" title="C">C<sup>1</sup></a></li>
+				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/UIButton/" title="UIButton">UIButton<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Push/" title="Push">Push<sup>1</sup></a></li>
 			
 		
 			
@@ -290,11 +293,11 @@
 			
 		
 			
-				<li><a href="/tags/Notifications/" title="Notifications">Notifications<sup>1</sup></a></li>
+				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
+				<li><a href="/tags/Keng/" title="Keng">Keng<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -504,7 +507,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
